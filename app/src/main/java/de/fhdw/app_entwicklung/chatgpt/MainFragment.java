@@ -7,13 +7,30 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import androidx.activity.result.ActivityResultLauncher;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import de.fhdw.app_entwicklung.chatgpt.openai.ChatGpt;
+import de.fhdw.app_entwicklung.chatgpt.speech.LaunchSpeechRecognition;
 
 public class MainFragment extends Fragment {
+
+    private final ActivityResultLauncher<LaunchSpeechRecognition.SpeechRecognitionArgs> getTextFromSpeech = registerForActivityResult(
+            new LaunchSpeechRecognition(),
+            query -> {
+               getTextView().append(query);
+
+                MainActivity.backgroundExecutorService.execute(() ->
+                    {
+                        ChatGpt chatGpt = new ChatGpt("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");
+                        String answer = chatGpt.getChatCompletion(query);
+                        getTextView().setText(answer);
+                    });
+
+
+            });
 
     public MainFragment() {
     }
@@ -28,11 +45,10 @@ public class MainFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        getButton().setOnClickListener(v -> MainActivity.backgroundExecutorService.execute(() ->
+        getAskButton().setOnClickListener(v -> MainActivity.backgroundExecutorService.execute(() ->
         {
-            ChatGpt chatGpt = new ChatGpt("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");
-            String answer = chatGpt.getChatCompletion("What's the answer to the universe and everything?");
-            getTextView().setText(answer);
+            getTextFromSpeech.launch(new LaunchSpeechRecognition.SpeechRecognitionArgs());
+
         }));
     }
 
@@ -41,7 +57,7 @@ public class MainFragment extends Fragment {
         return getView().findViewById(R.id.textView);
     }
 
-    private Button getButton() {
+    private Button getAskButton() {
         //noinspection ConstantConditions
         return getView().findViewById(R.id.button_ask);
     }
