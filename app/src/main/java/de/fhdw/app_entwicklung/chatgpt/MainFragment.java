@@ -6,27 +6,34 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.speech.tts.TextToSpeech;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import java.util.Locale;
+
 import de.fhdw.app_entwicklung.chatgpt.openai.ChatGpt;
+import de.fhdw.app_entwicklung.chatgpt.speech.LauchTextToSpeech;
 import de.fhdw.app_entwicklung.chatgpt.speech.LaunchSpeechRecognition;
 
 public class MainFragment extends Fragment {
-
     private final ActivityResultLauncher<LaunchSpeechRecognition.SpeechRecognitionArgs> getTextFromSpeech = registerForActivityResult(
             new LaunchSpeechRecognition(),
             query -> {
                getTextView().append(query);
 
+                LauchTextToSpeech ttp = new LauchTextToSpeech(this.getContext());
+
                 MainActivity.backgroundExecutorService.execute(() ->
                     {
-                        ChatGpt chatGpt = new ChatGpt("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");
+                        ChatGpt chatGpt = new ChatGpt("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");
                         String answer = chatGpt.getChatCompletion(query);
                         getTextView().setText(answer);
+                        ttp.Speak(answer);
+
                     });
 
 
