@@ -5,7 +5,6 @@
         <EditTextPreference
             app:key="api_token"
             app:title="API Token"
-            app:defaultValue="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"
             app:useSimpleSummaryProvider="true" />
 
     </PreferenceCategory>
