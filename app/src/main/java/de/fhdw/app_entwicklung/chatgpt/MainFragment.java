@@ -87,7 +87,7 @@ public class MainFragment extends Fragment {
         }
 
         recyclerView = view.findViewById(R.id.recyclerView);
-        chatAdapter = new ChatAdapter(chat.getMessages());
+        chatAdapter = new ChatAdapter(chat.getMessages(), requireContext());
         recyclerView.setAdapter(chatAdapter);
         recyclerView.invalidate();
 
