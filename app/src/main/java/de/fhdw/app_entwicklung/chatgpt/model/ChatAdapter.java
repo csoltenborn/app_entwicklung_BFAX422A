@@ -1,7 +1,6 @@
-package de.fhdw.app_entwicklung.chatgpt.speech;
+package de.fhdw.app_entwicklung.chatgpt.model;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,8 +12,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 import de.fhdw.app_entwicklung.chatgpt.R;
-import de.fhdw.app_entwicklung.chatgpt.model.Author;
-import de.fhdw.app_entwicklung.chatgpt.model.Message;
 
 public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHolder> {
     private final List<Message> messages;
@@ -22,13 +19,12 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHolder> {
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         private final TextView chatLeft;
-        private Context context;
+        private final Context context;
 
         public ViewHolder(View view, Context context) {
             super(view);
             chatLeft = (TextView) view.findViewById(R.id.left_chat_text);
             this.context = context;
-            //chatRight = (TextView) view.findViewById(R.id.right_chat_text);
         }
 
         public void bind(Message message) {
@@ -59,12 +55,10 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHolder> {
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Message message = messages.get(position);
         holder.bind(message);
-        Log.d("Adapter", "bind msg");
     }
 
     @Override
     public int getItemCount() {
-        Log.d("Adapter", "getItemCount: " + messages.size());
         return messages.size();
     }
 }
