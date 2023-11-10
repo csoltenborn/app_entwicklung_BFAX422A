@@ -1,6 +1,8 @@
 package de.fhdw.app_entwicklung.chatgpt.model;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,9 +23,13 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHolder> {
         private final TextView chatLeft;
         private final Context context;
 
-        public ViewHolder(View view, Context context) {
+        public ViewHolder(View view, Context context, List<Message> messages) {
             super(view);
             chatLeft = (TextView) view.findViewById(R.id.left_chat_text);
+            chatLeft.setOnLongClickListener(view1 -> {
+                showOptionsDialog(messages.get(getAdapterPosition()).message);
+                return true;
+            });
             this.context = context;
         }
 
@@ -37,6 +43,24 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHolder> {
             }
 
         }
+
+        private void showOptionsDialog(String messageText) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(itemView.getContext());
+            builder.setTitle(R.string.options);
+            builder.setItems(new CharSequence[]{"Teilen"}, (dialog, which) -> {
+                if (which == 0) {
+                    shareMessage(messageText);
+                }
+            });
+            builder.show();
+        }
+
+        private void shareMessage(String messageText) {
+            Intent shareIntent = new Intent(Intent.ACTION_SEND);
+            shareIntent.setType("text/plain");
+            shareIntent.putExtra(Intent.EXTRA_TEXT, messageText);
+            context.startActivity(Intent.createChooser(shareIntent, ""));
+        }
     }
 
     public ChatAdapter(List<Message> messages, Context context) {
@@ -48,7 +72,7 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHolder> {
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.chat_item, parent, false);
-        return new ViewHolder(view, context);
+        return new ViewHolder(view, context, messages);
     }
 
     @Override
