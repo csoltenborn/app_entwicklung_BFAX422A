@@ -5,20 +5,20 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.TextView;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.List;
 import java.util.Locale;
 
 import de.fhdw.app_entwicklung.chatgpt.model.Author;
 import de.fhdw.app_entwicklung.chatgpt.model.Chat;
 import de.fhdw.app_entwicklung.chatgpt.model.Message;
 import de.fhdw.app_entwicklung.chatgpt.openai.ChatGpt;
+import de.fhdw.app_entwicklung.chatgpt.speech.ChatAdapter;
 import de.fhdw.app_entwicklung.chatgpt.speech.LaunchSpeechRecognition;
 import de.fhdw.app_entwicklung.chatgpt.speech.TextToSpeechTool;
 
@@ -30,16 +30,20 @@ public class MainFragment extends Fragment {
     private PrefsFacade prefs;
     private TextToSpeechTool textToSpeech;
     private Chat chat;
+    private RecyclerView recyclerView;
+    private ChatAdapter chatAdapter;
 
     private final ActivityResultLauncher<LaunchSpeechRecognition.SpeechRecognitionArgs> getTextFromSpeech = registerForActivityResult(
             new LaunchSpeechRecognition(),
             query -> {
                 Message userMessage = new Message(Author.User, query);
                 chat.addMessage(userMessage);
-                if (chat.getMessages().size() > 1) {
+                chatAdapter.notifyItemInserted(chat.getMessages().size() - 1);
+                recyclerView.invalidate();
+                /*if (chat.getMessages().size() > 1) {
                     getTextView().append(CHAT_SEPARATOR);
-                }
-                getTextView().append(toString(userMessage));
+                }*/
+                //getTextView().append(toString(userMessage));
 
                 MainActivity.backgroundExecutorService.execute(() -> {
                     String apiToken = prefs.getApiToken();
@@ -48,11 +52,19 @@ public class MainFragment extends Fragment {
 
                     Message answerMessage = new Message(Author.Assistant, answer);
                     chat.addMessage(answerMessage);
-                    getTextView().append(CHAT_SEPARATOR);
-                    getTextView().append(toString(answerMessage));
+                    //getTextView().append(CHAT_SEPARATOR);
+                    //getTextView().append(toString(answerMessage));
                     textToSpeech.speak(answer);
+                    requireActivity().runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            chatAdapter.notifyItemInserted(chat.getMessages().size() - 1);
+                            recyclerView.invalidate();
+                        }
+                    });
                 });
-            });
+            }
+    );
 
     public MainFragment() {
     }
@@ -74,9 +86,16 @@ public class MainFragment extends Fragment {
             chat = savedInstanceState.getParcelable(EXTRA_DATA_CHAT);
         }
 
+        recyclerView = view.findViewById(R.id.recyclerView);
+        chatAdapter = new ChatAdapter(chat.getMessages());
+        recyclerView.setAdapter(chatAdapter);
+        recyclerView.invalidate();
+
         getAskButton().setOnClickListener(v ->
                 getTextFromSpeech.launch(new LaunchSpeechRecognition.SpeechRecognitionArgs(Locale.GERMAN)));
-        updateTextView();
+        //updateTextView();
+        chatAdapter.notifyItemInserted(chat.getMessages().size() - 1);
+        recyclerView.invalidate();
     }
 
     @Override
@@ -100,7 +119,7 @@ public class MainFragment extends Fragment {
         super.onDestroy();
     }
 
-    private void updateTextView() {
+    /*private void updateTextView() {
         getTextView().setText("");
         List<Message> messages = chat.getMessages();
         if (!messages.isEmpty()) {
@@ -110,16 +129,16 @@ public class MainFragment extends Fragment {
                 getTextView().append(toString(messages.get(i)));
             }
         }
-    }
+    }*/
 
     private CharSequence toString(Message message) {
         return message.message;
     }
 
-    private TextView getTextView() {
+    /*private TextView getTextView() {
         //noinspection ConstantConditions
         return getView().findViewById(R.id.textView);
-    }
+    }*/
 
     private Button getAskButton() {
         //noinspection ConstantConditions
