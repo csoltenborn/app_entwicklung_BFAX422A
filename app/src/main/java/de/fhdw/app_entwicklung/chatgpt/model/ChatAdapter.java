@@ -25,7 +25,7 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHolder> {
 
         public ViewHolder(View view, Context context, List<Message> messages) {
             super(view);
-            chatLeft = (TextView) view.findViewById(R.id.left_chat_text);
+            chatLeft = view.findViewById(R.id.left_chat_text);
             chatLeft.setOnLongClickListener(view1 -> {
                 showOptionsDialog(messages.get(getAdapterPosition()).message);
                 return true;
@@ -36,10 +36,10 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHolder> {
         public void bind(Message message) {
             if (message.author.equals(Author.Assistant) || message.author.equals(Author.System)) {
                 chatLeft.setText(message.message);
-                chatLeft.setBackgroundTintList(context.getColorStateList(R.color.primary));
+                chatLeft.setBackgroundTintList(context.getColorStateList(R.color.secondary));
             } else {
                 chatLeft.setText(message.message);
-                chatLeft.setBackgroundTintList(context.getColorStateList(R.color.secondary));
+                chatLeft.setBackgroundTintList(context.getColorStateList(R.color.primary));
             }
 
         }

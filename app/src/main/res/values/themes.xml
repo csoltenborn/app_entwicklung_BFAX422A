@@ -5,5 +5,5 @@
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
     </style>
 
-    <style name="Theme.ChatGpt" parent="Base.Theme.ChatGpt" />
+    <style name="Theme.ChatGpt" parent="Theme.MaterialComponents.Light.DarkActionBar" />
 </resources>

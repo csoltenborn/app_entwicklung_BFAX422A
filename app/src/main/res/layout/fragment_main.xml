@@ -23,22 +23,30 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toTopOf="@+id/question" />
+            app:layout_constraintBottom_toTopOf="@id/question_layout" />
 
-        <EditText
-            android:id="@+id/question"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/question_layout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:minHeight="56dp"
-            android:maxHeight="104dp"
-            android:hint="@string/type_your_message"
-            android:inputType="textMultiLine"
+            app:boxStrokeColor="@color/primary"
             android:layout_marginBottom="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/button_send" />
+            app:layout_constraintEnd_toStartOf="@id/button_send">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/question"
+                android:minHeight="48dp"
+                android:maxHeight="104dp"
+                android:hint="@string/type_your_message"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textMultiLine"/>
+        </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/button_send"
@@ -48,6 +56,7 @@
             android:src="@drawable/ic_send"
             android:layout_marginBottom="8dp"
             android:layout_marginEnd="8dp"
+            app:backgroundTint="@color/primaryConatiner"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/button_mic" />
 
@@ -59,6 +68,7 @@
             android:src="@drawable/ic_mic"
             android:layout_marginBottom="8dp"
             android:layout_marginEnd="8dp"
+            app:backgroundTint="@color/primaryConatiner"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 
