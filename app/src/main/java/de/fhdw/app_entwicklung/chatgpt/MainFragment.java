@@ -34,24 +34,26 @@ public class MainFragment extends Fragment {
     private final ActivityResultLauncher<LaunchSpeechRecognition.SpeechRecognitionArgs> getTextFromSpeech = registerForActivityResult(
             new LaunchSpeechRecognition(),
             query -> {
-                Message userMessage = new Message(Author.User, query);
-                chat.addMessage(userMessage);
-                if (chat.getMessages().size() > 1) {
-                    getTextView().append(CHAT_SEPARATOR);
+                if (query != null) {
+                    Message userMessage = new Message(Author.User, query);
+                    chat.addMessage(userMessage);
+                    if (chat.getMessages().size() > 1) {
+                        getTextView().append(CHAT_SEPARATOR);
+                    }
+                    getTextView().append(toString(userMessage));
+
+                    MainActivity.backgroundExecutorService.execute(() -> {
+                        String apiToken = prefs.getApiToken();
+                        ChatGpt chatGpt = new ChatGpt(apiToken);
+                        String answer = chatGpt.getChatCompletion(chat);
+
+                        Message answerMessage = new Message(Author.Assistant, answer);
+                        chat.addMessage(answerMessage);
+                        getTextView().append(CHAT_SEPARATOR);
+                        getTextView().append(toString(answerMessage));
+                        textToSpeech.speak(answer);
+                    });
                 }
-                getTextView().append(toString(userMessage));
-
-                MainActivity.backgroundExecutorService.execute(() -> {
-                    String apiToken = prefs.getApiToken();
-                    ChatGpt chatGpt = new ChatGpt(apiToken);
-                    String answer = chatGpt.getChatCompletion(chat);
-
-                    Message answerMessage = new Message(Author.Assistant, answer);
-                    chat.addMessage(answerMessage);
-                    getTextView().append(CHAT_SEPARATOR);
-                    getTextView().append(toString(answerMessage));
-                    textToSpeech.speak(answer);
-                });
             });
 
     public MainFragment() {
