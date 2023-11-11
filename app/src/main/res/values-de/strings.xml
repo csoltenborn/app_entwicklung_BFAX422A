@@ -3,4 +3,6 @@
     <string name="ask">Fragen</string>
     <string name="settings">Einstellungen</string>
     <string name="options">Optionen</string>
+    <string name="record_message">Nachricht aufnehmen</string>
+    <string name="type_your_message">Nachricht eingeben…</string>
 </resources>

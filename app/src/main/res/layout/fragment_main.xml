@@ -18,20 +18,49 @@
             android:layout_height="0dp"
             android:layout_width="match_parent"
             android:scrollbars="vertical"
+            android:layout_marginBottom="8dp"
             app:layoutManager="LinearLayoutManager"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toTopOf="@+id/button_ask" />
+            app:layout_constraintBottom_toTopOf="@+id/question" />
 
-        <Button
-            android:id="@+id/button_ask"
+        <EditText
+            android:id="@+id/question"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:minHeight="56dp"
+            android:maxHeight="104dp"
+            android:hint="@string/type_your_message"
+            android:inputType="textMultiLine"
+            android:layout_marginBottom="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/button_send" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/button_send"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/ask"
+            android:contentDescription="@string/record_message"
+            android:src="@drawable/ic_send"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintEnd_toStartOf="@id/button_mic" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/button_mic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/record_message"
+            android:src="@drawable/ic_mic"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>
