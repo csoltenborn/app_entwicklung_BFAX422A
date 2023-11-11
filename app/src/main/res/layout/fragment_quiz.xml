@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".QuizFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <Button
+            android:id="@+id/toChat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="648dp"
+            android:text="@string/chat"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/question"
+            android:layout_width="353dp"
+            android:layout_height="122dp"
+            android:layout_marginTop="164dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toChat" />
+
+        <Button
+            android:id="@+id/nextQuestion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="@string/nextQuestion"
+            android:visibility="visible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/question" />
+
+        <Button
+            android:id="@+id/b_yes"
+            android:layout_width="112dp"
+            android:layout_height="63dp"
+            android:layout_marginStart="48dp"
+            android:layout_marginTop="184dp"
+            android:text="Yes"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/nextQuestion" />
+
+        <Button
+            android:id="@+id/b_no"
+            android:layout_width="112dp"
+            android:layout_height="63dp"
+            android:layout_marginTop="184dp"
+            android:layout_marginEnd="48dp"
+            android:text="No"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/nextQuestion" />
+
+        <TextView
+            android:id="@+id/response"
+            android:layout_width="207dp"
+            android:layout_height="39dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/nextQuestion"
+            app:layout_constraintVertical_bias="0.248" />
+
+        <TextView
+            android:id="@+id/rightAnswers"
+            android:layout_width="130dp"
+            android:layout_height="26dp"
+            android:layout_marginStart="28dp"
+            android:layout_marginTop="72dp"
+            android:text="Right answers:"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toChat" />
+
+        <TextView
+            android:id="@+id/wrongAnswers"
+            android:layout_width="130dp"
+            android:layout_height="26dp"
+            android:layout_marginTop="72dp"
+            android:text="Wrong answers: "
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.764"
+            app:layout_constraintStart_toEndOf="@+id/rightAnswers"
+            app:layout_constraintTop_toBottomOf="@+id/toChat" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>
