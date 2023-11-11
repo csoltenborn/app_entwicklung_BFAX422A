@@ -1,1 +1,3 @@
-# app_entwicklung_FinnEhrlich
+# Erweiterung der ChatGPT App
+
+##Einleitung
