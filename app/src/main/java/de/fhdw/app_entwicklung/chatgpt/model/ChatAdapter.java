@@ -11,6 +11,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.time.Instant;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import de.fhdw.app_entwicklung.chatgpt.R;
@@ -27,7 +30,7 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHolder> {
             super(view);
             chatLeft = view.findViewById(R.id.left_chat_text);
             chatLeft.setOnLongClickListener(view1 -> {
-                showOptionsDialog(messages.get(getAdapterPosition()).message);
+                showOptionsDialog(messages.get(getAdapterPosition()));
                 return true;
             });
             this.context = context;
@@ -44,12 +47,14 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHolder> {
 
         }
 
-        private void showOptionsDialog(String messageText) {
+        private void showOptionsDialog(Message message) {
             AlertDialog.Builder builder = new AlertDialog.Builder(itemView.getContext());
             builder.setTitle(R.string.options);
-            builder.setItems(new CharSequence[]{"Teilen"}, (dialog, which) -> {
+            builder.setItems(new CharSequence[]{"Teilen", "Info"}, (dialog, which) -> {
                 if (which == 0) {
-                    shareMessage(messageText);
+                    shareMessage(message.message);
+                } else if (which == 1){
+                    showInfoDialog(message);
                 }
             });
             builder.show();
@@ -60,6 +65,15 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHolder> {
             shareIntent.setType("text/plain");
             shareIntent.putExtra(Intent.EXTRA_TEXT, messageText);
             context.startActivity(Intent.createChooser(shareIntent, ""));
+        }
+
+        private void showInfoDialog(Message message) {
+            Instant instant = message.date.toInstant();
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("EEEE dd.MM.yyyy HH:mm:ss").withZone(ZoneId.of("Europe/Berlin"));
+            AlertDialog.Builder builder = new AlertDialog.Builder(itemView.getContext());
+            builder.setTitle(R.string.date_time);
+            builder.setMessage(formatter.format(instant));
+            builder.show();
         }
     }
 

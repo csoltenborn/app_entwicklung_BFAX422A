@@ -5,4 +5,5 @@
     <string name="options">Options</string>
     <string name="record_message">record message</string>
     <string name="type_your_message">Type your message…</string>
+    <string name="date_time">Date and Time</string>
 </resources>

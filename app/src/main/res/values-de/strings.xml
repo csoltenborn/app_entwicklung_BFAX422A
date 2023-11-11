@@ -5,4 +5,5 @@
     <string name="options">Optionen</string>
     <string name="record_message">Nachricht aufnehmen</string>
     <string name="type_your_message">Nachricht eingeben…</string>
+    <string name="date_time">Datum und Uhrzeit</string>
 </resources>
