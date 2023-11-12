@@ -11,63 +11,134 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link QuizFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import de.fhdw.app_entwicklung.chatgpt.model.Author;
+import de.fhdw.app_entwicklung.chatgpt.model.Chat;
+import de.fhdw.app_entwicklung.chatgpt.model.Message;
+import de.fhdw.app_entwicklung.chatgpt.openai.ChatGpt;
+
+
 public class QuizFragment extends Fragment {
 
+    private int rightAnswers = 0;
+    private int wrongAnswers = 0;
 
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-
-    private String mParam1;
-    private String mParam2;
-
+    private boolean firstquestion = true;
+    private Chat quizchat;
+    private ChatGpt chatgpt;
+    private PrefsFacade prefs;
     public QuizFragment() {
 
     }
 
 
-    public static QuizFragment newInstance(String param1, String param2) {
-        QuizFragment fragment = new QuizFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        getRightAnswersTextView().setText("Right answers: " + rightAnswers);
+        getWrongAnswersTextView().setText("Wrong answers: " + wrongAnswers);
+
+        prefs = new PrefsFacade(requireContext());
+        quizchat = new Chat();
+
+        chatgpt = new ChatGpt(prefs.getApiToken());
+
         Intent i = new Intent(this.getContext(), MainActivity.class);
         getChatButton().setOnClickListener(v-> startActivity(i));
+
+        getNextQuestionButton().setOnClickListener(v-> getQuestion());
+        getYesButton().setOnClickListener(v-> getResponse("Ja"));
+        getNoButton().setOnClickListener(v-> getResponse("Nein"));
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+
         return inflater.inflate(R.layout.fragment_quiz, container, false);
     }
 
-    private Button getChatButton()
-    {
+    private void getQuestion(){
+        getResponseTextView().setText("");
+        MainActivity.backgroundExecutorService.execute(() -> {
+
+            Message question = new Message(Author.User, "");
+            if(firstquestion = true){
+                question = new Message(Author.User, "Stelle mir eine Allgemeinwissen Ja/Nein Quizfrage. Antworte auf meine Antwort nur mit 'Richtig' oder 'Falsch'");
+                firstquestion = false;
+            }else question = new Message(Author.User, "Noch eine");
+
+            quizchat.addMessage(question);
+
+            String answer = chatgpt.getChatCompletion(quizchat);
+            Message answermessage = new Message(Author.Assistant, answer);
+            quizchat.addMessage(answermessage);
+            getQuestionTextView().setText(toString(answermessage));
+
+        });
+
+    }
+
+    private void getResponse(String antwort){
+
+        MainActivity.backgroundExecutorService.execute(() -> {
+        Message quizanswer = new Message(Author.User, antwort);
+        quizchat.addMessage(quizanswer);
+
+        String response = chatgpt.getChatCompletion(quizchat);
+
+        if(response.contains("Richtig")){
+            rightAnswers += 1;
+            getRightAnswersTextView().setText("Right answers: " + rightAnswers);
+        }
+        if(response.contains("Falsch")){
+            wrongAnswers += 1;
+            getWrongAnswersTextView().setText("Wrong answers: " + wrongAnswers);
+        }
+
+        Message responsemessage = new Message(Author.Assistant, response);
+
+        quizchat.addMessage(responsemessage);
+        getResponseTextView().setText(toString(responsemessage));
+
+        });
+    }
+
+    private TextView getResponseTextView(){
+        return getView().findViewById(R.id.response);
+    }
+    private TextView getQuestionTextView(){
+        return getView().findViewById(R.id.question);
+    }
+    private TextView getRightAnswersTextView(){
+        return getView().findViewById(R.id.rightAnswers);
+    }
+    private TextView getWrongAnswersTextView(){
+        return getView().findViewById(R.id.wrongAnswers);
+    }
+    private Button getChatButton() {
         return getView().findViewById(R.id.toChat);
+    }
+    private Button getNextQuestionButton(){
+        return getView().findViewById(R.id.nextQuestion);
+    }
+    private Button getYesButton(){
+        return getView().findViewById(R.id.b_yes);
+    }
+    private Button getNoButton() {
+        return getView().findViewById(R.id.b_no);
+    }
+    private CharSequence toString(Message message) {
+        return message.message;
     }
 }
