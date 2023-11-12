@@ -38,24 +38,24 @@ public class MainFragment extends Fragment {
             new LaunchSpeechRecognition(),
             query -> {
                 if (query != null) {
-                    Message userMessage = new Message(Author.User, query);
+                    Message userMessage = new Message(Author.User, query, prefs.getUsername(), "#0000FF");
                     chat.addMessage(userMessage);
                     if (chat.getMessages().size() > 1) {
                         getTextView().append(CHAT_SEPARATOR);
                     }
                     //getTextView().append(toString(userMessage));
-                    appendColoredText(getTextView(), prefs.getUsername() + ": " + toString(userMessage), Color.parseColor("#0000FF"));
+                    appendColoredText(getTextView(), toString(userMessage), Color.parseColor(userMessage.color));
 
                     MainActivity.backgroundExecutorService.execute(() -> {
                         String apiToken = prefs.getApiToken();
                         ChatGpt chatGpt = new ChatGpt(apiToken);
                         String answer = chatGpt.getChatCompletion(chat);
 
-                        Message answerMessage = new Message(Author.Assistant, answer);
+                        Message answerMessage = new Message(Author.Assistant, answer, prefs.getGptName(), "#FF0000");
                         chat.addMessage(answerMessage);
                         getTextView().append(CHAT_SEPARATOR);
                         //getTextView().append(toString(answerMessage));
-                        appendColoredText(getTextView(), prefs.getGptName() + ": " + toString(answerMessage), Color.parseColor("#FF0000"));
+                        appendColoredText(getTextView(), toString(answerMessage), Color.parseColor(answerMessage.color));
                         textToSpeech.speak(answer);
                     });
                 }
@@ -111,16 +111,18 @@ public class MainFragment extends Fragment {
         getTextView().setText("");
         List<Message> messages = chat.getMessages();
         if (!messages.isEmpty()) {
-            getTextView().append(toString(messages.get(0)));
+            appendColoredText(getTextView(), toString(messages.get(0)), Color.parseColor(messages.get(0).color));
+            //getTextView().append(toString(messages.get(0)));
             for (int i = 1; i < messages.size(); i++) {
                 getTextView().append(CHAT_SEPARATOR);
-                getTextView().append(toString(messages.get(i)));
+                //getTextView().append(toString(messages.get(i)));
+                appendColoredText(getTextView(), toString(messages.get(i)), Color.parseColor(messages.get(i).color));
             }
         }
     }
 
     private String toString(Message message) {
-        return message.message;
+        return message.name + ": " + message.message;
     }
 
     private TextView getTextView() {
