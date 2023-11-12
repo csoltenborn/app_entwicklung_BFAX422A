@@ -96,6 +96,7 @@ public class MainFragment extends Fragment {
 
         getDeleteButton().setOnClickListener(v -> {
             chats.remove(selectedChat);
+            updateTextView();
         });
 
         updateTextView();
@@ -107,6 +108,7 @@ public class MainFragment extends Fragment {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 selectedChat = (Chat) adapterView.getItemAtPosition(i);
                 Toast.makeText(requireContext(), selectedChat.toString(), Toast.LENGTH_SHORT).show();
+                updateTextView();
             }
 
             @Override
