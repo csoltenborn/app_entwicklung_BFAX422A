@@ -119,7 +119,7 @@ public class MainFragment extends Fragment {
         }
     }
 
-    private CharSequence toString(Message message) {
+    private String toString(Message message) {
         return message.message;
     }
 
@@ -133,7 +133,7 @@ public class MainFragment extends Fragment {
         return getView().findViewById(R.id.button_ask);
     }
 
-    public static void appendColoredText(TextView tv, CharSequence text, int color) {
+    public static void appendColoredText(TextView tv, String text, int color) {
         int start = tv.getText().length();
         tv.append(text);
         int end = tv.getText().length();
