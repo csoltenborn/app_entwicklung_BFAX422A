@@ -1,15 +1,11 @@
 package de.fhdw.app_entwicklung.chatgpt;
 
 import android.os.Bundle;
-import android.renderscript.ScriptGroup;
-import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -40,7 +36,6 @@ public class MainFragment extends Fragment {
     private TextToSpeechTool textToSpeech;
     private Chat selectedChat;
     private List<Chat> chats;
-
     private Spinner spinner;
 
     private final ActivityResultLauncher<LaunchSpeechRecognition.SpeechRecognitionArgs> getTextFromSpeech = registerForActivityResult(
@@ -90,9 +85,7 @@ public class MainFragment extends Fragment {
         getAskButton().setOnClickListener(v ->
                 getTextFromSpeech.launch(new LaunchSpeechRecognition.SpeechRecognitionArgs(Locale.GERMAN)));
 
-        getNewButton().setOnClickListener(v -> {
-            chats.add(new Chat());
-        });
+        getNewButton().setOnClickListener(v -> chats.add(new Chat()));
 
         getDeleteButton().setOnClickListener(v -> {
             chats.remove(selectedChat);
@@ -117,10 +110,10 @@ public class MainFragment extends Fragment {
             }
         });
 
-        chats = new ArrayList<Chat>();
+        chats = new ArrayList<>();
         chats.add(selectedChat);
 
-        spinner.setAdapter(new ArrayAdapter<Chat>(requireContext(),R.layout.dropdown_item, chats));
+        spinner.setAdapter(new ArrayAdapter<>(requireContext(), R.layout.dropdown_item, chats));
     }
 
     @Override
