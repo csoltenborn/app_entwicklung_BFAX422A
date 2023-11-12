@@ -3,11 +3,13 @@ package de.fhdw.app_entwicklung.chatgpt;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Spannable;
+import android.text.method.ScrollingMovementMethod;
 import android.text.style.ForegroundColorSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.activity.result.ActivityResultLauncher;
@@ -38,26 +40,7 @@ public class MainFragment extends Fragment {
             new LaunchSpeechRecognition(),
             query -> {
                 if (query != null) {
-                    Message userMessage = new Message(Author.User, query, prefs.getUsername(), "#0000FF");
-                    chat.addMessage(userMessage);
-                    if (chat.getMessages().size() > 1) {
-                        getTextView().append(CHAT_SEPARATOR);
-                    }
-                    //getTextView().append(toString(userMessage));
-                    appendColoredText(getTextView(), toString(userMessage), Color.parseColor(userMessage.color));
-
-                    MainActivity.backgroundExecutorService.execute(() -> {
-                        String apiToken = prefs.getApiToken();
-                        ChatGpt chatGpt = new ChatGpt(apiToken);
-                        String answer = chatGpt.getChatCompletion(chat);
-
-                        Message answerMessage = new Message(Author.Assistant, answer, prefs.getGptName(), "#FF0000");
-                        chat.addMessage(answerMessage);
-                        getTextView().append(CHAT_SEPARATOR);
-                        //getTextView().append(toString(answerMessage));
-                        appendColoredText(getTextView(), toString(answerMessage), Color.parseColor(answerMessage.color));
-                        textToSpeech.speak(answer);
-                    });
+                    askChatGPT(query);
                 }
             });
 
@@ -83,7 +66,40 @@ public class MainFragment extends Fragment {
 
         getAskButton().setOnClickListener(v ->
                 getTextFromSpeech.launch(new LaunchSpeechRecognition.SpeechRecognitionArgs(Locale.GERMAN)));
+        getAskTextButton().setOnClickListener(v -> askTextButton());
         updateTextView();
+        getTextView().setMovementMethod(new ScrollingMovementMethod());
+    }
+
+    private void askTextButton() {
+        String query = getRequest().getText().toString();
+        if (!query.isEmpty()) {
+            getRequest().setText("");
+            askChatGPT(query);
+        }
+    }
+
+    private void askChatGPT(String query) {
+        Message userMessage = new Message(Author.User, query, prefs.getUsername(), "#0000FF");
+        chat.addMessage(userMessage);
+        if (chat.getMessages().size() > 1) {
+            getTextView().append(CHAT_SEPARATOR);
+        }
+        //getTextView().append(toString(userMessage));
+        appendColoredText(getTextView(), toString(userMessage), Color.parseColor(userMessage.color));
+
+        MainActivity.backgroundExecutorService.execute(() -> {
+            String apiToken = prefs.getApiToken();
+            ChatGpt chatGpt = new ChatGpt(apiToken);
+            String answer = chatGpt.getChatCompletion(chat);
+
+            Message answerMessage = new Message(Author.Assistant, answer, prefs.getGptName(), "#FF0000");
+            chat.addMessage(answerMessage);
+            getTextView().append(CHAT_SEPARATOR);
+            //getTextView().append(toString(answerMessage));
+            appendColoredText(getTextView(), toString(answerMessage), Color.parseColor(answerMessage.color));
+            textToSpeech.speak(answer);
+        });
     }
 
     @Override
@@ -133,6 +149,16 @@ public class MainFragment extends Fragment {
     private Button getAskButton() {
         //noinspection ConstantConditions
         return getView().findViewById(R.id.button_ask);
+    }
+
+    private Button getAskTextButton() {
+        //noinspection ConstantConditions
+        return getView().findViewById(R.id.button_ask_text);
+    }
+
+    private EditText getRequest() {
+        //noinspection ConstantConditions
+        return getView().findViewById(R.id.request);
     }
 
     public static void appendColoredText(TextView tv, String text, int color) {
