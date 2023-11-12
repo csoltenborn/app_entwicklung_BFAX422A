@@ -2,4 +2,9 @@
 <resources>
     <string name="ask">Fragen</string>
     <string name="settings">Einstellungen</string>
+    <string name="nextQuestion">Nächste Frage</string>
+    <string name="b_no">Nein</string>
+    <string name="b_yes">Ja</string>
+    <string name="wrongAnswers">Falsche Antworten:</string>
+    <string name="rightAnswers">Richtige Antworten:</string>
 </resources>

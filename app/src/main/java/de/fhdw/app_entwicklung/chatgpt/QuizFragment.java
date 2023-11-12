@@ -13,6 +13,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.google.android.material.snackbar.Snackbar;
+
 import de.fhdw.app_entwicklung.chatgpt.model.Author;
 import de.fhdw.app_entwicklung.chatgpt.model.Chat;
 import de.fhdw.app_entwicklung.chatgpt.model.Message;
@@ -23,7 +25,6 @@ public class QuizFragment extends Fragment {
 
     private int rightAnswers = 0;
     private int wrongAnswers = 0;
-
     private boolean firstquestion = true;
     private Chat quizchat;
     private ChatGpt chatgpt;
@@ -44,9 +45,6 @@ public class QuizFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
-        getRightAnswersTextView().setText("Right answers: " + rightAnswers);
-        getWrongAnswersTextView().setText("Wrong answers: " + wrongAnswers);
 
         prefs = new PrefsFacade(requireContext());
         quizchat = new Chat();
@@ -99,11 +97,11 @@ public class QuizFragment extends Fragment {
 
         if(response.contains("Richtig")){
             rightAnswers += 1;
-            getRightAnswersTextView().setText("Right answers: " + rightAnswers);
+            getRightAnswersNumTextView().setText("" + rightAnswers);
         }
         if(response.contains("Falsch")){
             wrongAnswers += 1;
-            getWrongAnswersTextView().setText("Wrong answers: " + wrongAnswers);
+            getWrongAnswersNumTextView().setText("" + wrongAnswers);
         }
 
         Message responsemessage = new Message(Author.Assistant, response);
@@ -111,7 +109,30 @@ public class QuizFragment extends Fragment {
         quizchat.addMessage(responsemessage);
         getResponseTextView().setText(toString(responsemessage));
 
+        if(rightAnswers % 5 == 0)
+        {
+            getRewardQuote();
+        }
+
         });
+    }
+
+    private void getRewardQuote()
+    {
+
+        MainActivity.backgroundExecutorService.execute(() -> {
+
+            Chat reward = new Chat();
+
+            Message question = new Message(Author.User, "Gib mir ein zufälliges Zitat aus einem dieser Filme: Star Wars, Der Herr der Ringe, Harry Potter. Schreibe dazu wer es gesagt hat.");
+
+            reward.addMessage(question);
+            String response = chatgpt.getChatCompletion(reward);
+
+            getResponseTextView().append("\n\n" + response);
+
+        });
+
     }
 
     private TextView getResponseTextView(){
@@ -120,12 +141,13 @@ public class QuizFragment extends Fragment {
     private TextView getQuestionTextView(){
         return getView().findViewById(R.id.question);
     }
-    private TextView getRightAnswersTextView(){
-        return getView().findViewById(R.id.rightAnswers);
+    private TextView getRightAnswersNumTextView(){
+        return getView().findViewById(R.id.rightAnswersNum);
     }
-    private TextView getWrongAnswersTextView(){
-        return getView().findViewById(R.id.wrongAnswers);
+    private TextView getWrongAnswersNumTextView(){
+        return getView().findViewById(R.id.WrongAnswersNum);
     }
+
     private Button getChatButton() {
         return getView().findViewById(R.id.toChat);
     }
