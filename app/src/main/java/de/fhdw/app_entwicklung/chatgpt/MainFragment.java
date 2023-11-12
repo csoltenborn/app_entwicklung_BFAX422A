@@ -1,17 +1,26 @@
 package de.fhdw.app_entwicklung.chatgpt;
 
 import android.os.Bundle;
+import android.renderscript.ScriptGroup;
+import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Adapter;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
@@ -29,14 +38,17 @@ public class MainFragment extends Fragment {
 
     private PrefsFacade prefs;
     private TextToSpeechTool textToSpeech;
-    private Chat chat;
+    private Chat selectedChat;
+    private List<Chat> chats;
+
+    private Spinner spinner;
 
     private final ActivityResultLauncher<LaunchSpeechRecognition.SpeechRecognitionArgs> getTextFromSpeech = registerForActivityResult(
             new LaunchSpeechRecognition(),
             query -> {
                 Message userMessage = new Message(Author.User, query);
-                chat.addMessage(userMessage);
-                if (chat.getMessages().size() > 1) {
+                selectedChat.addMessage(userMessage);
+                if (selectedChat.getMessages().size() > 1) {
                     getTextView().append(CHAT_SEPARATOR);
                 }
                 getTextView().append(toString(userMessage));
@@ -44,10 +56,10 @@ public class MainFragment extends Fragment {
                 MainActivity.backgroundExecutorService.execute(() -> {
                     String apiToken = prefs.getApiToken();
                     ChatGpt chatGpt = new ChatGpt(apiToken);
-                    String answer = chatGpt.getChatCompletion(chat);
+                    String answer = chatGpt.getChatCompletion(selectedChat);
 
                     Message answerMessage = new Message(Author.Assistant, answer);
-                    chat.addMessage(answerMessage);
+                    selectedChat.addMessage(answerMessage);
                     getTextView().append(CHAT_SEPARATOR);
                     getTextView().append(toString(answerMessage));
                     textToSpeech.speak(answer);
@@ -69,14 +81,44 @@ public class MainFragment extends Fragment {
 
         prefs = new PrefsFacade(requireContext());
         textToSpeech = new TextToSpeechTool(requireContext(), Locale.GERMAN);
-        chat = new Chat();
+        selectedChat = new Chat();
         if (savedInstanceState != null) {
-            chat = savedInstanceState.getParcelable(EXTRA_DATA_CHAT);
+            selectedChat = savedInstanceState.getParcelable(EXTRA_DATA_CHAT);
         }
+
 
         getAskButton().setOnClickListener(v ->
                 getTextFromSpeech.launch(new LaunchSpeechRecognition.SpeechRecognitionArgs(Locale.GERMAN)));
+
+        getNewButton().setOnClickListener(v -> {
+            chats.add(new Chat());
+        });
+
+        getDeleteButton().setOnClickListener(v -> {
+            chats.remove(selectedChat);
+        });
+
         updateTextView();
+
+        // Set InputType Null to disable Text editing on Dropdown TextView
+        spinner = (Spinner) super.getActivity().findViewById(R.id.spinner);
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                selectedChat = (Chat) adapterView.getItemAtPosition(i);
+                Toast.makeText(requireContext(), selectedChat.toString(), Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
+        chats = new ArrayList<Chat>();
+        chats.add(selectedChat);
+
+        spinner.setAdapter(new ArrayAdapter<Chat>(requireContext(),R.layout.dropdown_item, chats));
     }
 
     @Override
@@ -89,7 +131,7 @@ public class MainFragment extends Fragment {
     @Override
     public void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putParcelable(EXTRA_DATA_CHAT, chat);
+        outState.putParcelable(EXTRA_DATA_CHAT, selectedChat);
     }
 
     @Override
@@ -102,7 +144,7 @@ public class MainFragment extends Fragment {
 
     private void updateTextView() {
         getTextView().setText("");
-        List<Message> messages = chat.getMessages();
+        List<Message> messages = selectedChat.getMessages();
         if (!messages.isEmpty()) {
             getTextView().append(toString(messages.get(0)));
             for (int i = 1; i < messages.size(); i++) {
@@ -124,6 +166,14 @@ public class MainFragment extends Fragment {
     private Button getAskButton() {
         //noinspection ConstantConditions
         return getView().findViewById(R.id.button_ask);
+    }
+
+    private Button getNewButton(){
+        return getView().findViewById(R.id.button_new);
+    }
+
+    private Button getDeleteButton(){
+        return getView().findViewById(R.id.button_delete);
     }
 
 }

@@ -3,13 +3,21 @@ package de.fhdw.app_entwicklung.chatgpt.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.sql.Time;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeFormatterBuilder;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 
 public class Chat implements Parcelable {
 
     private final List<Message> messages = new ArrayList<>();
+    private final java.time.LocalDateTime creationDate = LocalDateTime.now();
 
     public Chat() {
     }
@@ -47,4 +55,11 @@ public class Chat implements Parcelable {
             return new Chat[size];
         }
     };
+
+    public String toString(){
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss / dd-MM-yyyy");
+        String formattedDate = creationDate.format(formatter);
+        formattedDate = formattedDate.split("/")[0] + "Uhr / " + formattedDate.split("/")[1];
+        return formattedDate;
+    }
 }
