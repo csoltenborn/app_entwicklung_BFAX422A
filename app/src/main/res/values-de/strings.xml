@@ -3,4 +3,9 @@
     <string name="ask">Fragen</string>
     <string name="settings">Einstellungen</string>
     <string name="voice_input">Spracheingabe</string>
+    <string name="personalization">Personalisierung</string>
+    <string name="username">Nutzername</string>
+    <string name="gpt_name">ChatGPT-Name</string>
+    <string name="api">API</string>
+    <string name="api_token">API-Token</string>
 </resources>

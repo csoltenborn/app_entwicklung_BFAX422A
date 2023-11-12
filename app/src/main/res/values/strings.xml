@@ -4,4 +4,9 @@
     <string name="voice_input">Voice Input</string>
     <string name="settings">Settings</string>
     <string name="empty" translatable="false" />
+    <string name="personalization" >Personalization</string>
+    <string name="username">Username</string>
+    <string name="gpt_name">ChatGPT Name</string>
+    <string name="api">API</string>
+    <string name="api_token">API Token</string>
 </resources>
