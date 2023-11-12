@@ -85,7 +85,6 @@ public class MainFragment extends Fragment {
         if (chat.getMessages().size() > 1) {
             getTextView().append(CHAT_SEPARATOR);
         }
-        //getTextView().append(toString(userMessage));
         appendColoredText(getTextView(), toString(userMessage), Color.parseColor(userMessage.color));
 
         MainActivity.backgroundExecutorService.execute(() -> {
@@ -96,7 +95,6 @@ public class MainFragment extends Fragment {
             Message answerMessage = new Message(Author.Assistant, answer, prefs.getGptName(), "#FF0000");
             chat.addMessage(answerMessage);
             getTextView().append(CHAT_SEPARATOR);
-            //getTextView().append(toString(answerMessage));
             appendColoredText(getTextView(), toString(answerMessage), Color.parseColor(answerMessage.color));
             textToSpeech.speak(answer);
         });
@@ -128,10 +126,8 @@ public class MainFragment extends Fragment {
         List<Message> messages = chat.getMessages();
         if (!messages.isEmpty()) {
             appendColoredText(getTextView(), toString(messages.get(0)), Color.parseColor(messages.get(0).color));
-            //getTextView().append(toString(messages.get(0)));
             for (int i = 1; i < messages.size(); i++) {
                 getTextView().append(CHAT_SEPARATOR);
-                //getTextView().append(toString(messages.get(i)));
                 appendColoredText(getTextView(), toString(messages.get(i)), Color.parseColor(messages.get(i).color));
             }
         }
