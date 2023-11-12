@@ -1,6 +1,9 @@
 package de.fhdw.app_entwicklung.chatgpt;
 
+import android.graphics.Color;
 import android.os.Bundle;
+import android.text.Spannable;
+import android.text.style.ForegroundColorSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -40,7 +43,8 @@ public class MainFragment extends Fragment {
                     if (chat.getMessages().size() > 1) {
                         getTextView().append(CHAT_SEPARATOR);
                     }
-                    getTextView().append(toString(userMessage));
+                    //getTextView().append(toString(userMessage));
+                    appendColoredText(getTextView(), prefs.getUsername() + ": " + toString(userMessage), Color.parseColor("#0000FF"));
 
                     MainActivity.backgroundExecutorService.execute(() -> {
                         String apiToken = prefs.getApiToken();
@@ -50,7 +54,8 @@ public class MainFragment extends Fragment {
                         Message answerMessage = new Message(Author.Assistant, answer);
                         chat.addMessage(answerMessage);
                         getTextView().append(CHAT_SEPARATOR);
-                        getTextView().append(toString(answerMessage));
+                        //getTextView().append(toString(answerMessage));
+                        appendColoredText(getTextView(), prefs.getGptName() + ": " + toString(answerMessage), Color.parseColor("#FF0000"));
                         textToSpeech.speak(answer);
                     });
                 }
@@ -126,6 +131,15 @@ public class MainFragment extends Fragment {
     private Button getAskButton() {
         //noinspection ConstantConditions
         return getView().findViewById(R.id.button_ask);
+    }
+
+    public static void appendColoredText(TextView tv, CharSequence text, int color) {
+        int start = tv.getText().length();
+        tv.append(text);
+        int end = tv.getText().length();
+
+        Spannable spannableText = (Spannable) tv.getText();
+        spannableText.setSpan(new ForegroundColorSpan(color), start, end, 0);
     }
 
 }
