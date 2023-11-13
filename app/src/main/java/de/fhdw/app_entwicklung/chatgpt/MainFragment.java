@@ -1,6 +1,8 @@
 package de.fhdw.app_entwicklung.chatgpt;
 
 import android.os.Bundle;
+import android.text.method.ArrowKeyMovementMethod;
+import android.text.method.ScrollingMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -113,7 +115,11 @@ public class MainFragment extends Fragment {
         chats = new ArrayList<>();
         chats.add(selectedChat);
 
+        // Setting Spinner Items
         spinner.setAdapter(new ArrayAdapter<>(requireContext(), R.layout.dropdown_item, chats));
+
+        // Making TextView Scrollable
+        getTextView().setMovementMethod(new ScrollingMovementMethod());
     }
 
     @Override
