@@ -101,7 +101,25 @@ public class MainFragment extends Fragment {
             getNewButton().setOnClickListener(v -> chats.add(new Chat()));
 
             getDeleteButton().setOnClickListener(v -> {
+                if(chats.size() == 1){
+                    getErrorBox().append("There is only one Chat available. You can't delete that!");
+                    updateTextView();
+                    return;
+                }
+                int index = chats.indexOf(selectedChat);
+
+                boolean wasZero = false;
+
+                if(index == 0){
+                    spinner.setSelection(1);
+                    wasZero = true;
+                }
                 chats.remove(selectedChat);
+                if(!wasZero)
+                    spinner.setSelection(0);
+
+                selectedChat = chats.get(0);
+
                 updateTextView();
             });
 
@@ -113,7 +131,7 @@ public class MainFragment extends Fragment {
                 @Override
                 public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                     selectedChat = (Chat) adapterView.getItemAtPosition(i);
-                    Toast.makeText(requireContext(), selectedChat.toString(), Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(requireContext(), selectedChat.toString(), Toast.LENGTH_SHORT).show();
                     updateTextView();
                 }
 
