@@ -35,7 +35,9 @@
        Zunächst habe ich mich mit der Konzeption der Oberfläche beschäftigt, welche Elemente müssen eingebaut werden und in welcher Anordnung?.
        Mir ging es vor allem darum, eine Intuitive Nutzeroberfläche zu schaffen.
 
-       Mein erstees Konzept sah folgendermaßen aus: 
-       ![Screenshot 2023-11-10 204315](https://github.com/FinnEhrl/app_entwicklung_FinnEhrlich/assets/147406212/45d442c8-4fe8-4a92-8bfe-dc8703b5d023.jpg)
+       Mein erstes Konzept sah folgendermaßen aus:
+       ![Erstes_Konzept](https://github.com/FinnEhrl/app_entwicklung_FinnEhrlich/assets/147406212/f6a09663-dc87-441f-8bbe-3c2f076ef173)
+
+       
 
 
