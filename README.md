@@ -31,13 +31,48 @@
     - Nutzerfreundlichkeit: Die Erweiterung sollte Intuitive nutzbar sein.
 
 ## Umsetzung
+   
    ### Konzept
        Zunächst habe ich mich mit der Konzeption der Oberfläche beschäftigt, welche Elemente müssen eingebaut werden und in welcher Anordnung?.
        Mir ging es vor allem darum, eine Intuitive Nutzeroberfläche zu schaffen.
 
-       Mein erstes Konzept sah folgendermaßen aus:
-       ![Erstes_Konzept](https://github.com/FinnEhrl/app_entwicklung_FinnEhrlich/assets/147406212/f6a09663-dc87-441f-8bbe-3c2f076ef173)
+       Mein erstes Konzept sah folgendermaßen aus: 
+       (Bild wird noch eingefügt)
 
+       Da ich allerdings beim Entwickeln mit der Positionierung des "Chat" buttons nicht ganz zufrieden war habe ich ihn nach ganz oben in die Mitte verschoben.
+       
+   ### Implementierung des UI
+
+       Für die Erweiterung habe ich eine Activity und ein Fragment hinzugefügt.
+       Das UI habe ich nach meinem Konzept gebaut (bis auf die Umpositionierung des "chat" buttons).
+       Dafür brauchte ich jediglich den in Android Studio bereitgestellten Designer. 
+       Für statische Texte habe ich noch übersetzungen für deutsch und englisch eingebaut, die sich nach der Systemsprache anpassen.
+       Dazu habe ich noch den button "quiz" in die Chatoberfläche eingefügt.
+       
+   ### Implementierung der Logik
+
+       Vorab habe ich für jedes UI Element, welches ich noch in der Logik verwendet habe, eine "get" Methode geschrieben, um auf diese einfach zugreifen zu können.
+       Der API-Token wird in der onViewCreated Methode direkt gesetzt.
+       Als erstes habe ich mich damit befasst, ein wechsel zwischen der Chat- und Quizoberflächse zu ermöglichen.
+       Dazu habe ich für die beiden buttons ("Quiz" und "Chat") einen actionListener gebaut, der zu der jeweils der anderen Activity wechselt.
+
+       Dann habe ich mich der Fragestellung von ChatGPT gewidmet, für die ich zunächst eine Methode erstellt habe die ChatGPT nach einer Quizfrage, fragt.
+       Bei der Anfrage habe ich noch die Art der Quizfrage und andere kleinigkeiten spezifiziert, damit ein Reibungsloser fragefluss entsteht.
+       Ich habe eine konstante Variable mit eingebaut, die überprüft ob es sich um die erste gestellte Frage handelt oder nicht.
+       Dies hat den Grund, das die erste gestellte Anfrage länger ist, und das unnötige responsetime kosten haben könnte.
+       Die gestellte Quizfrage von Chatgpt wird dann in der TextView über dem Button "Nächste Frage" angezeigt.
+       Diese Methode habe ich dann noch an den actionlistener des buttons "Nächste Frage" gehangen.
+
+       Über die Buttons "Ja" und "Nein", wird die jeweilige Antwort auf die Quizfrage an eine seperate Methode übergeben, die auch über die actionlistener aufgerufen wird.
+       Nun wird die Antwort an ChatGPT weitergeben und die Lösung mit "Richtig" oder "Falsch" in die Textview unterhalb des buttons "Nächste Frage" angezeigt.
+       In dieser Methode werden noch die konstanten "rightanswers" und "wrong answers" jenachdem ob die Antwort auf die Quizfrage richtig oder falsch war, inkrementiert.
+       Die Zahl die inkrementiert wurde ersetzt dann die aktuelle Zahl neben den Textviews "Richtige Antworten:" oder "Falsche Antworten:".
+
+       Darüber hinaus wird danach die aktuelle anzahl der richtigen Antworten überprüft, wenn diese geteilt durch 5, den Rest 0 ergibt, wird ein Zitat aus einem der in den Anforderungen
+       erwähnten Film-Franchises angezeigt.
+       
+       
+      
        
 
 
