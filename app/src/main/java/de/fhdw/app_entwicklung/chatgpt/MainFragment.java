@@ -1,7 +1,6 @@
 package de.fhdw.app_entwicklung.chatgpt;
 
 import android.os.Bundle;
-import android.text.method.ArrowKeyMovementMethod;
 import android.text.method.ScrollingMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,7 +17,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
@@ -29,7 +27,6 @@ import de.fhdw.app_entwicklung.chatgpt.openai.ChatGpt;
 import de.fhdw.app_entwicklung.chatgpt.roomDB.ChatDTO;
 import de.fhdw.app_entwicklung.chatgpt.speech.LaunchSpeechRecognition;
 import de.fhdw.app_entwicklung.chatgpt.speech.TextToSpeechTool;
-import io.reactivex.exceptions.Exceptions;
 
 public class MainFragment extends Fragment {
 
@@ -49,20 +46,29 @@ public class MainFragment extends Fragment {
                 Message userMessage = new Message(Author.User, query);
                 selectedChat.addMessage(userMessage);
                 if (selectedChat.getMessages().size() > 1) {
-                    getTextView().append(CHAT_SEPARATOR);
+                    requireActivity().runOnUiThread(() -> getTextView().append(CHAT_SEPARATOR));
                 }
-                getTextView().append(toString(userMessage));
+                requireActivity().runOnUiThread(() -> {
+                    getTextView().append(toString(userMessage));
 
-                MainActivity.backgroundExecutorService.execute(() -> {
-                    String apiToken = prefs.getApiToken();
-                    ChatGpt chatGpt = new ChatGpt(apiToken);
-                    String answer = chatGpt.getChatCompletion(selectedChat);
+                    MainActivity.backgroundExecutorService.execute(() -> {
 
-                    Message answerMessage = new Message(Author.Assistant, answer);
-                    selectedChat.addMessage(answerMessage);
-                    getTextView().append(CHAT_SEPARATOR);
-                    getTextView().append(toString(answerMessage));
-                    textToSpeech.speak(answer);
+                        String apiToken = prefs.getApiToken();
+                        ChatGpt chatGpt = new ChatGpt(apiToken);
+
+                        String answer = chatGpt.getChatCompletion(selectedChat);
+                        Message answerMessage = new Message(Author.Assistant, answer);
+
+                        selectedChat.addMessage(answerMessage);
+
+                        requireActivity().runOnUiThread(() -> {
+                            getTextView().append(CHAT_SEPARATOR);
+                            getTextView().append(toString(answerMessage));
+                            textToSpeech.speak(answer);
+                        });
+
+                    });
+
                 });
             });
 
@@ -102,7 +108,7 @@ public class MainFragment extends Fragment {
             updateTextView();
 
             // Set InputType Null to disable Text editing on Dropdown TextView
-            spinner = (Spinner) super.getActivity().findViewById(R.id.spinner);
+            spinner = getView().findViewById(R.id.spinner);
             spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                 @Override
                 public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
@@ -113,38 +119,44 @@ public class MainFragment extends Fragment {
 
                 @Override
                 public void onNothingSelected(AdapterView<?> adapterView) {
-
                 }
             });
 
-            Object returnValue = dataTransferObject.getAllChats();
 
-            if(returnValue.getClass() != List.class){
-                chats = new ArrayList<>();
-                if(returnValue != null)
-                    getErrorBox().append(((Exception) returnValue).getMessage());
-            }
-            else{
-                chats = (List<Chat>) returnValue;
-            }
+            dataTransferObject.getAllChats(new ChatDTO.OnChatsLoadedListener() {
+                @Override
+                public void onChatsLoaded(List<Chat> loadedChats) {
 
-            chats.add(selectedChat);
+                    requireActivity().runOnUiThread(() -> {
+                        chats = loadedChats;
+                        chats.add(selectedChat);
 
-            // Setting Spinner Items
-            spinner.setAdapter(new ArrayAdapter<>(requireContext(), R.layout.dropdown_item, chats));
+                        // Setting Spinner Items
+                        spinner.setAdapter(new ArrayAdapter<>(requireContext(), R.layout.dropdown_item, chats));
+                    });
+
+                }
+
+                @Override
+                public void onError(Exception e) {
+                    requireActivity().runOnUiThread(() -> {
+                        getErrorBox().append("Error loading Chats: " + e.getMessage());
+                    });
+                }
+            });
 
             // Making TextView Scrollable
             getTextView().setMovementMethod(new ScrollingMovementMethod());
-        }
-        catch(Exception e){
+
+        } catch (Exception e) {
             getErrorBox().append(e.getMessage());
         }
     }
 
     @Override
     public void onPause() {
+        dataTransferObject.saveAllChats(this.chats); // stopped here
         super.onPause();
-
         textToSpeech.stop();
     }
 
@@ -152,27 +164,27 @@ public class MainFragment extends Fragment {
     public void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putParcelable(EXTRA_DATA_CHAT, selectedChat);
-        dataTransferObject.saveAllChats(this.chats);
     }
 
     @Override
     public void onDestroy() {
         textToSpeech.destroy();
         textToSpeech = null;
-
         super.onDestroy();
     }
 
     private void updateTextView() {
-        getTextView().setText("");
-        List<Message> messages = selectedChat.getMessages();
-        if (!messages.isEmpty()) {
-            getTextView().append(toString(messages.get(0)));
-            for (int i = 1; i < messages.size(); i++) {
-                getTextView().append(CHAT_SEPARATOR);
-                getTextView().append(toString(messages.get(i)));
+        requireActivity().runOnUiThread(() -> {
+            getTextView().setText("");
+            List<Message> messages = selectedChat.getMessages();
+            if (!messages.isEmpty()) {
+                getTextView().append(toString(messages.get(0)));
+                for (int i = 1; i < messages.size(); i++) {
+                    getTextView().append(CHAT_SEPARATOR);
+                    getTextView().append(toString(messages.get(i)));
+                }
             }
-        }
+        });
     }
 
     private CharSequence toString(Message message) {
@@ -180,25 +192,22 @@ public class MainFragment extends Fragment {
     }
 
     private TextView getTextView() {
-        //noinspection ConstantConditions
         return getView().findViewById(R.id.textView);
     }
 
-    private TextView getErrorBox(){
+    private TextView getErrorBox() {
         return getView().findViewById(R.id.errorTextView);
     }
 
     private Button getAskButton() {
-        //noinspection ConstantConditions
         return getView().findViewById(R.id.button_ask);
     }
 
-    private Button getNewButton(){
+    private Button getNewButton() {
         return getView().findViewById(R.id.button_new);
     }
 
-    private Button getDeleteButton(){
+    private Button getDeleteButton() {
         return getView().findViewById(R.id.button_delete);
     }
-
 }
