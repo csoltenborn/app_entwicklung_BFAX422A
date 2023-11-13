@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
@@ -60,10 +61,7 @@ public class SignInFragment extends Fragment {
     }
 
     private void openErrorMessage(Exception e) {
-        /* ToDo: Implementing Error Message Component and make it visible here. Possible Solution:
-            View errorView = getView().findViewById(R.id.error_message);
-            errorView.setVisibility(View.VISIBLE);
-         */
+        getErrorView(getView()).setVisibility(View.VISIBLE);
         Log.e("SignIn", "Couldn't sign in correctly: ", e);
     }
 
@@ -71,7 +69,9 @@ public class SignInFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_sign_in, container, false);
 
-        SignInButton signInButton = getSignInButton(getView());
+        SignInButton signInButton = getSignInButton(view);
+
+        getErrorView(view).setVisibility(View.INVISIBLE);
 
         signInButton.setOnClickListener(v -> {
             Intent signInIntent = googleSignInClient.getSignInIntent();
@@ -89,5 +89,9 @@ public class SignInFragment extends Fragment {
 
     public SignInButton getSignInButton (View view) {
         return view.findViewById(R.id.sign_in_button);
+    }
+
+    public TextView getErrorView (View view) {
+        return view.findViewById(R.id.sign_in_error_text);
     }
 }

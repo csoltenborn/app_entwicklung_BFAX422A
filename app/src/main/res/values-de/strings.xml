@@ -2,4 +2,5 @@
 <resources>
     <string name="ask">Fragen</string>
     <string name="settings">Einstellungen</string>
+    <string name="singnin_error_message">Leider ist beim Login ein Fehler aufgetreten</string>
 </resources>

@@ -2,4 +2,5 @@
     <string name="app_name" translatable="false">ChatGpt</string>
     <string name="ask">Ask</string>
     <string name="settings">Settings</string>
+    <string name="singnin_error_message">Unfortunately an error accurs during login</string>
 </resources>
