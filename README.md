@@ -38,7 +38,6 @@
 
        Mein erstes Konzept sah folgendermaßen aus: 
        (Bild wird noch eingefügt)
-       ![image](Erstes_Konzept.jpg)
 
 
        Da ich allerdings beim Entwickeln mit der Positionierung des "Chat" buttons nicht ganz zufrieden war habe ich ihn nach ganz oben in die Mitte verschoben.
