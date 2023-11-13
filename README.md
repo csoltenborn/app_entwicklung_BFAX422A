@@ -31,3 +31,10 @@
     - Nutzerfreundlichkeit: Die Erweiterung sollte Intuitive nutzbar sein.
 
 ## Umsetzung
+   ### Konzept
+       Zunächst habe ich mich mit der Konzeption der Oberfläche beschäftigt, welche Elemente müssen eingebaut werden und in welcher Anordnung?.
+       Mir ging es vor allem darum, eine Intuitive Nutzeroberfläche zu schaffen.
+
+       Mein erstees Konzept sah folgendermaßen aus: 
+       ![Screenshot 2023-11-10 204315](https://github.com/FinnEhrl/app_entwicklung_FinnEhrlich/assets/147406212/1988338f-4e7b-45f8-b761-b0e69b25ee60)
+
