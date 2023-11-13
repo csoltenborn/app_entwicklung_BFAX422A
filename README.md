@@ -36,5 +36,6 @@
        Mir ging es vor allem darum, eine Intuitive Nutzeroberfläche zu schaffen.
 
        Mein erstees Konzept sah folgendermaßen aus: 
-       ![Screenshot 2023-11-10 204315](https://github.com/FinnEhrl/app_entwicklung_FinnEhrlich/assets/147406212/1988338f-4e7b-45f8-b761-b0e69b25ee60)
+       ![Screenshot 2023-11-10 204315](https://github.com/FinnEhrl/app_entwicklung_FinnEhrlich/assets/147406212/45d442c8-4fe8-4a92-8bfe-dc8703b5d023)
+
 
