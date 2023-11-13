@@ -26,8 +26,10 @@ import de.fhdw.app_entwicklung.chatgpt.model.Author;
 import de.fhdw.app_entwicklung.chatgpt.model.Chat;
 import de.fhdw.app_entwicklung.chatgpt.model.Message;
 import de.fhdw.app_entwicklung.chatgpt.openai.ChatGpt;
+import de.fhdw.app_entwicklung.chatgpt.roomDB.ChatDTO;
 import de.fhdw.app_entwicklung.chatgpt.speech.LaunchSpeechRecognition;
 import de.fhdw.app_entwicklung.chatgpt.speech.TextToSpeechTool;
+import io.reactivex.exceptions.Exceptions;
 
 public class MainFragment extends Fragment {
 
@@ -39,6 +41,7 @@ public class MainFragment extends Fragment {
     private Chat selectedChat;
     private List<Chat> chats;
     private Spinner spinner;
+    protected ChatDTO dataTransferObject;
 
     private final ActivityResultLauncher<LaunchSpeechRecognition.SpeechRecognitionArgs> getTextFromSpeech = registerForActivityResult(
             new LaunchSpeechRecognition(),
@@ -74,52 +77,68 @@ public class MainFragment extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
+        try {
+            super.onViewCreated(view, savedInstanceState);
 
-        prefs = new PrefsFacade(requireContext());
-        textToSpeech = new TextToSpeechTool(requireContext(), Locale.GERMAN);
-        selectedChat = new Chat();
-        if (savedInstanceState != null) {
-            selectedChat = savedInstanceState.getParcelable(EXTRA_DATA_CHAT);
-        }
+            prefs = new PrefsFacade(requireContext());
+            textToSpeech = new TextToSpeechTool(requireContext(), Locale.GERMAN);
+            selectedChat = new Chat();
+            if (savedInstanceState != null) {
+                selectedChat = savedInstanceState.getParcelable(EXTRA_DATA_CHAT);
+            }
 
+            dataTransferObject = new ChatDTO(requireContext());
 
-        getAskButton().setOnClickListener(v ->
-                getTextFromSpeech.launch(new LaunchSpeechRecognition.SpeechRecognitionArgs(Locale.GERMAN)));
+            getAskButton().setOnClickListener(v ->
+                    getTextFromSpeech.launch(new LaunchSpeechRecognition.SpeechRecognitionArgs(Locale.GERMAN)));
 
-        getNewButton().setOnClickListener(v -> chats.add(new Chat()));
+            getNewButton().setOnClickListener(v -> chats.add(new Chat()));
 
-        getDeleteButton().setOnClickListener(v -> {
-            chats.remove(selectedChat);
-            updateTextView();
-        });
-
-        updateTextView();
-
-        // Set InputType Null to disable Text editing on Dropdown TextView
-        spinner = (Spinner) super.getActivity().findViewById(R.id.spinner);
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                selectedChat = (Chat) adapterView.getItemAtPosition(i);
-                Toast.makeText(requireContext(), selectedChat.toString(), Toast.LENGTH_SHORT).show();
+            getDeleteButton().setOnClickListener(v -> {
+                chats.remove(selectedChat);
                 updateTextView();
+            });
+
+            updateTextView();
+
+            // Set InputType Null to disable Text editing on Dropdown TextView
+            spinner = (Spinner) super.getActivity().findViewById(R.id.spinner);
+            spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                    selectedChat = (Chat) adapterView.getItemAtPosition(i);
+                    Toast.makeText(requireContext(), selectedChat.toString(), Toast.LENGTH_SHORT).show();
+                    updateTextView();
+                }
+
+                @Override
+                public void onNothingSelected(AdapterView<?> adapterView) {
+
+                }
+            });
+
+            Object returnValue = dataTransferObject.getAllChats();
+
+            if(returnValue.getClass() != List.class){
+                chats = new ArrayList<>();
+                if(returnValue != null)
+                    getErrorBox().append(((Exception) returnValue).getMessage());
+            }
+            else{
+                chats = (List<Chat>) returnValue;
             }
 
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
+            chats.add(selectedChat);
 
-            }
-        });
+            // Setting Spinner Items
+            spinner.setAdapter(new ArrayAdapter<>(requireContext(), R.layout.dropdown_item, chats));
 
-        chats = new ArrayList<>();
-        chats.add(selectedChat);
-
-        // Setting Spinner Items
-        spinner.setAdapter(new ArrayAdapter<>(requireContext(), R.layout.dropdown_item, chats));
-
-        // Making TextView Scrollable
-        getTextView().setMovementMethod(new ScrollingMovementMethod());
+            // Making TextView Scrollable
+            getTextView().setMovementMethod(new ScrollingMovementMethod());
+        }
+        catch(Exception e){
+            getErrorBox().append(e.getMessage());
+        }
     }
 
     @Override
@@ -133,6 +152,7 @@ public class MainFragment extends Fragment {
     public void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putParcelable(EXTRA_DATA_CHAT, selectedChat);
+        dataTransferObject.saveAllChats(this.chats);
     }
 
     @Override
@@ -162,6 +182,10 @@ public class MainFragment extends Fragment {
     private TextView getTextView() {
         //noinspection ConstantConditions
         return getView().findViewById(R.id.textView);
+    }
+
+    private TextView getErrorBox(){
+        return getView().findViewById(R.id.errorTextView);
     }
 
     private Button getAskButton() {
