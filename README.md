@@ -53,6 +53,7 @@
 
        Vorab habe ich für jedes UI Element, welches ich noch in der Logik verwendet habe, eine "get" Methode geschrieben, um auf diese einfach zugreifen zu können.
        Der API-Token wird in der onViewCreated Methode direkt gesetzt.
+       
        Als erstes habe ich mich damit befasst, ein wechsel zwischen der Chat- und Quizoberflächse zu ermöglichen.
        Dazu habe ich für die beiden buttons ("Quiz" und "Chat") einen actionListener gebaut, der zu der jeweils der anderen Activity wechselt.
 
@@ -73,6 +74,21 @@
        
        
       
-       
+   ## Probleme/Lessons Learned
+
+      Anfängliche Probleme hatte ich beim erstellen des UIs. Bei Android gibt es verschiedenste wizards um zum Beispiel Settingactivies zu erstellen.
+      Da hatte ich etwas ausgewählt das nicht für meinen Fall passend war. Deshalb habe ich mir erstmal informiert, welche vorgefertigten Strukturen es gibt.
+
+      Da ich im Bereich der Mobile-Entwicklung noch nicht so viele Erfahrungen sammeln konnte, verlief der Entwicklungsprozess im Allgemeinen nicht komplett reibungslos.
+      Je weiter ich in meinem Entwicklungsprozess war, desto besser lief es.
+
+   ## Fazit
+
+      Entegen meiner Vorstellung im Bezug auf den Zeitaufwand der von mir geplanten Erweiterung, habe ich festgestellt das dieser nicht so hoch war.
+      Die geplanten Features konnte ich Umsetzen wie ich es geplant hatte und konnte zudem noch eine Kleinigkeit im Rahmen einer Belohnung einbauen.
+      
+      
+      
+      
 
 
