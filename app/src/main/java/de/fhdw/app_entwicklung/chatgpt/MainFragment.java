@@ -1,5 +1,6 @@
 package de.fhdw.app_entwicklung.chatgpt;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,33 +27,11 @@ public class MainFragment extends Fragment {
 
     private static final String EXTRA_DATA_CHAT = "EXTRA_DATA_CHAT";
     private static final String CHAT_SEPARATOR = "\n\n";
-
-    private PrefsFacade prefs;
+    private ChatGpt chatGpt;
     private TextToSpeechTool textToSpeech;
     private Chat chat;
 
-    private final ActivityResultLauncher<LaunchSpeechRecognition.SpeechRecognitionArgs> getTextFromSpeech = registerForActivityResult(
-            new LaunchSpeechRecognition(),
-            query -> {
-                Message userMessage = new Message(Author.User, query);
-                chat.addMessage(userMessage);
-                if (chat.getMessages().size() > 1) {
-                    getTextView().append(CHAT_SEPARATOR);
-                }
-                getTextView().append(toString(userMessage));
-
-                MainActivity.backgroundExecutorService.execute(() -> {
-                    String apiToken = prefs.getApiToken();
-                    ChatGpt chatGpt = new ChatGpt(apiToken);
-                    String answer = chatGpt.getChatCompletion(chat);
-
-                    Message answerMessage = new Message(Author.Assistant, answer);
-                    chat.addMessage(answerMessage);
-                    getTextView().append(CHAT_SEPARATOR);
-                    getTextView().append(toString(answerMessage));
-                    textToSpeech.speak(answer);
-                });
-            });
+    private ActivityResultLauncher<LaunchSpeechRecognition.SpeechRecognitionArgs> getTextFromSpeech;
 
     public MainFragment() {
     }
@@ -60,6 +39,7 @@ public class MainFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         return inflater.inflate(R.layout.fragment_main, container, false);
     }
 
@@ -67,16 +47,40 @@ public class MainFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        prefs = new PrefsFacade(requireContext());
+        PrefsFacade prefs = new PrefsFacade(requireContext());
         textToSpeech = new TextToSpeechTool(requireContext(), Locale.GERMAN);
         chat = new Chat();
         if (savedInstanceState != null) {
             chat = savedInstanceState.getParcelable(EXTRA_DATA_CHAT);
         }
+        String apiToken = prefs.getApiToken();
+        chatGpt = new ChatGpt(apiToken);
+        getTextFromSpeech = registerForActivityResult(
+                new LaunchSpeechRecognition(),
+                query -> {
+                    Message userMessage = new Message(Author.User, query);
+                    chat.addMessage(userMessage);
+                    if (chat.getMessages().size() > 1) {
+                        getTextView().append(CHAT_SEPARATOR);
+                    }
+                    getTextView().append(toString(userMessage));
+
+                    MainActivity.backgroundExecutorService.execute(() -> {
+
+                        String answer = this.chatGpt.getChatCompletion(chat);
+
+                        Message answerMessage = new Message(Author.Assistant, answer);
+                        chat.addMessage(answerMessage);
+                        getTextView().append(CHAT_SEPARATOR);
+                        getTextView().append(toString(answerMessage));
+                        textToSpeech.speak(answer);
+                    });
+                });
 
         getAskButton().setOnClickListener(v ->
                 getTextFromSpeech.launch(new LaunchSpeechRecognition.SpeechRecognitionArgs(Locale.GERMAN)));
         updateTextView();
+        createExtraGreetingMessage();
     }
 
     @Override
@@ -98,6 +102,19 @@ public class MainFragment extends Fragment {
         textToSpeech = null;
 
         super.onDestroy();
+    }
+
+    private void createExtraGreetingMessage() {
+        Intent intent = requireActivity().getIntent();
+
+        if (intent == null || !intent.hasExtra("USER_NAME")) {
+            return;
+        }
+
+        String userName = intent.getStringExtra("USER_NAME");
+
+        MainActivity.backgroundExecutorService.execute(() -> getTextView().append(chatGpt.getGreetingsMessage(userName)));
+        getTextView().append(CHAT_SEPARATOR);
     }
 
     private void updateTextView() {

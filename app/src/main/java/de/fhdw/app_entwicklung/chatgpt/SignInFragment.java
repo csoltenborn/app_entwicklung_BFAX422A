@@ -1,5 +1,6 @@
 package de.fhdw.app_entwicklung.chatgpt;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
@@ -36,7 +38,10 @@ public class SignInFragment extends Fragment {
                 .requestEmail()
                 .build();
 
-        googleSignInClient = GoogleSignIn.getClient(getContext(), googleSignInOptions);
+        Context context = getContext();
+        if(context == null) return;
+
+        googleSignInClient = GoogleSignIn.getClient(context, googleSignInOptions);
 
         googleSignInLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
             result -> {
@@ -61,13 +66,21 @@ public class SignInFragment extends Fragment {
     }
 
     private void openErrorMessage(Exception e) {
-        getErrorView(getView()).setVisibility(View.VISIBLE);
+        View view = getView();
+        if(view == null) return;
+
+        getErrorView(view).setVisibility(View.VISIBLE);
         Log.e("SignIn", "Couldn't sign in correctly: ", e);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_sign_in, container, false);
+        return inflater.inflate(R.layout.fragment_sign_in, container, false);
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
 
         SignInButton signInButton = getSignInButton(view);
 
@@ -77,8 +90,6 @@ public class SignInFragment extends Fragment {
             Intent signInIntent = googleSignInClient.getSignInIntent();
             googleSignInLauncher.launch(signInIntent);
         });
-
-        return view;
     }
 
     private void openMainActivity(GoogleSignInAccount googleSignInAccount) {
