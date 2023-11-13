@@ -66,7 +66,7 @@
 
        Über die Buttons "Ja" und "Nein", wird die jeweilige Antwort auf die Quizfrage an eine seperate Methode übergeben, die auch über die actionlistener aufgerufen wird.
        Nun wird die Antwort an ChatGPT weitergeben und die Lösung mit "Richtig" oder "Falsch" in die Textview unterhalb des buttons "Nächste Frage" angezeigt.
-       In dieser Methode werden noch die konstanten "rightanswers" und "wrong answers" jenachdem ob die Antwort auf die Quizfrage richtig oder falsch war, inkrementiert.
+       In dieser Methode werden noch die konstanten "rightanswers" und "wrong answers" je nachdem ob die Antwort auf die Quizfrage richtig oder falsch war, inkrementiert.
        Die Zahl die inkrementiert wurde ersetzt dann die aktuelle Zahl neben den Textviews "Richtige Antworten:" oder "Falsche Antworten:".
 
        Darüber hinaus wird danach die aktuelle anzahl der richtigen Antworten überprüft, wenn diese geteilt durch 5, den Rest 0 ergibt, wird ein Zitat aus einem der in den Anforderungen
@@ -81,6 +81,10 @@
 
       Da ich im Bereich der Mobile-Entwicklung noch nicht so viele Erfahrungen sammeln konnte, verlief der Entwicklungsprozess im Allgemeinen nicht komplett reibungslos.
       Je weiter ich in meinem Entwicklungsprozess war, desto besser lief es.
+
+      Beim Entwickeln der Belohung, hatte ich anfänglich geplant ein Popup zu bauen, in dem das Zitat angezeigt wird.
+      Leider hat es mit dem Popup nicht so geklappt wie ich es mir gewünscht hatte und habe mich von daher dazu entschieden,
+      das Zitat in der TextView unter dem button "Nächste Frage" anzeigen zu lassen
 
    ## Fazit
 
