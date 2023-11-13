@@ -21,7 +21,7 @@
     - Ob die Frage richtig oder falsch beantwortet wurde, liefert ChatGPT mit "Richtig" oder "Falsch" zurück.
     - Bei richtig beantworteter Frage wird die Zahl neben dem Text "Richtige Antworten:" um 1 erhöht.
     - Bei falsch beantworteter Frage wird die Zahl neben dem Text "Falsche Antworten:" um 1 erhöht.
-    - Bei jeder 5ten richtig beantworteten Frage wird ein Zitat aus einem dieser Filme als Belohnung angezeigt: Der Herr der Ringe, Star Wars und Harry Potter.  
+    - Bei jeder 5ten richtig beantworteten Frage wird ein Zitat aus einem dieser Film-Franchises als Belohnung angezeigt: Der Herr der Ringe, Star Wars und Harry Potter.  
 
 ### Nicht funktionale Anforderungen:
     - Betriebssystem: Android 
@@ -30,4 +30,4 @@
     - Verfügbarkeit: Die App sollte immer die möglichkeit bieten, in das Quiz zu wechseln.
     - Nutzerfreundlichkeit: Die Erweiterung sollte Intuitive nutzbar sein.
 
-    
+## Umsetzung
