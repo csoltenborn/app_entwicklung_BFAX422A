@@ -19,6 +19,10 @@ public class Chat implements Parcelable {
     private final List<Message> messages = new ArrayList<>();
     private java.time.LocalDateTime creationDate;
 
+    public java.time.LocalDateTime getCreationDate(){
+        return this.creationDate;
+    }
+
     public Chat() {
         this.creationDate = LocalDateTime.now();
     }

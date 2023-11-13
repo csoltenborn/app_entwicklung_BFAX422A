@@ -17,4 +17,7 @@ public interface ChatDAO {
 
     @Delete
     void delete(Chat chat);
+
+    @Delete
+    void deleteChats(Chat... chats);
 }
