@@ -69,7 +69,7 @@
        Die Zahl die inkrementiert wurde ersetzt dann die aktuelle Zahl neben den Textviews "Richtige Antworten:" oder "Falsche Antworten:".
 
        Darüber hinaus wird danach die aktuelle anzahl der richtigen Antworten überprüft, wenn diese geteilt durch 5, den Rest 0 ergibt, wird ein Zitat aus einem der in den Anforderungen
-       erwähnten Film-Franchises angezeigt.
+       erwähnten Film-Franchises in der TextView unterhalb von dem Button "Nächste Frage" angezeigt.
        
        
       
