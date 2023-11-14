@@ -28,7 +28,7 @@
     - Robustheit: Die App darf innerhalb der Erweiterung nicht Abstürzen, einfrieren, etc.
     - Performance: Die Erweiterung darf keine langen Ladezeiten haben und soll schnell reagieren können.
     - Verfügbarkeit: Die App sollte immer die möglichkeit bieten, in das Quiz zu wechseln.
-    - Nutzerfreundlichkeit: Die Erweiterung sollte Intuitive nutzbar sein.
+    - Nutzerfreundlichkeit: Die Erweiterung sollte Intuitiv nutzbar sein.
 
 ## Umsetzung
    
