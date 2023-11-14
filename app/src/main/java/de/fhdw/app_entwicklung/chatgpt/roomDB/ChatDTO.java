@@ -6,10 +6,12 @@ import android.util.Log;
 import androidx.room.Room;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.json.JsonMapper;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeFormatterBuilder;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -42,7 +44,11 @@ public class ChatDTO {
                     /*Init working Variables*/
                     String jsonMessages = "";
                     List<Message> messages;
-                    LocalDateTime dtToSave = LocalDateTime.parse(c.creationDate);
+
+                    /*Deserializing creation Date*/
+                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern(" yyyy-MM-dd HH:mm:ss ");
+                    String dateString = c.creationDate.replace('"', ' ');
+                    LocalDateTime dtToSave = LocalDateTime.parse(dateString, formatter);
 
                     /*Init toAdd Instance*/
                     de.fhdw.app_entwicklung.chatgpt.model.Chat toAdd =
@@ -51,7 +57,7 @@ public class ChatDTO {
                     /*get Messages from JSON*/
                     jsonMessages = c.jsonMessages;
                     JsonMapper jm = new JsonMapper();
-                    messages = jm.convertValue(jsonMessages, List.class);
+                    messages = jm.readValue(jsonMessages, new TypeReference<List<Message>>() {});
 
                     /*Add Messages to temp Chat instance*/
                     for (Message m : messages) {

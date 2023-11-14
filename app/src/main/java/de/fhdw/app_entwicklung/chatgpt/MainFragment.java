@@ -67,6 +67,8 @@ public class MainFragment extends Fragment {
                             textToSpeech.speak(answer);
                         });
 
+                        dataTransferObject.saveAllChats(chats);
+
                     });
 
                 });
