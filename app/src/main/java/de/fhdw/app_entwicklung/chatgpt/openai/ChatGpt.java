@@ -1,5 +1,7 @@
 package de.fhdw.app_entwicklung.chatgpt.openai;
 
+import android.content.Context;
+
 import androidx.annotation.NonNull;
 
 import com.theokanning.openai.OpenAiHttpException;
@@ -14,6 +16,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import de.fhdw.app_entwicklung.chatgpt.R;
 import de.fhdw.app_entwicklung.chatgpt.model.Author;
 import de.fhdw.app_entwicklung.chatgpt.model.Chat;
 import de.fhdw.app_entwicklung.chatgpt.model.Message;
@@ -21,10 +24,6 @@ import de.fhdw.app_entwicklung.chatgpt.model.Message;
 public class ChatGpt {
 
     private final String apiToken;
-
-    private static final String NO_TOKEN_STRING = "Hallo %s. Leider hast du noch keinen API Token gesetzt. Bitte setzen den API Token in Settings, um ChatGPT nutzen zu können.";
-    private static final String WRONG_TOKEN_STRING = "Hallo %s. Leider hast du einen falschen API Token gesetzt. Bitte setzen den API Token in Settings, um ChatGPT nutzen zu können.";
-    private static final String GREETING_COMMAND_FOR_CHAT_GPT = "Bitte erstelle mir eine Wilkommensnachricht für %s. Begrüße die Person bitte im Chat.";
 
     public ChatGpt(String apiToken) {
         this.apiToken = apiToken;
@@ -57,19 +56,22 @@ public class ChatGpt {
         }
     }
 
-    public String getGreetingsMessage(String userName) {
+    public String getGreetingsMessage(String userName, Context context) {
         if("".equals(apiToken)) {
-            return String.format(NO_TOKEN_STRING, userName);
+            String noTokenMessage = context.getResources().getString(R.string.no_token_message);
+            return String.format(noTokenMessage, userName);
         }
 
         Chat chat = new Chat();
-        Message message = new Message(Author.User, String.format(GREETING_COMMAND_FOR_CHAT_GPT, userName));
+        String chatGptCommand = context.getResources().getString(R.string.chat_gpt_greeting_command);
+        Message message = new Message(Author.User, String.format(chatGptCommand, userName));
         chat.addMessage(message);
 
         try {
             return getChatCompletion(chat);
         } catch (OpenAiHttpException e) {
-            return String.format(WRONG_TOKEN_STRING, userName);
+            String wrongTokenMessage = context.getResources().getString(R.string.wrong_token_message);
+            return String.format(wrongTokenMessage, userName);
         }
     }
 

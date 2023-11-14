@@ -3,4 +3,7 @@
     <string name="ask">Fragen</string>
     <string name="settings">Einstellungen</string>
     <string name="singnin_error_message">Leider ist beim Login ein Fehler aufgetreten</string>
+    <string name="no_token_message">Hallo %s. Leider hast du noch keinen API Token gesetzt. Bitte setzen den API Token in Settings, um ChatGPT nutzen zu können.</string>
+    <string name="wrong_token_message">Hallo %s. Leider hast du einen falschen API Token gesetzt. Bitte setzen den API Token in Settings, um ChatGPT nutzen zu können.</string>
+    <string name="chat_gpt_greeting_command">Bitte erstelle mir eine Wilkommensnachricht für %s. Begrüße die Person bitte im Chat.</string>
 </resources>

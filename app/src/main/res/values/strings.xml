@@ -3,4 +3,7 @@
     <string name="ask">Ask</string>
     <string name="settings">Settings</string>
     <string name="singnin_error_message">Unfortunately an error accurs during login</string>
+    <string name="no_token_message">Hi %s. Unfortunately you haven\'t set an API Token. Please set an API Token in the settings to use ChatGpt.</string>
+    <string name="wrong_token_message">Hi %s. Unfortunately you have set the wrong Token. Please set the correct ChatGPT token in the settings to use ChatGPT.</string>
+    <string name="chat_gpt_greeting_command">Please create a welocom message for %s. Welcome the person in the chat.</string>
 </resources>

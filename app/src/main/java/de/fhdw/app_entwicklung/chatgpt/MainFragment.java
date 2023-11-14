@@ -113,7 +113,7 @@ public class MainFragment extends Fragment {
 
         String userName = intent.getStringExtra("USER_NAME");
 
-        MainActivity.backgroundExecutorService.execute(() -> getTextView().append(chatGpt.getGreetingsMessage(userName)));
+        MainActivity.backgroundExecutorService.execute(() -> getTextView().append(chatGpt.getGreetingsMessage(userName, getContext())));
         getTextView().append(CHAT_SEPARATOR);
     }
 
