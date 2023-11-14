@@ -85,7 +85,10 @@
 
       Beim Entwickeln der Belohung, hatte ich anfänglich geplant ein Popup zu bauen, in dem das Zitat angezeigt wird.
       Leider hat es mit dem Popup nicht so geklappt wie ich es mir gewünscht hatte und habe mich von daher dazu entschieden,
-      das Zitat in der TextView unter dem button "Nächste Frage" anzeigen zu lassen
+      das Zitat in der TextView unter dem button "Nächste Frage" anzeigen zu lassen.
+
+      Trotz der spezifizierung wie ChatGPT die Fragen stellen und darauf antworten soll, kann es manchmal zu Sätzen kommen, die nicht erwartet wurden
+      oder zu einer komplett anderen Art von Quizfragen.
 
    ## Fazit
 
