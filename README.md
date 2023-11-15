@@ -58,8 +58,8 @@ einer perönlichen Ebene mit dem Nutzer interagieren. Wir haben einen Überblick
 benutzt und können perspektivisch sogar gewissse Inhalte mit einer Bezahloption bereit stellen oder den 
 Benutzer per Mail über Änderungen an der App informieren. 
 
-![Bildschirmfoto 2023-11-15 um 13.46.47.png](readme_images%2FBildschirmfoto%202023-11-15%20um%2013.46.47.png)
-![Bildschirmfoto 2023-11-15 um 14.33.21.png](readme_images%2FBildschirmfoto%202023-11-15%20um%2014.33.21.png)
+<img alt="Bildschirmfoto 2023-11-15 um 13.46.47.png" height="400" src="readme_images%2FBildschirmfoto%202023-11-15%20um%2013.46.47.png"/>
+<img alt="Bildschirmfoto 2023-11-15 um 14.33.21.png" height="400" src="readme_images%2FBildschirmfoto%202023-11-15%20um%2014.33.21.png"/>
 > Der Benutzer meldet sich in der App an und bekommt im Anschluss eine von ChatGPT personalisierte
 Willkommensnachricht angezeigt  
 
