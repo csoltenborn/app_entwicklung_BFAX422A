@@ -1,7 +1,10 @@
 package de.fhdw.app_entwicklung.chatgpt.openai;
 
+import android.content.Context;
+
 import androidx.annotation.NonNull;
 
+import com.theokanning.openai.OpenAiHttpException;
 import com.theokanning.openai.completion.chat.ChatCompletionRequest;
 import com.theokanning.openai.completion.chat.ChatCompletionResult;
 import com.theokanning.openai.completion.chat.ChatMessage;
@@ -13,6 +16,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import de.fhdw.app_entwicklung.chatgpt.R;
 import de.fhdw.app_entwicklung.chatgpt.model.Author;
 import de.fhdw.app_entwicklung.chatgpt.model.Chat;
 import de.fhdw.app_entwicklung.chatgpt.model.Message;
@@ -49,6 +53,25 @@ public class ChatGpt {
         }
         finally {
             service.shutdownExecutor();
+        }
+    }
+
+    public String getGreetingsMessage(String userName, Context context) {
+        if("".equals(apiToken)) {
+            String noTokenMessage = context.getResources().getString(R.string.no_token_message);
+            return String.format(noTokenMessage, userName);
+        }
+
+        Chat chat = new Chat();
+        String chatGptCommand = context.getResources().getString(R.string.chat_gpt_greeting_command);
+        Message message = new Message(Author.User, String.format(chatGptCommand, userName));
+        chat.addMessage(message);
+
+        try {
+            return getChatCompletion(chat);
+        } catch (OpenAiHttpException e) {
+            String wrongTokenMessage = context.getResources().getString(R.string.wrong_token_message);
+            return String.format(wrongTokenMessage, userName);
         }
     }
 
