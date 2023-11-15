@@ -27,7 +27,7 @@ Hintergrund verwendet Google für diesen Service "OAuth" und "OpenId Conntect". 
 
 >Quelle: [Google Developers](https://developers.google.com/identity/gsi/web/guides/overview?hl=de)  
 
-## OAuth2 und OpenId Connect
+### OAuth2 und OpenId Connect
 
 Bei Open Id Connect (kurz auch OIDC) handelt es sich um Authentifizierungsprotokoll, welches 
 die Authentifizierung von Nutzern in einer Anwendung standartiseren und vereinfachen soll. 
@@ -48,7 +48,7 @@ speichern, welche in der Anwendung in Berechtigungen übersetzt werden können.
   
 >Quelle: [Auth0](https://auth0.com/de/intro-to-iam/what-is-oauth-2)  
 
-## Erweiterung der Anwendung
+### Inhalt und Nutzen der Anwendung
 
 Die Erweiterung des Projektes soll nun auch den "Anmelden über Google" Button in das ChatGPT Projekt 
 bringen. Der Benutzer soll sich mit seinem Google Account in der App anmelden und anschließend soll ihm 
@@ -59,14 +59,16 @@ benutzt und können perspektivisch sogar gewissse Inhalte mit einer Bezahloption
 Benutzer per Mail über Änderungen an der App informieren. 
 
 <div style="display: flex; justify-content: space-between;">
-<img alt="Bildschirmfoto 2023-11-15 um 13.46.47.png" height="400" src="readme_images%2FBildschirmfoto%202023-11-15%20um%2013.46.47.png"/>
-<img alt="Bildschirmfoto 2023-11-15 um 14.33.21.png" height="400" src="readme_images%2FBildschirmfoto%202023-11-15%20um%2014.33.21.png"/>
+<img alt="Bildschirmfoto 2023-11-15 um 13.46.47.png" height="600" src="readme_images%2FBildschirmfoto%202023-11-15%20um%2013.46.47.png"/>
+<img alt="Bildschirmfoto 2023-11-15 um 14.33.21.png" height="600" src="readme_images%2FBildschirmfoto%202023-11-15%20um%2014.33.21.png"/>
 </div>
 
 > Der Benutzer meldet sich in der App an und bekommt im Anschluss eine von ChatGPT personalisierte
 Willkommensnachricht angezeigt  
 
+## Implementierung
 
+### Einrichtung in der Google Cloud Console
 
 Damit sich die App mit Google Identity verbinden kann, sind noch einige Einstellung in der
 Google Identity Console nötig:
@@ -74,21 +76,28 @@ Google Identity Console nötig:
 1. Zuerst muss man die [Google Cloud API Console](https://console.cloud.google.com/welcome?hl=de&project=peppy-linker-244912) 
 im Browser aufrufen und sich einloggen. Hat man sich bereits in Chrome mit seinem Google Account
 eingeloggt und Öffnet diesen, ist man meistens automatisch eingeloggt.    
-2. Hier erstellen wir ein neues Google Cloud-Projekt [nach folgender Anleitung](https://cloud.google.com/resource-manager/docs/creating-managing-projects?hl=de)  
+  
+2. Hier erstellen wir ein neues Google Cloud-Projekt [nach folgender Anleitung](https://cloud.google.com/resource-manager/docs/creating-managing-projects?hl=de)
+  
 3. Nachdem wir das Projekt ausgewählt erstellen wir unter "APIs und Dienste", "Anmeldedaten", 
-"Anmeldedaten erstellen" ein neue OAuth-Client-ID
-4. Als Anwendungstyp wählen wir "Android" aus. Den Namen können wir frei wälen. Um nun den Paketnamen
-un den SHA-1 Zertifikatsabdruck eingeben zu können schauen wir in unser App Repository, welches
-wir erweitern möchten.
+"Anmeldedaten erstellen" ein neue OAuth-Client-ID.
+<img alt="Bildschirmfoto 2023-11-15 um 14.56.26.png" height="600" src="readme_images%2FBildschirmfoto%202023-11-15%20um%2014.56.26.png"/>
+> Übersicht der Einstellungen, welche wir in der Google Cloud Console anpassen müssen  
+   
+4. Als Anwendungstyp wählen wir "Android" aus. Den Namen können wir frei wählen. Um nun den Paketnamen 
+und den SHA-1 Zertifikatsabdruck herauszufinden schauen wir in unser App Repository, welches
+wir erweitern möchten. 
+
+   Den Paketnamen finden wir in der build.gradle im Ordner "app" unter "namespace"  
   
-Den Paketnamen finden wir in der build.gradle im Ordner "app" unter "namespace"  
+   Für den SHA-1 Fingerabdruck öffnen wir den Reiter "Gradle" in Android Studio, in dem wir "Excute
+   Gradle Task" auswählen und folgenden Befehl ausführen:  
   
-Für den SHA-1 Fingerabdruck öffnen wir den Reiter "Gradle" in Android Studio, in dem wir "Excute
-Gradle Task" ausführen und folgenden Befehl ausführen:  
+   `gradle signingReport`  
   
-`gradle signingReport`  
+   Im signingReport finden wir unter SHA1 unseren SHA-1 Zertifikatsabdruck.  
   
-Im signingReport finden wir unter SHA1 unseren SHA-1 Zertifikatsabdruck.
 5. Haben wir alle Werte richtig eingetragen, klicken wir auf "Erstellen" und sind damit in der
 Cloud Console fertig.
 
+### 
