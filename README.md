@@ -124,10 +124,8 @@ welches in der Main Activity angezeigt werden soll. Nachdem ich beide Objekte er
 ich mit dem Design der Ui beginnen. Glücklicherweise stell Google bereits einen Anmelden Button
 bereit dafür musst ich nur folgende Dependencies per Gradlle installieren:
 
-> implementation 'com.google.android.material:material:1.9.0'
-> implementation 'com.theokanning.openai-gpt3-java:service:0.14.0'
-> implementation 'androidx.preference:preference:1.2.0'
-
+> implementation 'com.google.android.gms:play-services-auth:20.7.0'  
+  
 Danach konnte ich mit dem UI Design beginnen. Dafür musste ich nur Button einfügen und per
 Constraint Layout mittig im Fragment platzieren. Für den Fall, dass aus irgendeinem Grund die
 Anmeldung bei
@@ -135,5 +133,22 @@ Google fehlschlägt, habe ich noch eine Error Meldung eingebaut. Diese soll erst
 sobald die Google Anmeldung fehlgeschlagen ist. Das Ergebnis sah dann wiefolgt aus:  
   
 <img alt="Bildschirmfoto 2023-11-15 um 15.21.45.png" height="600" src="readme_images%2FBildschirmfoto%202023-11-15%20um%2015.21.45.png"/>
-  
+
+Anschließend konnte ich mit der Implementierung der Logik anfangen. Der Großteil der Logik befindet
+sich im SignInFragement. Bei der Implementierung habe ich mich haputsächlich an der Anleitung orientiert, 
+[welche Google hierfür bereit stellt](https://developers.google.com/identity/sign-in/android/start-integrating?hl=de)
+. Laut der Anleitung stellt Google bereits eine Klasse **GoogleSignInClient** bereit, welche wir mit dem
+**GoogleSignInOptions** konfigurieren können. Diese habe ich nun in der onCreate Methode erzeugt 
+und konfiguriert. Damit Google den benutzer nun anmeldet, wenn man auf den Button klickt, musste ich
+dem Button noch einen Listener hinzufügen. Der Listener startet einen Intent, in welchem sich
+der User einloggen kann. Wenn der User fertig ist soll er in die MainActivity weiter geleitet
+werden und dabei soll der Name des Nutzer direkt übergeben werden. Dafür habe ich einen
+**ActivityResultLauncher** erstellt. Falls der User erfolgreich eingeloggt wird, erzeugt dieser
+ein Intent mit der MainActivity und setzt den Benutzernamen. Falls der Login fehlschlägt, wird
+der Error Text in der UI sichtbar. Zum Schluss musste ich in der **AndroidManifest.xml** noch 
+einstellen, dass die SignInActivity beim starten der App gestartet wird. Danach funkionierte der 
+Login.
+
+## Erstellung einer Begrüßungsnachricht
+
 
