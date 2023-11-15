@@ -187,7 +187,11 @@ Falscher Token:
   
 Danach bekam der Benutzer eine Meldung, wenn er keinen oder den falschen API Key gesetzt hat. Falls
 der Key richtg war, bekam er eine peronsalisierte Nachricht von ChatGPT. Damit war dieses Feature
-fertig implementiert.
+fertig implementiert.  
+
+<img alt="Bildschirmfoto 2023-11-15 um 14.33.21.png" height="600" src="readme_images%2FBildschirmfoto%202023-11-15%20um%2014.33.21.png"/>
+
+> Der User bekommt eine personalisiert Nachricht angezeigt
 
 ## Probleme/Lessons Learned
 
