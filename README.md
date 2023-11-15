@@ -149,6 +149,78 @@ der Error Text in der UI sichtbar. Zum Schluss musste ich in der **AndroidManife
 einstellen, dass die SignInActivity beim starten der App gestartet wird. Danach funkionierte der 
 Login.
 
-## Erstellung einer Begrüßungsnachricht
+<img alt="Bildschirmfoto 2023-11-15 um 13.46.47.png" height="600" src="readme_images%2FBildschirmfoto%202023-11-15%20um%2013.46.47.png"/>
 
+> Der User konnte sich danach über den Button anmelden um die MainActity zu gelangen.
 
+### Erstellung einer Begrüßungsnachricht
+
+Da wir nun über die Information verfügen, wie der Benutzer heißt, können wir ihm eine personalisierte
+Begrüßungsnachricht per ChatGPT ausspielen. Da der vorherige Code diese Funktionalität noch nicht
+bereit stellte, musste ich diesen erweitern. Angfangen habe ich der Klasse **ChatGPT**. Dort
+habe ich die Methode **getGreetingsMessage** erstellt. Diese erzeugt einen leeren Chat und fügt 
+einen Befehl für ChatGPT hinzu, eine Begrüßungsnachricht zu erzeugen. Der Wortlaut lautet wie folgt:
+
+> Bitte erstelle mir eine Wilkommensnachricht für %s. Begrüße die Person bitte im Chat.
+
+"%s" wird später durch den Benutzername ersetzt. Anschließend habe ich im **MainFragment** noch 
+den benötigten Code hinzugefügt, um die Willkommensnachricht anzuzeigen. Dafür war es notwendig, das 
+ChatGpt Objekt in der Klasse verüfbar ist. Nachdem ich es in der Klasse erreichbar gemacht habe,
+habe ich die Methode **createExtraGreetingMessage** erstellt. Hier wird der Benutzername aus dem
+Intent geladen, welcher vorher übergeben wurde. Dieser wird an die getGreetingsMessage Methode in
+der ChatGpt Klasse übergeben. Die zurückgegebene Willkommensnachricht wird dann in die TextView
+eingefügt.   
+  
+Nachdem ich die Funktionalität implementiert habe, habe ich das ganze getestet. Ich habe die App
+gestartet und mich eingeloggt und anschließend eine Fehlermeldung bekommen. Der Grund lag in einem
+falschen ChatGPT key. Da die Willkommensnachricht in der **onViewCreated** Funktion ausgeführt wird,
+gab es keine Chance für den Benutzer, die Key zu ändern, bevor die App crashed. Deswegen eine 
+Textausgabe mit einem vordefinierten Text eingebaut, welche angezeigt wird, falls der API Key falsch
+ist. Zusätzlich habe ich noch eine Text anzeige implementiert, falls überhaupt kein API Key hinterlegt
+ist. Diese sehen wir folgt aus:  
+  
+Kein Token:
+> Hallo %s. Leider hast du noch keinen API Token gesetzt. Bitte setzen den API Token in Settings, um ChatGPT nutzen zu können.  
+
+Falscher Token:
+> Hallo %s. Leider hast du einen falschen API Token gesetzt. Bitte setzen den API Token in Settings, um ChatGPT nutzen zu können.  
+  
+Danach bekam der Benutzer eine Meldung, wenn er keinen oder den falschen API Key gesetzt hat. Falls
+der Key richtg war, bekam er eine peronsalisierte Nachricht von ChatGPT. Damit war dieses Feature
+fertig implementiert.
+
+## Probleme/Lessons Learned
+
+Diesen Abschnitt möchte ich noch über die Probleme und Lessons Leraned sprechen, die beim entwickeln
+des Projekts entstanden sind.
+
+### Probleme
+
+Das erste Problem, was aufgetreten ist, war, dass die Google Dokumentation 
+mir einen Zugriff auf den Intent angezeigt hat, der deprecated war. Laut Google hätte ich den
+Login per **startActivityForResult** starten sollen und per **onActivityResult** das Ergebnis
+bekommen sollen. Zum Glück gab es im Code schon eine Implementierung nach neuen Standards. 
+So konnte ich mich daran orientieren und das Feature auch mit der aktuellen Methode entwickeln.  
+
+Zusätzlich trat das Problem auf, dass die Anwedung sofort abstürtzte, wenn ich keinen oder den 
+falschen API Key eingegeben hatte. Die Problem konnte ich elegant mit einer Standardnachricht beheben,
+welche den Nutzer darauf hinweist, dass er keinen oder den falschen Key angegeben hat. 
+
+### Lessons Learned
+
+Bei der Entwicklung des Features habe ich viel gelernt. Das erste was mir positv im Gedächtnis geblieben
+ist, ist, wie einfach die Konfiguration in der Google Cloud Admin Konsole war. Zum Anfang des Projekts 
+dachte ich, dass ich sehr aufwendig werden würde, den Zugriff einzurichten oder dass es mir gar
+von Google verboten wird, den Login für Testzwecke bereit zu stellen. Diese Befürchtungen haben sich
+nicht bewahrheitet. Außerdem habe ich gelernt, dass die Entwicklung von Android Apps gar nicht so
+schwierig ist wie anfangs gedacht. Hat man sich einmal in die UI Constraint eingefunden und verstanden,
+wie Intents funktionieren, kann man mit dem Wissen schon so einige Funktionalitäten bereit stellen. 
+Zuletzt habe ich auch negative Seiten der App Enticklung kennen gelernt. So finde ich es teilweise
+verwirrend, dass Versionen von APIs unterstützt werden. Soll die App mit den meisten Smartphones
+kompatibel sein, muss man stets veraltete API Versionen unterstützen. 
+
+## Fazit
+
+Ich habe es geschafft, das Projekt wie geplant in vorgegeben Zeit umzusetzen. Auch vom zeitlichen
+Aufwand, habe ich es geschafft, das Projekt im mir selbst gesteckten Zeitrahmen umzusetzen. Das
+Projekt konnte ich an einem Tag fertig stellen. 
