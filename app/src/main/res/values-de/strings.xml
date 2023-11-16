@@ -2,4 +2,6 @@
 <resources>
     <string name="ask">Fragen</string>
     <string name="settings">Einstellungen</string>
+    <string name="sub">Senden</string>
+    <string name="textEigabeText">Hier Text eingeben:</string>
 </resources>
