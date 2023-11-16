@@ -10,7 +10,6 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.annotation.NonNull;
@@ -66,8 +65,6 @@ public class MainFragment extends Fragment {
                             getTextView().append(toString(answerMessage));
                             textToSpeech.speak(answer);
                         });
-
-                        dataTransferObject.saveAllChats(chats);
 
                     });
 
@@ -175,7 +172,7 @@ public class MainFragment extends Fragment {
 
     @Override
     public void onPause() {
-        dataTransferObject.saveAllChats(this.chats); // stopped here
+        dataTransferObject.saveAllChats(this.chats);
         super.onPause();
         textToSpeech.stop();
     }
@@ -184,6 +181,7 @@ public class MainFragment extends Fragment {
     public void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putParcelable(EXTRA_DATA_CHAT, selectedChat);
+        dataTransferObject.saveAllChats(chats);
     }
 
     @Override
@@ -205,6 +203,9 @@ public class MainFragment extends Fragment {
                 }
             }
         });
+
+        /*if(this.chats != null)
+            dataTransferObject.saveAllChats(this.chats);*/
     }
 
     private CharSequence toString(Message message) {
@@ -219,8 +220,14 @@ public class MainFragment extends Fragment {
         return getView().findViewById(R.id.errorTextView);
     }
 
-    private Button getAskButton() {
-        return getView().findViewById(R.id.button_ask);
+    private Button getAskButton() throws Exception {
+        Button temp = getView().findViewById(R.id.button_ask);
+        if(temp != null){
+            return temp;
+        }
+        else{
+            throw new RuntimeException("Fatal GUI Error: Ask-Button not found.");
+        }
     }
 
     private Button getNewButton() {
