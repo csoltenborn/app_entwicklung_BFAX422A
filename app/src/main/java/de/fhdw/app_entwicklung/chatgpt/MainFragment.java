@@ -74,7 +74,6 @@ public class MainFragment extends Fragment {
             askChatGPT(getQuestion().getText().toString());
             hideKeyboard();
             getQuestion().setText("");
-            recyclerView.scrollToPosition(chatAdapter.getItemCount() - 1);
         });
     }
 
