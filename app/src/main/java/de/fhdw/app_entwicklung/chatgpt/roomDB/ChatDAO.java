@@ -2,6 +2,7 @@ package de.fhdw.app_entwicklung.chatgpt.roomDB;
 
 import androidx.room.Dao;
 import androidx.room.Delete;
+import androidx.room.DeleteTable;
 import androidx.room.Insert;
 import androidx.room.Query;
 
@@ -15,9 +16,7 @@ public interface ChatDAO {
     @Insert
     void insertAll(Chat... chats);
 
-    //@Delete
-    //void delete(Chat chat);
+    @Query("DELETE FROM chat")
+    void deleteAllChats();
 
-    @Delete
-    void deleteChats(Chat... chats);
 }

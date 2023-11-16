@@ -89,7 +89,7 @@ public class ChatDTO {
             MainActivity.backgroundExecutorService.execute(() -> {
                 try {
                     // Delete all Chats for avoiding duplicates
-                    chatDB.chatDAO().deleteChats(chatsForDB.toArray(new Chat[0]));
+                    chatDB.chatDAO().deleteAllChats();
 
                     // Insert all Chats in Database
                     chatDB.chatDAO().insertAll(chatsForDB.toArray(new Chat[0]));
