@@ -6,9 +6,11 @@ import android.os.Parcelable;
 import java.util.Date;
 
 public class Message implements Parcelable {
-    public final Date date;
-    public final Author author;
-    public final String message;
+    public Date date;
+    public Author author;
+    public String message;
+
+    public Message(){}
 
     public Message(Author author, String message) {
         this(new Date(), author, message);

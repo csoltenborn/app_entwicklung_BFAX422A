@@ -82,6 +82,7 @@ public class ChatDTO {
             List<Chat> chatsForDB = new ArrayList<>();
 
             for (de.fhdw.app_entwicklung.chatgpt.model.Chat c : chatsToSave) {
+                if(c.getMessages().size() > 0)
                     chatsForDB.add(convertChat(c));
             }
 
@@ -109,7 +110,9 @@ public class ChatDTO {
         Chat output = new Chat();
 
         output.creationDate = jm.writeValueAsString(serializeLocalDateTime(input.getCreationDate()));
-        output.jsonMessages = jm.writeValueAsString(input.getMessages());
+        List<Message> msgsToSave = input.getMessages();
+        if(msgsToSave != null)
+            output.jsonMessages = jm.writeValueAsString(msgsToSave);
 
         return output;
     }

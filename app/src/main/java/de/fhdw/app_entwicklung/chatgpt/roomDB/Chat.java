@@ -7,7 +7,7 @@ import androidx.room.PrimaryKey;
 @Entity
 public class Chat {
 
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     public int cid;
     @ColumnInfo(name="creationDate")
     public String creationDate;

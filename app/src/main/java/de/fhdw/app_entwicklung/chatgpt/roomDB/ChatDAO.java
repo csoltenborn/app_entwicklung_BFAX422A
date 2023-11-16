@@ -15,8 +15,8 @@ public interface ChatDAO {
     @Insert
     void insertAll(Chat... chats);
 
-    @Delete
-    void delete(Chat chat);
+    //@Delete
+    //void delete(Chat chat);
 
     @Delete
     void deleteChats(Chat... chats);

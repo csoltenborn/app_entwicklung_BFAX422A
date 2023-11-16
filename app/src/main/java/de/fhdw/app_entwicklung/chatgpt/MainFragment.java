@@ -81,6 +81,11 @@ public class MainFragment extends Fragment {
     }
 
     @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    }
+
+    @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         try {
             super.onViewCreated(view, savedInstanceState);
@@ -90,6 +95,7 @@ public class MainFragment extends Fragment {
             selectedChat = new Chat();
             if (savedInstanceState != null) {
                 selectedChat = savedInstanceState.getParcelable(EXTRA_DATA_CHAT);
+
             }
 
             dataTransferObject = new ChatDTO(requireContext());
@@ -101,7 +107,7 @@ public class MainFragment extends Fragment {
 
             getDeleteButton().setOnClickListener(v -> {
                 if(chats.size() == 1){
-                    getErrorBox().append("There is only one Chat available. You can't delete that!");
+                    getErrorBox().append("There is only one Chat available. You can't delete it!");
                     updateTextView();
                     return;
                 }
@@ -130,7 +136,6 @@ public class MainFragment extends Fragment {
                 @Override
                 public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                     selectedChat = (Chat) adapterView.getItemAtPosition(i);
-                    //Toast.makeText(requireContext(), selectedChat.toString(), Toast.LENGTH_SHORT).show();
                     updateTextView();
                 }
 
@@ -138,7 +143,6 @@ public class MainFragment extends Fragment {
                 public void onNothingSelected(AdapterView<?> adapterView) {
                 }
             });
-
 
             dataTransferObject.getAllChats(new ChatDTO.OnChatsLoadedListener() {
                 @Override
@@ -173,11 +177,19 @@ public class MainFragment extends Fragment {
     @Override
     public void onPause() {
         super.onPause();
+
+        Object o = dataTransferObject.saveAllChats(chats);
+        if(o.getClass() != Integer.class)
+            getErrorBox().append(((Exception)o).getMessage());
+
         textToSpeech.stop();
     }
 
     @Override
     public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+
+        /*Saving Chats in Database*/
         Object returnValue = dataTransferObject.saveAllChats(this.chats).getClass();
         if(returnValue.getClass() == Integer.class) {
             int finished = (int) returnValue;
@@ -185,8 +197,8 @@ public class MainFragment extends Fragment {
                 requireActivity().finish();
             }
         }
-        super.onSaveInstanceState(outState);
-        outState.putParcelable(EXTRA_DATA_CHAT, selectedChat);
+
+        //outState.putParcelable(EXTRA_DATA_CHAT, selectedChat);
     }
 
     @Override
