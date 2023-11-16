@@ -109,7 +109,7 @@ public class QuizFragment extends Fragment {
         quizchat.addMessage(responsemessage);
         getResponseTextView().setText(toString(responsemessage));
 
-        if(rightAnswers % 5 == 0)
+        if(rightAnswers % 5 == 0 && response.contains("Richtig"))
         {
             getRewardQuote();
         }

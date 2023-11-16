@@ -64,13 +64,14 @@
 
         <TextView
             android:id="@+id/response"
-            android:layout_width="198dp"
-            android:layout_height="92dp"
+            android:layout_width="310dp"
+            android:layout_height="133dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.495"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/nextQuestion"
-            app:layout_constraintVertical_bias="0.248" />
+            app:layout_constraintVertical_bias="0.18" />
 
         <TextView
             android:id="@+id/rightAnswersLabel"
