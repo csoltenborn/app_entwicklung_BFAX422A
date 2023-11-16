@@ -11,10 +11,11 @@
 ## Anforderungen
 
 ### Funktionale Anforderungen:
-    - Über den Button "Chat" in der Activity in der der normale Chat mit ChatGPT zu finden ist, soll man zu dem Quiz gelangen.
-    - Über den Button "Quiz" in der Activity in der das Quiz ist, soll man zum Chat gelangen.
-    - Es sollen Quizfragen gestellt werden die von ChatGPT zufällig generiert werden. Diese Fragen sind nur mit "Ja" und "Nein" zu beantworten.
-    - Über den Button "Nächste Frage" wird eine Frage von chatGPT generiert und angezeigt.
+- Über den Button "Chat" in der Activity in der der normale Chat mit ChatGPT zu finden ist, soll man zu dem Quiz gelangen.
+- Über den Button "Quiz" in der Activity in der das Quiz ist, soll man zum Chat gelangen.
+- Es sollen Quizfragen gestellt werden die von ChatGPT zufällig generiert werden. Diese Fragen sind nur mit "Ja" und "Nein" zu beantworten.
+- Über den Button "Nächste Frage" wird eine Frage von chatGPT generiert und angezeigt.
+
     - Über den Button "Ja" kann man die generierte Frage mit "ja" beantworten.
     - Über den Button "Nein" kann man die generierte Frage mit "nein" beantworten.
     - Die ausgewählte Antwort auf die Quizfrage wird an den ChatGPT geschickt.
