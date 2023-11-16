@@ -172,16 +172,21 @@ public class MainFragment extends Fragment {
 
     @Override
     public void onPause() {
-        dataTransferObject.saveAllChats(this.chats);
         super.onPause();
         textToSpeech.stop();
     }
 
     @Override
     public void onSaveInstanceState(@NonNull Bundle outState) {
+        Object returnValue = dataTransferObject.saveAllChats(this.chats).getClass();
+        if(returnValue.getClass() == Integer.class) {
+            int finished = (int) returnValue;
+            if(finished == 0){
+                requireActivity().finish();
+            }
+        }
         super.onSaveInstanceState(outState);
         outState.putParcelable(EXTRA_DATA_CHAT, selectedChat);
-        dataTransferObject.saveAllChats(chats);
     }
 
     @Override
