@@ -77,7 +77,12 @@
 
    Darüber hinaus wird danach die aktuelle anzahl der richtigen Antworten überprüft, wenn diese geteilt durch 5, den Rest 0 ergibt, wird ein Zitat aus einem der in den Anforderungen
    erwähnten Film-Franchises in der TextView unterhalb von dem Button "Nächste Frage" angezeigt.
-           
+
+   ### Sequenzdiagramm
+   
+   ![sequenz_diagramm](https://github.com/FinnEhrl/app_entwicklung_FinnEhrlich/assets/147406212/157d7c61-83d3-4d50-8e2a-97f7e0f24000)
+
+      
    ## Probleme/Lessons Learned
 
    Anfängliche Probleme hatte ich beim erstellen des UIs. Bei Android gibt es verschiedenste wizards um zum Beispiel Settingactivies zu erstellen.
