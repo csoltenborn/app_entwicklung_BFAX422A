@@ -4,4 +4,5 @@
     <string name="settings">Einstellungen</string>
     <string name="sub">Senden</string>
     <string name="textEigabeText">Hier Text eingeben:</string>
+    <string name="editText">" "</string>
 </resources>

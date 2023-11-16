@@ -97,7 +97,6 @@ public class MainFragment extends Fragment {
                 chat.addMessage(answerMessage);
                 getTextView().append(CHAT_SEPARATOR);
                 getTextView().append(toString(answerMessage));
-                textToSpeech.speak(answer);
             });
         });
 
@@ -152,7 +151,6 @@ public class MainFragment extends Fragment {
     }
 
     private Button getSubmitButton() {
-        //noinspection ConstantConditions
         return getView().findViewById(R.id.button_sub);
     }
 
