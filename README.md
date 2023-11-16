@@ -39,7 +39,6 @@
        Mein erstes Konzept sah folgendermaßen aus: 
    ![Erstes_UI_Konzept](https://github.com/FinnEhrl/app_entwicklung_FinnEhrlich/assets/147406212/a248301c-973c-477c-956b-51741c583fe7)
 
-
        Da ich allerdings beim Entwickeln mit der Positionierung des "Chat" buttons nicht ganz zufrieden war habe ich ihn nach ganz oben in die Mitte verschoben.
        
    ### Implementierung des UI
@@ -49,6 +48,10 @@
        Dafür brauchte ich jediglich den in Android Studio bereitgestellten Designer. 
        Für statische Texte habe ich noch übersetzungen für deutsch und englisch eingebaut, die sich nach der Systemsprache anpassen.
        Dazu habe ich noch den button "quiz" in die Chatoberfläche eingefügt.
+
+       Das finale UI der Quiz Activity:
+   ![finales_UI](https://github.com/FinnEhrl/app_entwicklung_FinnEhrlich/assets/147406212/9c9c2bab-d7ee-496f-b231-7bb5411dc042)
+
        
    ### Implementierung der Logik
 
@@ -74,7 +77,6 @@
        erwähnten Film-Franchises in der TextView unterhalb von dem Button "Nächste Frage" angezeigt.
        
        
-      
    ## Probleme/Lessons Learned
 
       Anfängliche Probleme hatte ich beim erstellen des UIs. Bei Android gibt es verschiedenste wizards um zum Beispiel Settingactivies zu erstellen.
