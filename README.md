@@ -51,6 +51,7 @@
    Dazu habe ich noch den button "quiz" in die Chatoberfläche eingefügt.
 
    Das finale UI der Quiz Activity:
+   
    ![finales_UI](https://github.com/FinnEhrl/app_entwicklung_FinnEhrlich/assets/147406212/9c9c2bab-d7ee-496f-b231-7bb5411dc042)
 
        
