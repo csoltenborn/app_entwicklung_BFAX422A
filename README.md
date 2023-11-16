@@ -58,7 +58,7 @@ Wird der Button mit dem Mikrofon geklickt, passiert genau das gleiche wie vorher
 
 ## Probleme
 
-Jede Nachricht ist ein Element der RecyclerView. Das sorgt dafür, dass das Textfeld vom Design her immer identisch ist. Allerdings ist es in Chatverläufen üblich, dass Nachrichten rechts bzw. links orientiert sind, je nachdem, wer die Nachricht gesendet hat. Diese Umsetzung war für mich nicht möglich, allerdings habe ich mir folgende Alternative überlegt: je nachdem von wem, die Nachricht stammt, erhält das Textfeld einen andersfarbigen Hintergrund. So lässt sich trotzdem noch identifizieren, wer die Nachricht gesendet hat.
+Jede Nachricht ist ein Element der *RecyclerView*. Das sorgt dafür, dass das Textfeld vom Design her immer identisch ist. Allerdings ist es in Chatverläufen üblich, dass Nachrichten rechts bzw. links orientiert sind, je nachdem, wer die Nachricht gesendet hat. Diese Umsetzung war für mich nicht möglich, allerdings habe ich mir folgende Alternative überlegt: je nachdem von wem, die Nachricht stammt, erhält das Textfeld einen andersfarbigen Hintergrund. So lässt sich trotzdem noch identifizieren, wer die Nachricht gesendet hat.
 
 ## Fazit
 
