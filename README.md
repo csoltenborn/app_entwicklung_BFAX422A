@@ -37,6 +37,7 @@
    Mir ging es vor allem darum, eine Intuitive Nutzeroberfläche zu schaffen.
 
    Mein erstes Konzept sah folgendermaßen aus: 
+   
    ![Erstes_UI_Konzept](https://github.com/FinnEhrl/app_entwicklung_FinnEhrlich/assets/147406212/a248301c-973c-477c-956b-51741c583fe7)
 
    Da ich allerdings beim Entwickeln mit der Positionierung des "Chat" buttons nicht ganz zufrieden war habe ich ihn nach ganz oben in die Mitte verschoben.
