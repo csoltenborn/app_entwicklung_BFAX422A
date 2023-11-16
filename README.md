@@ -54,6 +54,8 @@ Da die Anfrage an ChatGPT unabhängig von der Eingabeform gestellt wird, habe ic
 
 Wird der Button mit dem Mikrofon geklickt, passiert genau das gleiche wie vorher. Klickt der Nutzer hingegen auf den Senden Button, wird natürlich auch zunächst die Anfrage an ChatGPT geschickt. Außerdem wird die Tastatur mit der Funktion *hideKeyboard* versteckt und der Text aus dem Eingabefeld wird entfernt.
 
+![UI](https://github.com/tanjavetter04/app_entwicklung_BFAX422A/assets/126447698/b74da733-e0a9-4abb-ba89-066e1db74c00)
+
 ## Probleme
 
 Jede Nachricht ist ein Element der RecyclerView. Das sorgt dafür, dass das Textfeld vom Design her immer identisch ist. Allerdings ist es in Chatverläufen üblich, dass Nachrichten rechts bzw. links orientiert sind, je nachdem, wer die Nachricht gesendet hat. Diese Umsetzung war für mich nicht möglich, allerdings habe ich mir folgende Alternative überlegt: je nachdem von wem, die Nachricht stammt, erhält das Textfeld einen andersfarbigen Hintergrund. So lässt sich trotzdem noch identifizieren, wer die Nachricht gesendet hat.
@@ -64,6 +66,6 @@ Ich konnte bis auf das beschriebene Problem alles wie geplant umsetzen. Auch fü
 
 Der zeitliche Aufwand für die eigentliche *Teilen* Funktion war deutlich geringer als erwartet, da Android schon viel dafür bereitstellt. Da ich für das Teilen einer einzelnen Nachricht allerdings die Anzeigelogik des Chatverlaufs umbauen musste, war dieser Teil doch umfangreich.
 
-Die *Info* Funktion war sehr simpel, da ich bereits den „Optionen“ Dialog erstellt hatte und das Datum im Hintergrund bereits immer gespeichert wird.
+Die *Info* Funktion war sehr simpel, da ich bereits den *Optionen* Dialog erstellt hatte und das Datum im Hintergrund bereits immer gespeichert wird.
 
 Eine Texteingabe zusätzlich zur Spracheingabe hinzuzufügen war ebenfalls nicht sehr kompliziert.
