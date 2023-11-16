@@ -1,14 +1,20 @@
 package de.fhdw.app_entwicklung.chatgpt.speech;
 
+import static de.fhdw.app_entwicklung.chatgpt.WidgetProvider.ACTION_AUDIO_FINISHED;
+
 import android.content.Context;
+import android.content.Intent;
 import android.speech.tts.TextToSpeech;
+import android.speech.tts.UtteranceProgressListener;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
 
 import java.util.Locale;
 
-public class TextToSpeechTool implements TextToSpeech.OnInitListener{
+import de.fhdw.app_entwicklung.chatgpt.WidgetProvider;
+
+public class TextToSpeechTool implements TextToSpeech.OnInitListener {
     private final TextToSpeech textToSpeech;
     private boolean ttsAvailable = false;
     private final Locale locale;
@@ -17,6 +23,26 @@ public class TextToSpeechTool implements TextToSpeech.OnInitListener{
     {
         textToSpeech = new TextToSpeech(context, this);
         this.locale = locale;
+
+        textToSpeech.setOnUtteranceProgressListener(new UtteranceProgressListener() {
+            @Override
+            public void onStart(String s) {
+
+            }
+
+            @Override
+            public void onDone(String s) {
+                Log.i("TTS", "DONE");
+                Intent intent = new Intent(context, WidgetProvider.class);
+                intent.setAction(ACTION_AUDIO_FINISHED);
+                context.sendBroadcast(intent);
+            }
+
+            @Override
+            public void onError(String s) {
+
+            }
+        });
     }
 
     @Override
@@ -35,7 +61,7 @@ public class TextToSpeechTool implements TextToSpeech.OnInitListener{
 
     public void speak(String text) {
         if (ttsAvailable) {
-            textToSpeech.speak(text, TextToSpeech.QUEUE_FLUSH, null, null);
+            textToSpeech.speak(text, TextToSpeech.QUEUE_FLUSH, null, TextToSpeech.Engine.KEY_PARAM_UTTERANCE_ID);
         }
     }
 
@@ -52,5 +78,6 @@ public class TextToSpeechTool implements TextToSpeech.OnInitListener{
             textToSpeech.shutdown();
         }
     }
+
 
 }
