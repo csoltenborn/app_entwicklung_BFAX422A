@@ -34,7 +34,7 @@ public class ChatDTO {
                 List<Chat> dbChats = chatDB.chatDAO().getAll();
 
                 if (dbChats == null) {
-                    listener.onError(new Exception("DB_IS_EMPTY"));
+                    listener.onError(new Exception("Database is empty."));
                     return;
                 }
 
@@ -90,7 +90,7 @@ public class ChatDTO {
                 try {
                     // Delete all Chats for avoiding duplicates
                     chatDB.chatDAO().deleteAllChats();
-
+                    chatDB.chatDAO().resetAutoIncrement();
                     // Insert all Chats in Database
                     chatDB.chatDAO().insertAll(chatsForDB.toArray(new Chat[0]));
 

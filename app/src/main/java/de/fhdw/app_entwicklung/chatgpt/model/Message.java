@@ -9,6 +9,7 @@ public class Message implements Parcelable {
     public Date date;
     public Author author;
     public String message;
+    private int stability;
 
     public Message(){}
 

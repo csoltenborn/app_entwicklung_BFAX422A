@@ -38,6 +38,7 @@ public class MainFragment extends Fragment {
     private List<Chat> chats;
     private Spinner spinner;
     protected ChatDTO dataTransferObject;
+    protected ChatDTO.OnChatsLoadedListener chatsLoadedListener;
 
     private final ActivityResultLauncher<LaunchSpeechRecognition.SpeechRecognitionArgs> getTextFromSpeech = registerForActivityResult(
             new LaunchSpeechRecognition(),
@@ -83,6 +84,27 @@ public class MainFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        chatsLoadedListener = new ChatDTO.OnChatsLoadedListener() {
+            @Override
+            public void onChatsLoaded(List<Chat> loadedChats) {
+
+                requireActivity().runOnUiThread(() -> {
+                    chats = loadedChats;
+                    chats.add(selectedChat);
+
+                    // Setting Spinner Items
+                    spinner.setAdapter(new ArrayAdapter<>(requireContext(), R.layout.dropdown_item, chats));
+                });
+
+            }
+
+            @Override
+            public void onError(Exception e) {
+                requireActivity().runOnUiThread(() -> {
+                    setErrorMessage("Error loading Chats: " + e.getMessage());
+                });
+            }
+        };
     }
 
     @Override
@@ -95,7 +117,6 @@ public class MainFragment extends Fragment {
             selectedChat = new Chat();
             if (savedInstanceState != null) {
                 selectedChat = savedInstanceState.getParcelable(EXTRA_DATA_CHAT);
-
             }
 
             dataTransferObject = new ChatDTO(requireContext());
@@ -107,7 +128,7 @@ public class MainFragment extends Fragment {
 
             getDeleteButton().setOnClickListener(v -> {
                 if(chats.size() == 1){
-                    getErrorBox().append("There is only one Chat available. You can't delete it!");
+                    setErrorMessage("There is only one Chat available. You can't delete it!");
                     updateTextView();
                     return;
                 }
@@ -130,47 +151,30 @@ public class MainFragment extends Fragment {
 
             updateTextView();
 
-            // Set InputType Null to disable Text editing on Dropdown TextView
-            spinner = getView().findViewById(R.id.spinner);
-            spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                @Override
-                public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                    selectedChat = (Chat) adapterView.getItemAtPosition(i);
-                    updateTextView();
-                }
+            if(spinner == null){
+                spinner = getView().findViewById(R.id.spinner);
+            }
 
-                @Override
-                public void onNothingSelected(AdapterView<?> adapterView) {
-                }
-            });
+            if(spinner.getOnItemSelectedListener() == null)
+                spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                    @Override
+                    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                        selectedChat = (Chat) adapterView.getItemAtPosition(i);
+                        updateTextView();
+                    }
 
-            dataTransferObject.getAllChats(new ChatDTO.OnChatsLoadedListener() {
-                @Override
-                public void onChatsLoaded(List<Chat> loadedChats) {
+                    @Override
+                    public void onNothingSelected(AdapterView<?> adapterView) {
+                    }
+                });
 
-                    requireActivity().runOnUiThread(() -> {
-                        chats = loadedChats;
-                        chats.add(selectedChat);
-
-                        // Setting Spinner Items
-                        spinner.setAdapter(new ArrayAdapter<>(requireContext(), R.layout.dropdown_item, chats));
-                    });
-
-                }
-
-                @Override
-                public void onError(Exception e) {
-                    requireActivity().runOnUiThread(() -> {
-                        getErrorBox().append("Error loading Chats: " + e.getMessage());
-                    });
-                }
-            });
+            dataTransferObject.getAllChats(chatsLoadedListener);
 
             // Making TextView Scrollable
             getTextView().setMovementMethod(new ScrollingMovementMethod());
 
         } catch (Exception e) {
-            getErrorBox().append(e.getMessage());
+            setErrorMessage(e.getMessage());
         }
     }
 
@@ -180,7 +184,7 @@ public class MainFragment extends Fragment {
 
         Object o = dataTransferObject.saveAllChats(chats);
         if(o.getClass() != Integer.class)
-            getErrorBox().append(((Exception)o).getMessage());
+            setErrorMessage(((Exception)o).getMessage());
 
         textToSpeech.stop();
     }
@@ -198,7 +202,7 @@ public class MainFragment extends Fragment {
             }
         }
 
-        //outState.putParcelable(EXTRA_DATA_CHAT, selectedChat);
+        outState.putParcelable(EXTRA_DATA_CHAT, selectedChat);
     }
 
     @Override
@@ -220,9 +224,6 @@ public class MainFragment extends Fragment {
                 }
             }
         });
-
-        /*if(this.chats != null)
-            dataTransferObject.saveAllChats(this.chats);*/
     }
 
     private CharSequence toString(Message message) {
@@ -235,6 +236,9 @@ public class MainFragment extends Fragment {
 
     private TextView getErrorBox() {
         return getView().findViewById(R.id.errorTextView);
+    }
+    private void setErrorMessage(String errorMessage){
+        getErrorBox().append(errorMessage);
     }
 
     private Button getAskButton() throws Exception {
@@ -254,4 +258,5 @@ public class MainFragment extends Fragment {
     private Button getDeleteButton() {
         return getView().findViewById(R.id.button_delete);
     }
+
 }

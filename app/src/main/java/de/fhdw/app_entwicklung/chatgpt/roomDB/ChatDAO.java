@@ -5,6 +5,7 @@ import androidx.room.Delete;
 import androidx.room.DeleteTable;
 import androidx.room.Insert;
 import androidx.room.Query;
+import androidx.room.Update;
 
 import java.util.List;
 
@@ -18,5 +19,9 @@ public interface ChatDAO {
 
     @Query("DELETE FROM chat")
     void deleteAllChats();
+
+    @Query("UPDATE Chat SET cid = 0;")
+    void resetAutoIncrement();
+
 
 }
