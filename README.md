@@ -72,22 +72,34 @@ Implementierung ...
 6. ...des Dropdown-Menüs inklusive Anbindung an die Datenbank.
 7. ...der Schaltflächen "New" und "Pause" sowie dessen Anbindung an die Logik.
 8. ...der Abhängigkeiten zwecks der Positionierung der GUI-Elemente (Constraints).
-9. ..., bzw. das Testen des Zusammenspiels der Erweiterungen.
+9. ..., bzw. das Testen des Zusammenspiels der Erweiterungen sowie Behandeln evtl. auftretender Fehler.
 10. ...eines Hintergrundbildes.
 11. ...von verschiedenen Icons zur Aufarbeitung der GUI.
 
-Allerdings war dieser Plan, etwas optimistisch. Nachfolgend nun die Reihenfolge, in der ich die Erweiterungen wirklich realisieren konnte:
-1.a
-2.
-3.
-4.
-5.
-6.
-7.
-8.
-9.
-10.
+Auch wenn diese Liste noch oft geändert werden sollte, hatte ich einen Rahmen, an den ich mich vorerst hielt. Welche Faktoren diesen Plan wie umgestellt haben, wird im nächsten Abschnitt beleuchtet.
 
 ## Probleme während der Entwicklung
+
+Auch wenn der Ablaufplan, welchen ich im letzten Abschnitt präsentiert hab eine solide Struktur zur Entwicklung meiner Erweiterungen bietet, so war ich mehrfach gezwungen ihn umzustellen. Nachfolgend nun die wirkliche Reihenfolge der Arbeitsschritte, die notwendig waren um meine Erweiterungen vollständig zu implementieren:
+
+1. Schaltflächen "Delete" und "New",
+2. Dropdown Menü,
+3. Fehlerbox und grundlegende Fehlerbehandlung,
+4. Room Datenbank und Entität Chat,
+5. Datenzugriffsobjekt und Transferobjekt (DAO & DTO),
+6. Erweiterte Fehlerbehandlung,
+7. Umbau des Datenbankzugriffs / verwendung eines "Background Executer Service",
+8. Fehlerbehandlung Spinner,
+9. Umbau des Transferobjekts,
+10. Fehlersuche und Beheben (rotieren des Geräts und laden des Speicherstandes),
+11. Schaltfläche "Pause",
+12. Testen aller Neuerungen und finale Säuberung.
+
+Aber warum diese Umstellung? Nach Beginn der Entwicklung und nach dem hinzufügen der Schaltfläche "Delte", 
+fand ich es sinnvoll mich (aufgrund bisheriger Erfahrungen mit Dropdown-Listen in Android) erst noch einmal
+über Dropdown-Listen zu belesen, bevor ich weiter entwickle. Und das tat ich glücklicherweise früh genug,
+denn ich erkannte, dass ich den Umfang, eine Dropdown-Liste zu implementieren, deutlich unterschätzt hatte. 
+Daher zog ich die Entwicklung der Dropdown-Liste vor.
+
 
 ## Fazit des Projekts
