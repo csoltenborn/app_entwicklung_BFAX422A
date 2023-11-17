@@ -61,7 +61,7 @@ Am unteren Bildschirmrand sind dann die vier Schaltflächen: "Delete","Add","Pau
 
 ## Umsetzung
 
-Bevor ich also angefangen habe meine Erweiterungen in die Vorgabe zu integrieren, habe ich folgenden Ablaufplan festgehalten, um meine Implementierung zeiteffizient abzuschließen:
+Bevor ich also angefangen habe meine Erweiterungen in die Vorgabe zu integrieren, habe ich folgenden Ablaufplan festgehalten, um meine Implementierung zeiteffizient umzusetzen:
 
 Implementierung ...
 1. ...der Schaltfläche "Delete".
@@ -76,7 +76,24 @@ Implementierung ...
 10. ...eines Hintergrundbildes.
 11. ...von verschiedenen Icons zur Aufarbeitung der GUI.
 
-Auch wenn diese Liste noch oft geändert werden sollte, hatte ich einen Rahmen, an den ich mich vorerst hielt. Welche Faktoren diesen Plan wie umgestellt haben, wird im nächsten Abschnitt beleuchtet.
+Auch wenn diese Liste noch oft geändert werden sollte, hatte ich vorerst einen Rahmen, an dem ich mich orientieren kann. Welche Faktoren diesen Plan wie umgestellt haben, wird im nächsten Abschnitt behandelt.
+
+Kommen wir nun zur Umsetzung meiner Erweiterungen.
+
+### Umfeld
+Zu aller erst habe ich damit begonnen, diesen Zweig / "Branch" entsprechend der Vorgabe in meinem Repository "app_entwicklung_BFAX422A" zu erzeugen.
+Anschließend habe ich Android Studio auch auf meinem Heim-PC eingerichtet und mit meinem mobilen Laptop verbunden.
+Zudem habe ich mein Smartphone in den Entwicklermodus versetzt, um mit diesem meinen entwicklungsfortschritt live testen zu können, sowie einen Eindruck
+zu bekommen, was der APP fehlt / ob meine Erweiterungen so realisierbar sind, wie gewünscht.
+
+### Überarbeitung der grafischen Benutzeroberfläche
+Die grafische Benutzeroberfläche meiner Android-Applikation wurde grundlegend Überarbeitet. 
+Es wurde ein Hintergrundbild hinzugefügt, es wurden neue Schaltflächen eingebaut sowie mit Icons versehen,
+es wurde eine Dropdownliste implementiert zwecks der Darstellung der verschiedenen Chats und es wurde eine 
+Fehlerbox hinzugefügt um den Benutzer im Außnahmefall nicht direkt mit einem Absturz der Applikation zu konfrontieren.
+
+### Implementierung der Datenbank
+### Implementierung der Fehlerbehandlung
 
 ## Probleme während der Entwicklung
 
