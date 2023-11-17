@@ -25,22 +25,24 @@ import de.fhdw.app_entwicklung.chatgpt.openai.ChatGpt;
 import de.fhdw.app_entwicklung.chatgpt.speech.TextToSpeechTool;
 
 public class WidgetProvider extends AppWidgetProvider {
-    public static final String VOICE_RESULT ="de.fhdw.app_entwicklung.chatgpt.VOICE_RESULT";
+    public static final String VOICE_RESULT = "de.fhdw.app_entwicklung.chatgpt.VOICE_RESULT";
     public static final String ACTION_STOP_AUDIO = "de.fhdw.app_entwicklung.chatgpt.ACTION_STOP_AUDIO";
     public static final String ACTION_AUDIO_FINISHED = "de.fhdw.app_entwicklung.chatgpt.ACTION_AUDIO_FINISHED";
 
     private static TextToSpeechTool tts;
 
-    private PrefsFacade prefs;
-
-    Chat chat;
-
     private final ExecutorService backgroundExecutorService = Executors.newFixedThreadPool(2);
+//
+//    @Override
+//    public void onEnabled(Context context) {
+//        super.onEnabled(context);
+//        tts = new TextToSpeechTool(context, Locale.GERMAN);
+//    }
 
     @Override
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
 
-        for(int appWidgetId: appWidgetIds){
+        for (int appWidgetId : appWidgetIds) {
             updateAppWidget(context, appWidgetManager, appWidgetId);
         }
     }
@@ -60,81 +62,69 @@ public class WidgetProvider extends AppWidgetProvider {
         voiceIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         voiceIntent.putExtra(RecognizerIntent.EXTRA_RESULTS_PENDINGINTENT, pendingIntent);
 
-        PendingIntent voiceResult = PendingIntent.getActivity(context, 0, voiceIntent, PendingIntent.FLAG_IMMUTABLE);
+        PendingIntent clickAskButton = PendingIntent.getActivity(context, 0, voiceIntent, PendingIntent.FLAG_IMMUTABLE);
 
-        views.setOnClickPendingIntent(R.id.app_widget_button, voiceResult);
+        views.setOnClickPendingIntent(R.id.app_widget_button, clickAskButton);
 
         Intent stopIntent = new Intent(context, WidgetProvider.class);
         stopIntent.setAction(ACTION_STOP_AUDIO);
-        PendingIntent pendingStopIntent = PendingIntent.getBroadcast(context, 0, stopIntent, PendingIntent.FLAG_MUTABLE);
+        PendingIntent clickStopButton = PendingIntent.getBroadcast(context, 0, stopIntent, PendingIntent.FLAG_MUTABLE);
 
-        views.setOnClickPendingIntent(R.id.widget_stop_button, pendingStopIntent);
+        views.setOnClickPendingIntent(R.id.widget_stop_button, clickStopButton);
 
         appWidgetManager.updateAppWidget(appWidgetId, views);
     }
 
-    @Override
-    public void onEnabled(Context context) {
-        super.onEnabled(context);
-        tts = new TextToSpeechTool(context, Locale.GERMAN);
-        prefs = new PrefsFacade(context);
-    }
 
     @Override
     public void onReceive(Context context, Intent intent) {
         super.onReceive(context, intent);
         Log.i("WIDGET", intent.getAction());
 
-        if (intent.getAction().equals(VOICE_RESULT)){
-            if(tts == null){
+        if (intent.getAction().equals(VOICE_RESULT)) {
+            if (tts == null) {
                 tts = new TextToSpeechTool(context, Locale.GERMAN);
             }
-            chat = new Chat();
-            prefs = new PrefsFacade(context);
+            Chat chat = new Chat();
+            PrefsFacade prefs = new PrefsFacade(context);
 
             Bundle bundle = intent.getExtras();
 
-            if (bundle != null) {
+            if (bundle != null && intent.hasExtra(RecognizerIntent.EXTRA_RESULTS)) {
                 ArrayList<String> resultList = bundle.getStringArrayList(RecognizerIntent.EXTRA_RESULTS);
                 String result = Objects.requireNonNull(resultList).get(0);
 
-                if (!result.isEmpty()) {
-                    backgroundExecutorService.execute(() -> {
-                        Message userMessage = new Message(Author.User, result);
-                        chat.addMessage(userMessage);
-                        String apiToken = prefs.getApiToken();
-                        ChatGpt chatGpt = new ChatGpt(apiToken);
-                        String answer = chatGpt.getChatCompletion(chat);
-                        toggleButtonVisibility(context, true);
-                        tts.speak(answer);
-                    });
-                }
+                backgroundExecutorService.execute(() -> {
+                    Message userMessage = new Message(Author.User, result);
+                    chat.addMessage(userMessage);
+                    String apiToken = prefs.getApiToken();
+                    ChatGpt chatGpt = new ChatGpt(apiToken);
+                    String answer = chatGpt.getChatCompletion(chat);
+                    toggleButtonVisibility(context, true);
+                    tts.speak(answer);
+                });
+
             }
         }
 
-        if(intent.getAction().equals(ACTION_STOP_AUDIO)){
-            tts.stop();
-            toggleButtonVisibility(context, false);
+        if (intent.getAction().equals(ACTION_STOP_AUDIO)) {
+            if (tts != null) {
+                tts.stop();
+                toggleButtonVisibility(context, false);
+            }
         }
 
-        if(intent.getAction().equals(ACTION_AUDIO_FINISHED)){
+        if (intent.getAction().equals(ACTION_AUDIO_FINISHED)) {
             toggleButtonVisibility(context, false);
-        }
-
-        if(intent.getAction().equals("android.appwidget.action.APPWIDGET_ENABLED")){
-            Log.i("WIDGET", "enabled");
-            tts = new TextToSpeechTool(context, Locale.GERMAN);
-            prefs = new PrefsFacade(context);
-            chat = new Chat();
         }
     }
 
-    void toggleButtonVisibility(Context context, boolean started){
+    void toggleButtonVisibility(Context context, boolean started) {
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.app_widget);
         AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
         int[] appWidgetIds = appWidgetManager.getAppWidgetIds(new ComponentName(context, WidgetProvider.class));
 
-        if(started) {
+        if (started) {
             views.setViewVisibility(R.id.app_widget_button, View.GONE);
             views.setViewVisibility(R.id.widget_stop_button, View.VISIBLE);
         } else {

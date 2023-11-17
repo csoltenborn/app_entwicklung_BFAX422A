@@ -5,44 +5,29 @@
     android:theme="@style/Theme.Material3.DynamicColors.DayNight">
 
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <Button
+        android:id="@+id/app_widget_button"
+        android:layout_width="160dp"
+        android:layout_height="40dp"
         android:layout_centerInParent="true"
-        android:layout_margin="10dp"
-        >
-
+        android:background="@drawable/rounded_corners"
+        android:backgroundTint="@color/design_default_color_secondary_variant"
+        android:drawableStart="@drawable/openai_logomark_white_small"
+        android:padding="10dp"
+        android:text="Frag ChatGpt"
+        android:textColor="@color/white" />
 
     <Button
-            android:id="@+id/app_widget_button"
-            android:background="@drawable/rounded_corners"
-            android:backgroundTint="@color/design_default_color_secondary_variant"
-            android:textColor="@color/white"
-            android:padding="10dp"
-            android:layout_width="180dp"
-            android:layout_height="40dp"
-            android:drawableLeft="@drawable/openai_logomark_white_small"
-            android:layout_centerInParent="true"
-            android:text="Frag ChatGpt"
-            />
-
-        <Button
-            android:background="@drawable/rounded_corners"
-            android:backgroundTint="@color/design_default_color_error"
-            android:textColor="@color/white"
-            android:padding="10dp"
-            android:id="@+id/widget_stop_button"
-            android:layout_width="180dp"
-            android:layout_height="40dp"
-            android:drawableLeft="@drawable/openai_logomark_white_small"
-            android:layout_centerInParent="true"
-            android:text="Stop"
-            android:visibility="gone"/>
-    </LinearLayout>
-
-
-
-
-
+        android:id="@+id/widget_stop_button"
+        android:layout_width="160dp"
+        android:layout_height="40dp"
+        android:layout_centerInParent="true"
+        android:background="@drawable/rounded_corners"
+        android:backgroundTint="@color/design_default_color_error"
+        android:drawableStart="@drawable/square"
+        android:padding="10dp"
+        android:text="Stop ChatGpt"
+        android:textColor="@color/white"
+        android:visibility="gone" />
 
 </RelativeLayout>
