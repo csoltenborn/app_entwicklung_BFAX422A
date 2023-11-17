@@ -11,8 +11,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import io.reactivex.annotations.NonNull;
-
 public class Chat implements Parcelable {
 
     private final List<Message> messages = new ArrayList<>();
