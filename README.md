@@ -79,8 +79,9 @@
    erwähnten Film-Franchises in der TextView unterhalb von dem Button "Nächste Frage" angezeigt.
 
    ### Sequenzdiagramm
+
    
-   ![sequenz_diagramm](https://github.com/FinnEhrl/app_entwicklung_FinnEhrlich/assets/147406212/157d7c61-83d3-4d50-8e2a-97f7e0f24000)
+   ![sequenz_diagramm](https://github.com/FinnEhrl/app_entwicklung_FinnEhrlich/assets/147406212/72097399-de4c-4d5e-928d-f03f79d2e342)
 
       
    ## Probleme/Lessons Learned
