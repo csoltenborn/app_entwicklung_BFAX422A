@@ -18,6 +18,7 @@ import androidx.fragment.app.Fragment;
 
 import java.util.List;
 import java.util.Locale;
+import java.util.function.Predicate;
 
 import de.fhdw.app_entwicklung.chatgpt.model.Author;
 import de.fhdw.app_entwicklung.chatgpt.model.Chat;
@@ -90,10 +91,17 @@ public class MainFragment extends Fragment {
 
                 requireActivity().runOnUiThread(() -> {
                     chats = loadedChats;
+
+                    // Prevent doubling selected Chat in Spinner through overwriting it with the
+                    // current one.
+                    Predicate<Chat> predicate =
+                            c -> c.getCreationDate().equals(selectedChat.getCreationDate());
+                    chats.removeIf(predicate);
                     chats.add(selectedChat);
 
                     // Setting Spinner Items
-                    spinner.setAdapter(new ArrayAdapter<>(requireContext(), R.layout.dropdown_item, chats));
+                    if(spinner.getAdapter() == null)
+                        spinner.setAdapter(new ArrayAdapter<>(requireContext(), R.layout.dropdown_item, chats));
                 });
 
             }
