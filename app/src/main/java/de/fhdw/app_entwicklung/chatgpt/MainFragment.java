@@ -7,7 +7,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -109,9 +108,7 @@ public class MainFragment extends Fragment {
 
             @Override
             public void onError(Exception e) {
-                requireActivity().runOnUiThread(() -> {
-                    setErrorMessage("Error loading Chats: " + e.getMessage());
-                });
+                requireActivity().runOnUiThread(() -> setErrorMessage("Error loading Chats: " + e.getMessage()));
             }
         };
     }
@@ -145,7 +142,6 @@ public class MainFragment extends Fragment {
                     return;
                 }
 
-                int index = chats.indexOf(selectedChat);
                 chats.remove(selectedChat);
 
                 ArrayAdapter<Chat> adapter = (ArrayAdapter<Chat>) spinner.getAdapter();
@@ -249,10 +245,10 @@ public class MainFragment extends Fragment {
         getErrorBox().append(errorMessage);
     }
 
-    private ImageButton getAskButton() throws Exception {
-        ImageButton temp = getView().findViewById(R.id.button_ask);
+    private ImageButton getAskButton(){
+        Object temp = getView().findViewById(R.id.button_ask);
         if(temp != null){
-            return temp;
+            return (ImageButton) temp;
         }
         else{
             throw new RuntimeException("Fatal GUI Error: Ask-Button not found.");
@@ -260,9 +256,9 @@ public class MainFragment extends Fragment {
     }
 
     private ImageButton getNewButton() {
-        ImageButton temp = getView().findViewById(R.id.button_new);
+        Object temp = getView().findViewById(R.id.button_new);
         if(temp != null){
-            return temp;
+            return (ImageButton) temp;
         }
         else{
             throw new RuntimeException("Fatal GUI Error: New-Button not found.");
@@ -270,9 +266,9 @@ public class MainFragment extends Fragment {
     }
 
     private ImageButton getDeleteButton() {
-        ImageButton temp = getView().findViewById(R.id.button_delete);
+        Object temp = getView().findViewById(R.id.button_delete);
         if(temp != null){
-            return temp;
+            return (ImageButton) temp;
         }
         else{
             throw new RuntimeException("Fatal GUI Error: Delete-Button not found.");
@@ -280,9 +276,9 @@ public class MainFragment extends Fragment {
     }
 
     private ImageButton getStopButton(){
-        ImageButton temp = getView().findViewById(R.id.button_stop);
+        Object temp = getView().findViewById(R.id.button_stop);
         if(temp != null){
-            return temp;
+            return (ImageButton) temp;
         }
         else{
             throw new RuntimeException("Fatal GUI Error: Stop-Button not found.");

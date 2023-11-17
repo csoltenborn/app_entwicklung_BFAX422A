@@ -1,7 +1,6 @@
 package de.fhdw.app_entwicklung.chatgpt.roomDB;
 
 import android.content.Context;
-import android.util.Log;
 
 import androidx.room.Room;
 
@@ -11,7 +10,6 @@ import com.fasterxml.jackson.databind.json.JsonMapper;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeFormatterBuilder;
 import java.util.ArrayList;
 import java.util.List;
 
