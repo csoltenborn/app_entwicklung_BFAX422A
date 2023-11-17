@@ -100,6 +100,7 @@ public class MainFragment extends Fragment {
         Message userMessage = new Message(Author.User, query);
         chat.addMessage(userMessage);
         chatAdapter.notifyItemInserted(chat.getMessages().size() - 1);
+        recyclerView.scrollToPosition(chatAdapter.getItemCount() - 1);
 
         MainActivity.backgroundExecutorService.execute(() -> {
             String apiToken = prefs.getApiToken();
