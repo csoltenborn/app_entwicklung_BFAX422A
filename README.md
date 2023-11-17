@@ -19,7 +19,7 @@ Folgende Probleme mit der vorgegebenen App konnten ermittelt werden:
 
 1. Der Benutzer bekommt die Antwort seiner Frage immer vorgelesen / es fehlt eine Schaltfläche zum pausieren des Vorgangs.
 
-2. Der Benutzer kann ältere Antworten nicht nachschlagen, da die Textfläche zur Darstellung durch die Bidlschirmgröße des Endgeräts begrenzt ist,
+2. Der Benutzer kann ältere Antworten nicht nachschlagen, da die Textfläche zur Darstellung durch die Bildschirmgröße des Endgeräts begrenzt ist,
    sowie keine Funktionalität zum scrollen aufweist.
 
 3. Es gibt keine Möglichkeit zum löschen seiner bisherigen Nachrichten um den Kontext der Konversation zu ändern.
@@ -32,7 +32,7 @@ Folgende Probleme mit der vorgegebenen App konnten ermittelt werden:
 
 6. Fehler werden nicht abgefangen und führen zum Absturz der APP. Der Benutzer erfährt nicht, was geschieht, sondern wird mit der direkten Beendigung der App konfrontiert (schlechtes Nutzererlebnis). 
 
-7. Die App ist begränzt Ästetisch.
+7. Die App ist begrenzt ästhetisch.
 
 ### Soll-Zustand
 Nachdem zuvor 7 Probleme klar identifiziert und definiert werden konnten, sind folgende Lösungsansätze für die Punkte 1-7 als meine Erweiterung der App vorgesehen:
@@ -46,11 +46,11 @@ Nachdem zuvor 7 Probleme klar identifiziert und definiert werden konnten, sind f
 4. Das Ergänzen der App um ein Dropdown-Menü, auf welcher verschiedene Chats präsentiert werden. Angezeigt wird die aktuelle Auswahl auf der Präsentationsfläche.
    - Die verschiedenen Konversationen sollen klar mithilfe des Datums sowie der Uhrzeit identifiziert werden können.
 
-5. Das Anbinden der Room-Datenbank von Android zwecks der serialisierung und persistierung der Chats im Drop-Down Menü.
+5. Das Anbinden der Room-Datenbank von Android zwecks der Serialisierung und Persistierung der Chats im Drop-Down Menü.
 
 6. Die Implementierung von Try Catch zum Abfangen von Fehlern, sowie das Hinzufügen einer neuen kleinen Präsentationsfläche unter der bisherigen, zur Visualisierung der bisher aufgetretenen Fehler.
 
-7. Um die App ästetischer zu gestalten, soll ein Hintergrundbild hinter die Präsentationsfläche gelegt, entsprechende Icons im Rahmen der geplanten und bestehenden Schaltflächen eingebaut, Abstände und Mindestgrößen zur Darstellung im Hochformat (Vertikal) implementiert, sowie die Schriftfarbe der geplanten Fehlerbox auf Rot festgelegt werden.
+7. Um die App ästhetischer zu gestalten, soll ein Hintergrundbild hinter die Präsentationsfläche gelegt, entsprechende Icons im Rahmen der geplanten und bestehenden Schaltflächen eingebaut, Abstände und Mindestgrößen zur Darstellung im Hochformat (Vertikal) implementiert, sowie die Schriftfarbe der geplanten Fehlerbox auf Rot festgelegt werden.
 
 
 ## Umsetzung
