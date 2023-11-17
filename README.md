@@ -37,7 +37,6 @@ Folgende Probleme mit der vorgegebenen App konnten ermittelt werden:
 ### Soll-Zustand
 Nachdem zuvor 7 Probleme klar identifiziert und definiert werden konnten, sind folgende Lösungsansätze für die Punkte 1-7 als meine Erweiterung der App vorgesehen:
 
-<img align="right" src="https://github.com/PapeMarc/app_entwicklung_BFAX422A/assets/147148804/69ddb012-eda8-4f0f-8ecd-1e9e616cd6f6" padding="5">
 1. Die Implementierung einer "Pause/Stop"-Schaltfläche, um das Vorlesen der Antwort abzubrechen.
 
 2. Das Hinzufügen der scrollable-Fähigkeit zur Präsentationsfläche (TextView), um auch ältere Nachrichten nachschlagen zu können.
@@ -45,7 +44,8 @@ Nachdem zuvor 7 Probleme klar identifiziert und definiert werden konnten, sind f
 3. Die Implementierung einer Schaltfläche "Delete", um die bisherige Konversation zu löschen und automatische eine neue leere zu erstellen.
 
 4. Das Ergänzen der App um ein Dropdown-Menü, auf welcher verschiedene Chats präsentiert werden. Angezeigt wird die aktuelle Auswahl auf der Präsentationsfläche.
-   - Die verschiedenen Konversationen sollen klar mithilfe des Datums sowie der Uhrzeit identifiziert werden können.
+   - Die verschiedenen Konversationen sollen klar mithilfe des Datums sowie der Uhrzeit identifiziert werden können. 
+<img align="right" src="https://github.com/PapeMarc/app_entwicklung_BFAX422A/assets/147148804/69ddb012-eda8-4f0f-8ecd-1e9e616cd6f6" padding="5">
 
 5. Das Anbinden der Room-Datenbank von Android zwecks der Serialisierung und Persistierung der Chats im Drop-Down Menü.
 
@@ -53,8 +53,40 @@ Nachdem zuvor 7 Probleme klar identifiziert und definiert werden konnten, sind f
 
 7. Um die App ästhetischer zu gestalten, soll ein Hintergrundbild hinter die Präsentationsfläche gelegt, entsprechende Icons im Rahmen der geplanten und bestehenden Schaltflächen eingebaut, Abstände und Mindestgrößen zur Darstellung im Hochformat (Vertikal) implementiert, sowie die Schriftfarbe der geplanten Fehlerbox auf Rot festgelegt werden.
 
+Im Bild rechts sind nun die Stellen rot hervorgehoben, an denen die neuen GUI-Elemente platziert werden sollen. 
+Während ganz oben das neue Dropdown Menü implementiert wird, soll direkt darunter die Präsentationsfläche die verschiedenen Nachrichten darstellen. 
+Unter dieser wird dann die neue Fehlerbox eingebunden, welche auftretende Programmfehler anzeigt. 
+Am unteren Bildschirmrand sind dann die vier Schaltflächen: "Delete","Add","Pause" und "Ask".
+
 
 ## Umsetzung
+
+Bevor ich also angefangen habe meine Erweiterungen in die Vorgabe zu integrieren, habe ich folgenden Ablaufplan festgehalten, um meine Implementierung zeiteffizient abzuschließen:
+
+Implementierung ...
+1. ...der Schaltfläche "Delete".
+2. ...der Fehlerbox und dazugehöriger Fehlerbehandlung.
+3. ...der scrollability der TextView.
+4. ...der Datenbank Room zum persistieren von Daten sowie dessen Schnittstelle.
+5. ...der eventuellen Anpassungen bestehender Klassen.
+6. ...des Dropdown-Menüs inklusive Anbindung an die Datenbank.
+7. ...der Schaltflächen "New" und "Pause" sowie dessen Anbindung an die Logik.
+8. ...der Abhängigkeiten zwecks der Positionierung der GUI-Elemente (Constraints).
+9. ..., bzw. das Testen des Zusammenspiels der Erweiterungen.
+10. ...eines Hintergrundbildes.
+11. ...von verschiedenen Icons zur Aufarbeitung der GUI.
+
+Allerdings war dieser Plan, etwas optimistisch. Nachfolgend nun die Reihenfolge, in der ich die Erweiterungen wirklich realisieren konnte:
+1.a
+2.
+3.
+4.
+5.
+6.
+7.
+8.
+9.
+10.
 
 ## Probleme während der Entwicklung
 
