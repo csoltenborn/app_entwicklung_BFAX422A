@@ -38,12 +38,18 @@ Folgende Probleme mit der vorgegebenen App konnten ermittelt werden:
 Nachdem zuvor 7 Probleme klar identifiziert und definiert werden konnten, sind folgende Lösungsansätze für die Punkte 1-7 als meine Erweiterung der App vorgesehen:
 
 1. Die Implementierung einer "Pause/Stop"-Schaltfläche, um das Vorlesen der Antwort abzubrechen.
+
 2. Das Hinzufügen der scrollable-Fähigkeit zur Präsentationsfläche (TextView), um auch ältere Nachrichten nachschlagen zu können.
+
 3. Die Implementierung einer Schaltfläche "Delete", um die bisherige Konversation zu löschen und automatische eine neue leere zu erstellen.
+
 4. Das Ergänzen der App um ein Dropdown-Menü, auf welcher verschiedene Chats präsentiert werden. Angezeigt wird die aktuelle Auswahl auf der Präsentationsfläche.
    - Die verschiedenen Konversationen sollen klar mithilfe des Datums sowie der Uhrzeit identifiziert werden können.
+
 5. Das Anbinden der Room-Datenbank von Android zwecks der serialisierung und persistierung der Chats im Drop-Down Menü.
+
 6. Die Implementierung von Try Catch zum Abfangen von Fehlern, sowie das Hinzufügen einer neuen kleinen Präsentationsfläche unter der bisherigen, zur Visualisierung der bisher aufgetretenen Fehler.
+
 7. Um die App ästetischer zu gestalten, soll ein Hintergrundbild hinter die Präsentationsfläche gelegt, entsprechende Icons im Rahmen der geplanten und bestehenden Schaltflächen eingebaut, Abstände und Mindestgrößen zur Darstellung im Hochformat (Vertikal) implementiert, sowie die Schriftfarbe der geplanten Fehlerbox auf Rot festgelegt werden.
 
 
