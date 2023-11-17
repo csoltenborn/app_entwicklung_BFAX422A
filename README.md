@@ -15,11 +15,20 @@ Weiterhin wurden bereits App-Einstellungen implementiert (oben rechts), über de
 Dies muss er auch tun, da die App sonst keine Verbindung mit der Schnittstelle von GPT herstellen kann.
 
 ### Identifizierte Probleme des Ist-Zustands
-1. Der Benutzer bekommt die Antwort seiner Frage immer vorgelesen. Es fehlt eine Schaltfläche zum pausieren des Vorgangs.
-2. b.
-3. c
-4. d
-5. e
+1. Der Benutzer bekommt die Antwort seiner Frage immer vorgelesen / es fehlt eine Schaltfläche zum pausieren des Vorgangs.
+
+2. Der Benutzer kann ältere Antworten nicht nachschlagen, da die Textfläche zur Darstellung durch die Bidlschirmgröße des Endgeräts begrenzt ist,
+   sowie keine Funktionalität zum scrollen aufweist.
+
+3. Es gibt keine Möglichkeit zum löschen seiner bisherigen Nachrichten um den Kontext der Konversation zu ändern.
+   - Der Benutzer kann immer nur eine Konversation mit ChatGPT führen.
+
+4. Der Benutzer kann keine neuen Chats erstellen oder solche Abrufen.
+
+5. Der Nachrichtenverlauf der Konversation wird nicht persitiert / die geführte Unterhaltung wird nicht gespeichert und kann daher auch nicht zu einem
+   späteren Zeitpunkt eingesehen werden. Startet die App also neu, verliert der Benutzer alle seine Nachrichten.
+
+6. Die App ist begränzt Ästetisch.
 
 ### Soll-Zustand
 
