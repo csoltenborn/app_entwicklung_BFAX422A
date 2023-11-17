@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -129,10 +130,13 @@ public class MainFragment extends Fragment {
 
             dataTransferObject = new ChatDTO(requireContext());
 
-            getAskButton().setOnClickListener(v ->
-                    getTextFromSpeech.launch(new LaunchSpeechRecognition.SpeechRecognitionArgs(Locale.GERMAN)));
 
             getNewButton().setOnClickListener(v -> chats.add(new Chat()));
+
+            getStopButton().setOnClickListener(v -> textToSpeech.stop());
+
+            getAskButton().setOnClickListener(v ->
+                    getTextFromSpeech.launch(new LaunchSpeechRecognition.SpeechRecognitionArgs(Locale.GERMAN)));
 
             getDeleteButton().setOnClickListener(v -> {
                 if(chats.size() == 1){
@@ -140,18 +144,14 @@ public class MainFragment extends Fragment {
                     updateTextView();
                     return;
                 }
+
                 int index = chats.indexOf(selectedChat);
-
-                boolean wasZero = false;
-
-                if(index == 0){
-                    spinner.setSelection(1);
-                    wasZero = true;
-                }
                 chats.remove(selectedChat);
-                if(!wasZero)
-                    spinner.setSelection(0);
 
+                ArrayAdapter<Chat> adapter = (ArrayAdapter<Chat>) spinner.getAdapter();
+                adapter.notifyDataSetChanged();
+
+                spinner.setSelection(0);
                 selectedChat = chats.get(0);
 
                 updateTextView();
@@ -249,8 +249,8 @@ public class MainFragment extends Fragment {
         getErrorBox().append(errorMessage);
     }
 
-    private Button getAskButton() throws Exception {
-        Button temp = getView().findViewById(R.id.button_ask);
+    private ImageButton getAskButton() throws Exception {
+        ImageButton temp = getView().findViewById(R.id.button_ask);
         if(temp != null){
             return temp;
         }
@@ -259,12 +259,34 @@ public class MainFragment extends Fragment {
         }
     }
 
-    private Button getNewButton() {
-        return getView().findViewById(R.id.button_new);
+    private ImageButton getNewButton() {
+        ImageButton temp = getView().findViewById(R.id.button_new);
+        if(temp != null){
+            return temp;
+        }
+        else{
+            throw new RuntimeException("Fatal GUI Error: New-Button not found.");
+        }
     }
 
-    private Button getDeleteButton() {
-        return getView().findViewById(R.id.button_delete);
+    private ImageButton getDeleteButton() {
+        ImageButton temp = getView().findViewById(R.id.button_delete);
+        if(temp != null){
+            return temp;
+        }
+        else{
+            throw new RuntimeException("Fatal GUI Error: Delete-Button not found.");
+        }
+    }
+
+    private ImageButton getStopButton(){
+        ImageButton temp = getView().findViewById(R.id.button_stop);
+        if(temp != null){
+            return temp;
+        }
+        else{
+            throw new RuntimeException("Fatal GUI Error: Stop-Button not found.");
+        }
     }
 
 }
