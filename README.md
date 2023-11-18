@@ -82,7 +82,7 @@ Auch wenn ich diese Liste oft ändern musste, habe ich mir einen Rahmen geschaff
 Kommen wir nun zur Umsetzung meiner Erweiterungen.
 
 ### Umfeld
-Zu aller erst habe ich damit begonnen, diesen Zweig / "Branch" entsprechend der Vorgabe in meinem Repository "app_entwicklung_BFAX422A" zu erzeugen.
+Zu aller erst habe ich damit begonnen, diesen Zweig / "Branch" mit dem Titel "appExtension" in meinem Repository "app_entwicklung_BFAX422A" entsprechend der Vorgabe zu erzeugen.
 Anschließend habe ich Android Studio auch auf meinem Heim-PC eingerichtet und mit meinem mobilen Laptop verbunden.
 Zudem habe ich mein Smartphone in den Entwicklermodus versetzt, um mit diesem meinen entwicklungsfortschritt live testen zu können, sowie einen Eindruck
 zu bekommen, was der APP fehlt / ob meine Erweiterungen so realisierbar sind, wie gewünscht.
