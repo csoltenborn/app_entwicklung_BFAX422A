@@ -230,15 +230,15 @@ Mit dem Spinner ergibt sich also folgendes abschließendes Bild der Applikation:
 
 ### Implementierung der Datenbank
 
-Da es wie in den Lösungsansätzen zur Problemlösung des Ist-Zustandes definiert notwendig ist, die verschiedenen Konversationen mit ChatGPT über die Laufzeit des Programms hinaus speichern, also persistieren zu können, wir eine von Android unterstützte Speicherform benötigt. Nach einer kurzen Recherche und Austausch mit Dr. Soltenborn, habe ich mich dazu entschlossen, die von Android mitgelieferte und empfohlene "*Room*"-Schnittstelle zur SQLite Datenbank von Android zur verwenden. Dabei sitzt die Room-Schnittstelle als eine Schicht auf der SQLite Datenbank und ermöglicht einfachen Zugriff auf diese. 
+Da es wie in den Lösungsansätzen zur Problembehandlung des Ist-Zustandes definiert notwendig ist, die verschiedenen Konversationen mit ChatGPT über die Laufzeit des Programms hinaus speichern (also persistieren zu können), wird eine von Android unterstützte Speicherform benötigt. Nach einer kurzen Recherche meinerseits und einem Austausch mit Herrn Dr. Soltenborn, habe ich mich dazu entschlossen, die von Android mitgelieferte und empfohlene "*Room*"-Schnittstelle zur SQLite Datenbank von Android zur verwenden. Dabei sitzt die Room-Schnittstelle als eine Schicht auf der SQLite Datenbank und ermöglicht einfachen Zugriff auf diese. 
 <br/><br/>
 
 > [!IMPORTANT]
-> Um diese Datenbankschnittstelle richtig zu implementieren und verwenden zu können, ist es notwendig, folgende Abhängigkeiten der "*.gradle*"-Datei hinzuzufügen:
+> Um diese Datenbankschnittstelle richtig implementieren und verwenden zu können, ist es notwendig, folgende Abhängigkeiten der "*.gradle*"-Datei hinzuzufügen:
 > <br/><br/>
 > <img src="https://github.com/PapeMarc/app_entwicklung_BFAX422A/assets/147148804/84745243-2aac-411e-bacc-877434a90453">
 
-#### Übersicht
+#### Die Datenbank
 
 Um die in dem "*MainFragment*" gespeicherte Liste von Chat-Instanzen persistieren zu können, ist es notwendig eine Entität Chat anzulegen. Diese Entität **Chat** repräsentiert dann eine relationale Datenbanktabelle aus der SQLite-Datenbank von Android. Um nun auf diese Tabelle zugreifen zu können, also Datensätze einfügen und auslesen zu können, benötigt man ein Datenzugriffsobjekt (engl.="*Data Access Object*, kurz "*DAO*"), über welches dann die entsprechenden SQL-Befehle auf der Datenbank ausgeführt werden können. Da dessen Rückgabe aber nicht direkt dem Format entspricht, mit dem ich in der Applikation arbeiten möchte, habe ich mich dazu entschlossen auch noch ein Transferobjekt (engl.="*Data Transfer Object*", kurz "*DTO*") zu konstruieren, welches dann die Daten über das Datenzugriffsobjekt aus der Datenbank abfragt und dessen Rückgabe in direkt verwendbare Datenstrukturen umformt. Allerdigns geschieht dies nicht direkt über das Datenzugriffsobjekt, sondern über eine zusätzliche Klasse Datenbank, welche das Datenzugriffsobjekt hält. Es lässt sich also folgender Ablauf festhalten:
 
@@ -265,7 +265,7 @@ Um nun diese verschiedenen Elemente zu implementieren, habe ich einen neuen Ordn
 
 Details zum Datentransferobjekt, welches aktiv als Schnittstelle zwischen der Applikation und der Datenbank verwendet wird, folgt im nächsten Abschnitt.
 
-#### Das Transferobjekt
+#### Anbindung der Datenbank and die Applikationslogik über das Transferobjekt
 
 Das Datentransferobjekt (engl. "Data Transfer Object", kurz "DTO") wurde als Klasse in dem Ordner "*roomDB*" ausprogrammiert. Diese implementiert das Singleton-Pattern und hält als statische Instanz ein Objekt vom Typ *AppDatabase*. Über dieses Objekt läuft der gesamte Datenbankzugriff. 
 Die Klasse implementiert folgende öffentlichen Methoden zum Zugriff auf die Datenbank:
@@ -274,7 +274,7 @@ Die Klasse implementiert folgende öffentlichen Methoden zum Zugriff auf die Dat
 |---|---|---|
 |Funktion|Fragt aus der Datenbank alle Datensätze der Tabelle Chat ab und konvertiert gespeicherte Daten (beispielsweise JSON-Strings) in direkt verwendbare Objekte. Diese Objekte werden dann dem dem Konstruktor übergebenem Listener übergeben. Bei einem Fehler wird eine entsprechende Methode des Listeners aufgerufen.|Der Methode saveAllChats wird eine generische Liste vom Typ Chat übergeben, welche dann zu einer Datensatzliste innerhalb der Methode umgebaut wird. Diese umgebaute Liste wird dann der Datenbank übergeben und dessen Einträge in der Tabelle Chat hinterlegt.|
 
-<br/><br/>
+<br/>
 
 > [!WARNING]
 > Die Methoden des DTO's verwenden einen ***backgroundExecuterService***, also einen Thread neben dem Hauptthread, welcher im Hintergrund die Datenbankoperationen ausführt, um nicht die Funktionalität der grafischen Benutzeroberfläche zu unterbrechen, bzw. diese anzuhalten, sollte ein Datenbankvorgang länger dauern.
@@ -283,7 +283,33 @@ Die Klasse implementiert folgende öffentlichen Methoden zum Zugriff auf die Dat
 
 ### Implementierung der Fehlerbehandlung
 
+Um eine grundlegende Fehlerbehandlung in die Applikation einzubauen, ist es wichtig Stellen in der Logik zu definieren, an denen es unerwartet zu Fehlern kommen kann. Da es im Rahmen dieser Dokumentation zu umfangreich wäre, die gesamte Fehlerbehandlung des Programms darzulegen, wird im Folgenden nun die Fehlerbehandlung exemplarisch an der Klasse "*ChatDTO*", also dem Transferobjekt der Datenbank, beleuchtet.
 
+#### Fehlerquelle Datenbank
+
+Da die eigentliche Datenbankabfrage über die "*Room*"-Datenbankschnittstelle an SQLite ausgelagert wird, kann bei einer fehlerhaften Abfrage (Sollte *Room* den Fehler nicht bemerken oder erkennen können) in dem DBMS (Datenbank Management System) von *SQLite* ein Fehler entstehen. Dieser Fehler würde dann von diesem DBMS abgefangen werden und an *Room* weitergegeben. Die Schnittstelle *Room* gibt diesen Fehler, da es selbst nicht verantwortlich für dessen Verarbeitung ist, weiter an das Datenzugriffsobjekt der implementierten Datenbank, also indirekt an das Transferobjekt über das DAO <sub>(Für Details über diese Abhängigkeitskette siehe in diesem Abschnitt unter "***Die Datenbank***")</sub>.
+
+#### Fehlerbehandlung im Transferobjekt
+
+Das Transferobjekt startet, wie in der entsprechenden Tabelle der Dokumentation zuvor beschrieben, einen neuen Prozess, welcher sich um die Datenbankoperationen kümmert. Dieser Prozess bekommt Programmlogik in Form einer Anonymen Methode übergeben (die Methode hat also keinen Bezeichner und existiert nur zu diesem Zweck und zu dieser Laufzeit), welcher dann dafür sorgt, dass entsprechende Datenbankoperationen über das Zugriffsobjekt der Datenbank ausgeführt werden. Da wir zuvor diese Funktionen der Datenbank als potentielle Fehlerquelle identifiziert haben, ist es logisch, dass die Fehler am Ende der Abhängigkeitskette in dem Prozess, genauer in dem Code der von uns übergebenen anonymen Methode landet, und geworfen(*meint der Fehler wird verarbeitet und erneut ausgelöst*) wird. Das heißt, dass wir ihn an genau dieser Stelle abfangen und verarbeiten müssen.
+
+Betrachten wir nun exemplarisch die öffentliche Methode '''getAllChats()'''. Diese Methode bekommt ein Objekt *listener* übergeben, welches die eine Instanz eines Typs sein muss, das die Schnittstelle *OnChatsLoadedListener* implementiert. 
+<br/>
+
+> [!INFO]
+> Diese Schnittstelle (engl. "*Interface*") implementiert zwei wesentliche Funktionen: *onChatsLoaded()* sowie *onError()*.  Beide Funktionen müssen bei implementierung des Interfaces mit Logik hinterlegt werden.
+
+<br/>
+Dieser der Funktion "*getAllChats()*" übergebene Listener mit den Methoden *onChatsLoaded()* und *onError()* wird also zu dem Zweck übergeben, die Rückgabe des Prozesses (sollte er fertig sein) abzuwickeln. Das heißt, dass wir erst einen Prozess zur Bearbeitung der Datenbankaufgaben starten und dann anschließend wenn diese Logik abgearbeitet worden ist, einen entsprechenden Listener im Hauptprozess der Applikation aufrufen. Das kann man sich etwa wie folgt vorstellen:
+<br/>
+
+```mermaid
+flowchart LR
+   ChatDTO -- startet --> backgroundExecutorService
+   backgroundExecutorService -- führt aus --> Datenbank
+   Datenbank -- antwortet --> backgroundExecutorService
+   backgroundExecutorService -- ruft Listener auf --> ChatDTO
+```
 
 ## Probleme während der Entwicklung
 
