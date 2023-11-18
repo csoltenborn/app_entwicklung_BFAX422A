@@ -116,36 +116,31 @@ gewählt, so graut das Bild aus. Dadurch erreiche ich, dass sich das Bild dezent
 
 Wie aus meinem Erweiterungsplan hervorgeht, wurden drei neue Schaltflächen hinzugefügt: "Delete","New" und "Pause".
 Die vorhandene Schaltfläche "Ask" wurde übernommen. Nachdem also alle drei Schaltflächen als einfache "Button"-Elemente mit Text 
-der GUI hinzugefügt worden waren, entschloss ich mich (wie auch in meinem Plan überlegt) Icons für diese zu verwenden. 
-Also recherchierte ich mir vier verschiedene Icons heraus, die unter "https://iconduck.com/licenses/cc0" mit der *"Creative Commons Zero"*-Lizenz 
-markiert worden waren, also zur freien kommerziellen Verwendung im Web freigegeben sind. Folgende vier Icons habe ich gewählt, um meine
+der GUI hinzugefügt worden waren, entschloss ich mich (wie auch in meinem Plan überlegt) Icons für diese zu verwenden. Daher war es vorerst
+zwingend notwendig, die "Button"-Elemente zu "ImageButton"-Elementen abzuändern.
+Anschließend recherchierte ich viele verschiedene Icons heraus, wobei ich meine Recherche auf Icons mit der *"Creative Commons Zero"*-Lizenz 
+beschränkte, da diese zur freien kommerziellen Verwendung im Web freigegeben sind. Folgende vier Icons habe ich gewählt abschließend gewählt, um meine
 Schaltflächen einfach zugänglich zu machen:
 
 |   Schaltfläche         | "*Delete*"  | "*New*"  | "*Pause*"   | "*Ask*"   |
 |------------------------|-------------|----------|-------------|-----------|
 | Symbol zur Darstellung der Schaltfläche |<img src="https://github.com/PapeMarc/app_entwicklung_BFAX422A/assets/147148804/82a71fce-5fad-47b3-89cb-4910f3758513" width="100">|<img src="https://github.com/PapeMarc/app_entwicklung_BFAX422A/assets/147148804/cdfcc2f6-f564-48f4-b6b4-220b1ab72e4e" width="100">|<img src="https://github.com/PapeMarc/app_entwicklung_BFAX422A/assets/147148804/bfaabd2f-b7ca-4622-b35c-3e41fea62598" width="75">|<img src="https://github.com/PapeMarc/app_entwicklung_BFAX422A/assets/147148804/69da96da-ba78-47d3-b66e-418f085e79d1" width="100">|
+<br/>
 
-   
+> [!NOTE]
+> Die Icons stammen alle von der Website "https://iconduck.com/licenses/cc0" und wurden ausdrücklich mit der *Creative Commons Zero*-Freigabe markiert.
 
-  
+<br/>
+Nachdem ich die ausgewählten Symbole auf meinen Schaltflächen hinterlegt und diese dann positioniert hatte, entschloss ich, dass dessen markierung noch nicht ausreichen ist, um sie auch als Schaltfläche zu erkennen.
+Daher beschloss ich, die Schaltflächen mit einer grauen Kreisfläche zu hinterlegen, was sie zusätzlich vom restlichen Layout der Applikation abhebt.
+Um dies zu erreichen, war es notwendig, die Eigenschaft "*android:background*" mit einer neuen grauen Kreisfläche zu hinterlegen. Diese graue Kreisfläche habe ich dann in dem Ordner "*drawable*" unter "*res*" der App
+als .xml Datei hinzugefügt und ausprogrammiert.<br/><br/>
+
+> [!NOTE]
+> Um zu erreichen, dass XML einen grauen Kreis darstellt, so gibt es mehrere Möglichkeiten. Ich habe eine "*<shape>*" verwendet, dessen HEX Farbwert ich auf "#d1d1d1" festgelegt und dessen Radius auf 40dp eingestellt habe.<br/><br/>
+> <img src="https://github.com/PapeMarc/app_entwicklung_BFAX422A/assets/147148804/2903f40a-4818-4091-a83a-791f42a04863">
 
 <br/><br/>
-
-<br/><br/><br/>
-Symbol zur Darstellung der Schaltfläche :
-<br/><br/>
-
-<br/><br/><br/>
-Symbol zur Darstellung der Schaltfläche :
-<br/><br/>
-
-<br/><br/><br/>
-Symbol zur Darstellung der Schaltfläche :
-<br/><br/>
-
-<br/><br/><br/>
-
-
 Es wurde ein Hintergrundbild hinzugefügt, es wurden neue Schaltflächen eingebaut und diese dann mit Icons(Symbolen) versehen,
 es wurde eine Dropdownliste implementiert zwecks der Darstellung der verschiedenen Chats und es wurde eine 
 Fehlerbox hinzugefügt um den Benutzer im Außnahmefall nicht direkt mit einem Absturz der Applikation zu konfrontieren.
