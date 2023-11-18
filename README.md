@@ -137,7 +137,7 @@ Um dies zu erreichen, war es notwendig, die Eigenschaft "*android:background*" m
 als .xml Datei hinzugefügt und ausprogrammiert.<br/><br/>
 
 > [!NOTE]
-> Um zu erreichen, dass XML einen grauen Kreis darstellt, so gibt es mehrere Möglichkeiten. Ich habe eine "*<shape>*" verwendet, dessen HEX Farbwert ich auf "#d1d1d1" festgelegt und dessen Radius auf 40dp eingestellt habe.<br/><br/>
+> Es gibt mehrere Möglichkeiten um in Android mit XML zu erreichen, dass XML dass ein grauer Kreis darstellt wird. Ich habe eine "*<shape>*" verwendet, dessen HEX Farbwert ich auf "#d1d1d1" festgelegt und dessen Radius iach auf 40dp gesetzt habe.<br/><br/>
 > <img src="https://github.com/PapeMarc/app_entwicklung_BFAX422A/assets/147148804/2903f40a-4818-4091-a83a-791f42a04863">
 
 <br/><br/>
