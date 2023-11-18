@@ -195,7 +195,7 @@ Folgend nun Bilder zu allen drei Elementen, um den Spinner funktionstüchtig zu 
 > Wie man in diesem Bild sehen kann, werden hier alle Elemente zusammengeführt. Hier wird für ein Element "*Spinner*" in der Logik der App ein neuer Adapter erzeugt und hinterlegt, der folgende 3 Parameter erhält:
 > 1. den Kontext der aktuellen Aktivität,
 > 2. das Layout für ein einzelnes Element der Liste, welches ich zuvor definiert habe und
-> 3. eine generische Liste vom Typ Chat, welche die Datenmenge und somit die direkt referenzierte Elementliste für den Spinner darstellt.
+> 3. eine generische Liste vom Typ Chat, welche die Datenmenge und somit die direkt Referenz auf die Elemente in der Logik für den Spinner darstellt.
 
 <br/><br/>
 
