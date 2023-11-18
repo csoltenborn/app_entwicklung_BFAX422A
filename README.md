@@ -348,11 +348,7 @@ Auch wenn der Ablaufplan, welcher im ersten Abschnitt dargestellt wurde bereits 
 11. Schaltfläche "Pause",
 12. Testen aller Neuerungen und finale Säuberung.
 
-Aber warum diese Umstellung? Nach Beginn der Entwicklung und nach dem hinzufügen der Schaltfläche "Delte", 
-fand ich es sinnvoll, mich (aufgrund bisheriger Erfahrungen mit Dropdown-Listen in Android) erst noch einmal
-über *Dropdown-Listen* zu belesen, bevor ich weiter entwickle. Und das tat ich glücklicherweise früh genug,
-denn ich erkannte, dass ich den Umfang, eine Dropdown-Liste zu implementieren, deutlich unterschätzt hatte. 
-Daher zog ich die Entwicklung der Dropdown-Liste vor.
+Um jedes Problem im Rahmen meiner Entwicklung der Erweiterung der APP zu beleuchten, ist der Rahmen dieser Dokumentation nicht ausreichend. Daher begrenze ich folgende Dokumentation meiner Probleme auf die essentiellsten.
 
 
 ## Fazit des Projekts
