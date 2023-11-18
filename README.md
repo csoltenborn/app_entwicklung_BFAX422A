@@ -103,7 +103,7 @@ Um der "*TextView*" diese Funktionalität zu verleihen, muss in der Programmlogi
 Das Ergebnis präsentiert sich wie folgt neben dem Text:<br/><br/>
 <img src="https://github.com/PapeMarc/app_entwicklung_BFAX422A/assets/147148804/5bcef4ed-a0e5-45b1-8252-d2e57e9fef20">
 <br/><br/>
-Wie man sehen kann, wird automatisch eine Fläche zur Bewegung des Texted hinzugefügt, welche sich automatisch bei Interaktion mit dem Text öffnet.
+Wie man sehen kann, wird automatisch eine Fläche zur Bewegung des Textes rechts von ihm hinzugefügt, welche sich automatisch bei Interaktion mit diesem öffnet.
 <br/><br/>
 
 #### 2. Ein neues Hintergrundbild
