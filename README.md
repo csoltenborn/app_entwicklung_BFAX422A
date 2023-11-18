@@ -92,7 +92,11 @@ Die grafische Benutzeroberfläche meiner Android-Applikation wurde grundlegend �
 an der bereits bestehenden App aus den Vorlesungen orientiert habe und bestehende grafische Elemente übernommen habe.
 Folgend nun die Änderungen und Ergänzungen, die stattgefunden haben: 
 
-#### 1. Ein neues Hintergrundbild
+#### 1. Überarbeitung der gegebenen Präsentationsfläche (*TextView*)
+
+
+
+#### 2. Ein neues Hintergrundbild
 
 <img src="https://github.com/PapeMarc/app_entwicklung_BFAX422A/assets/147148804/27a9f47d-e5ec-47ae-831c-df813c2ceed3" align="right">
 
@@ -112,7 +116,7 @@ gewählt, so graut das Bild aus. Dadurch erreiche ich, dass sich das Bild dezent
 
 <br/>
 
-#### 2. Drei neue Schaltflächen
+#### 3. Drei neue Schaltflächen
 
 Wie aus meinem Erweiterungsplan hervorgeht, wurden drei neue Schaltflächen hinzugefügt: "Delete","New" und "Pause".
 Die vorhandene Schaltfläche "Ask" wurde übernommen. Nachdem also alle drei neuen Schaltflächen als einfache "Button"-Elemente mit Text 
@@ -155,7 +159,7 @@ Nach abschließender grafischer Implementierung der Schaltflächen ergibt sich f
 <img src="https://github.com/PapeMarc/app_entwicklung_BFAX422A/assets/147148804/ae7363a5-9fd1-44ea-ad31-7fa7874d101a">
 <br/><br/>
 
-#### 3. Eine neue Fehlerbox
+#### 4. Eine neue Fehlerbox
 
 Als nächstes habe ich die neue Fehlerbox mithilfe eines neuen *TextView*-Elements implementiert. Um auch hier ein ansprechendes Format zu wählen, habe ich ähnliche Abhängigkeiten zu den anderen grafischen Elementen gewählt. Der "*errorTextView*", wie ich sie im Code genannt habe, wurden folgende ausschlaggebende Member geändert:
 1. Die Abänderung der Schriftfarbe auf Rot (In Hex.: *"#d11507"*) mithilfe des *android:textColor*-Attributs.
@@ -167,7 +171,7 @@ Folgend nun ein Bild der GUI mit der neuen Fehlerbox:<br/><br/>
 <img src="https://github.com/PapeMarc/app_entwicklung_BFAX422A/assets/147148804/d30cd650-fafb-49a6-9394-6511f8e94aeb" align="center">
 <br/><br/>
 
-#### 4. Eine neue Dropdownliste
+#### 5. Eine neue Dropdownliste
 
 Zu guter Letzt wurde der grafischen Benutzeroberfläche meiner Android-Applikation eine Dropdownliste hinzugefügt. Da es zahlreiche Wege gibt, in Android mittels XML eine solche Liste zu implementieren, habe ich vorausschauend eine recherche durchgefüht. Nach ausfühlichen Überlegungen und einigen Problemen (die auch in dem Abschnitt *Probleme während der Entwicklung* näher beleuchtet werden) habe ich mich dazu entschlossen, ein sogenanntes "*spinner*"-Element zu verwenden. Ein solcher Spinner besteht immer aus drei wesentlichen Elementen:<br/><br/>
 1. Einer Definition, wie das aktuell ausgewählte Element angezeigt wird und wie über dessen Interaktion die Liste geöffnet wird,
@@ -204,12 +208,13 @@ Nachdem nun also der Spinner richtig eingebunden der grafischen Oberfläche hinz
 2. Der Spinner positioniert sich vertikal relational zur Bildschirmhöhe an den oberen 3% dieser.
 
 Mit dem Spinner ergibt sich also folgendes abschließendes Bild der Applikation:<br/><br/>
-<img src="https://github.com/PapeMarc/app_entwicklung_BFAX422A/assets/147148804/92c20247-9fa3-42ae-bb07-cc0a332cdefc" >
+<img src="https://github.com/PapeMarc/app_entwicklung_BFAX422A/assets/147148804/92c20247-9fa3-42ae-bb07-cc0a332cdefc">
 <br/><br/>
 
-Es wurde ein Hintergrundbild hinzugefügt, es wurden neue Schaltflächen eingebaut und diese dann mit Icons(Symbolen) versehen,
-es wurde eine Dropdownliste implementiert zwecks der Darstellung der verschiedenen Chats und es wurde eine 
-Fehlerbox hinzugefügt um den Benutzer im Außnahmefall nicht direkt mit einem Absturz der Applikation zu konfrontieren.
+> [!TIP]
+> Um die Oberfläche im Einsatz zu sehen, siehe ins Fazit.
+
+<br/><br/>
 
 
 
