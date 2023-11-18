@@ -240,6 +240,7 @@ Da es wie in den Lösungsansätzen zur Problemlösung des Ist-Zustandes definier
 
 Um die in dem "*MainFragment*" gespeicherte Liste von Chat-Instanzen persistieren zu können, ist es notwendig eine Entität Chat anzulegen. Diese Entität **Chat** repräsentiert dann eine relationale Datenbanktabelle aus der SQLite-Datenbank von Android. Um nun auf diese Tabelle zugreifen zu können, also Datensätze einfügen und auslesen zu können, benötigt man ein Datenzugriffsobjekt (engl.="*Data Access Object*, kurz "*DAO*"), über welches dann die entsprechenden SQL-Befehle auf der Datenbank ausgeführt werden können. Da dessen Rückgabe aber nicht direkt dem Format entspricht, mit dem ich in der Applikation arbeiten möchte, habe ich mich dazu entschlossen auch noch ein Transferobjekt (engl.="*Data Transfer Object*", kurz "*DTO*") zu konstruieren, welches dann die Daten über das Datenzugriffsobjekt aus der Datenbank abfragt und dessen Rückgabe in direkt verwendbare Datenstrukturen umformt. Allerdigns geschieht dies nicht direkt über das Datenzugriffsobjekt, sondern über eine zusätzliche Klasse Datenbank, welche das Datenzugriffsobjekt hält. Es lässt sich also folgender Ablauf festhalten:
 
+<br/><br/>
 ```mermaid
 flowchart LR
     SQLite -. contains .- Chat
@@ -247,9 +248,21 @@ flowchart LR
     Database -- getAllChats --> DAO
     DTO -- getAllChats --> Database
 ```
-
-
 <br/><br/>
+Um nun diese verschiedenen Elemente zu implementieren, habe ich einen neuen Ordner mit dem Bezeichner "roomDB" unter dem Projektordner angelegt. In diesem Order befindet sich die Entität "***Chat***", die Klasse "***AppDatabase***", das Datenzugriffsobjekt "***ChatDAO***" sowie das Transferobjekt "***ChatDTO***". Folgend nun eine kurze Übersicht über die Entität, das DAO und die Datenbank:
+<br/><br/><br/>
+1. Die Entität Chat:<br/><br/>
+![grafik](https://github.com/PapeMarc/app_entwicklung_BFAX422A/assets/147148804/2c4dd448-6408-4514-ad03-1f8744342387)
+<br/><br/><br/>
+2. Die Schnittstelle des Datenzugriffobjekts:<br/><br/>
+![grafik](https://github.com/PapeMarc/app_entwicklung_BFAX422A/assets/147148804/80af1b76-40d2-4260-91cb-c5deab6e29a8)
+<br/><br/><br/>
+3. Die Datenbank selbst:<br/><br/>
+![grafik](https://github.com/PapeMarc/app_entwicklung_BFAX422A/assets/147148804/61e1cafb-3642-461c-ac43-1fff1fc061eb)
+<br/><br/><br/>
+
+
+
 
 ### Implementierung der Fehlerbehandlung
 
