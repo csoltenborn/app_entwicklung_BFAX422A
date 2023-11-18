@@ -108,7 +108,7 @@ des grafischen Elementes mit dem der eigentlichen Hintergrundfarbe multipliziert
 gewählt, so graut das Bild aus. Dadurch erreiche ich, dass sich das Bild dezent in den Hintergrund einfügt.<br/><br/>
 
 > [!NOTE]
-> Das Bild ist ein Screenshot von "http://labs.rampinteractive.co.uk/android_dp_px_calculator/", welcher am 18.11.2023 um 13:20 Uhr mit dem Eingabeparameter *50dp* entstand.
+> Das untere Bild welches die Tabelle zeigt, ist ein Screenshot von "http://labs.rampinteractive.co.uk/android_dp_px_calculator/", welcher am 18.11.2023 um 13:20 Uhr mit dem Eingabeparameter *50dp* entstand.
 
 <br/>
 
