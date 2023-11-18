@@ -47,7 +47,7 @@ Nachdem zuvor 7 Probleme klar identifiziert und definiert werden konnten, sind f
    - Die verschiedenen Konversationen sollen klar mithilfe des Datums sowie der Uhrzeit auf der Dropdown Liste identifiziert werden können. 
 <img align="right" src="https://github.com/PapeMarc/app_entwicklung_BFAX422A/assets/147148804/69ddb012-eda8-4f0f-8ecd-1e9e616cd6f6" padding="5">
 
-5. Das Anbinden der Room-Datenbank von Android zwecks der Serialisierung und Persistierung der Chats im Drop-Down Menü.
+5. Das Anbinden der Room-Datenbank von Android zwecks der Serialisierung und Persistierung der Konversationen(Chats) im Rahmen der App.
 
 6. Die Implementierung von Try Catch zum Abfangen von Fehlern, sowie das Hinzufügen einer neuen kleinen Präsentationsfläche unter der bisherigen, zur Visualisierung der bisher aufgetretenen Fehler.
 
