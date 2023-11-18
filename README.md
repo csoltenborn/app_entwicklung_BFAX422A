@@ -272,9 +272,16 @@ Die Klasse implementiert folgende öffentlichen Methoden zum Zugriff auf die Dat
 <br/><br/>
 |Methode|void getAllChats(OnChatsLoadedListener listener)|Object saveAllChats(List<Chat> chatsToSave)|
 |---|---|---|
-|Funktion|Fragt aus der Datenbank alle Datensätze der Tabelle Chat ab und konvertiert gespeicherte Daten (beispielsweise JSON-Strings) in direkt verwendbare Objekte. Diese Objekte werden dann dem Konstruktor übergebenem Listener übergeben. Bei einem Fehler wird eine entsprechende Methode des Listeners aufgerufen.|Der Methode saveAllChats wird eine generische Liste vom Typ Chat übergeben, welche dann zu einer Datensatzliste innerhalb der Methode umgebaut wird. Diese umgebaute Liste wird dann der Datenbank übergeben und dessen Einträge in der Tabelle Chat hinterlegt.|
+|Funktion|Fragt aus der Datenbank alle Datensätze der Tabelle Chat ab und konvertiert gespeicherte Daten (beispielsweise JSON-Strings) in direkt verwendbare Objekte. Diese Objekte werden dann dem dem Konstruktor übergebenem Listener übergeben. Bei einem Fehler wird eine entsprechende Methode des Listeners aufgerufen.|Der Methode saveAllChats wird eine generische Liste vom Typ Chat übergeben, welche dann zu einer Datensatzliste innerhalb der Methode umgebaut wird. Diese umgebaute Liste wird dann der Datenbank übergeben und dessen Einträge in der Tabelle Chat hinterlegt.|
+
+<br/><br/>
+
+> [!WARNING]
+> Die Methoden des DTO's verwenden einen ***backgroundExecuterService***, also einen Thread neben dem Hauptthread, welcher im Hintergrund die Datenbankoperationen ausführt, um nicht die Funktionalität der grafischen Benutzeroberfläche zu unterbrechen, bzw. diese anzuhalten, sollte ein Datenbankvorgang länger dauern. 
 
 ### Implementierung der Fehlerbehandlung
+
+
 
 ## Probleme während der Entwicklung
 
