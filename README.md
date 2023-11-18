@@ -277,7 +277,9 @@ Die Klasse implementiert folgende öffentlichen Methoden zum Zugriff auf die Dat
 <br/><br/>
 
 > [!WARNING]
-> Die Methoden des DTO's verwenden einen ***backgroundExecuterService***, also einen Thread neben dem Hauptthread, welcher im Hintergrund die Datenbankoperationen ausführt, um nicht die Funktionalität der grafischen Benutzeroberfläche zu unterbrechen, bzw. diese anzuhalten, sollte ein Datenbankvorgang länger dauern. 
+> Die Methoden des DTO's verwenden einen ***backgroundExecuterService***, also einen Thread neben dem Hauptthread, welcher im Hintergrund die Datenbankoperationen ausführt, um nicht die Funktionalität der grafischen Benutzeroberfläche zu unterbrechen, bzw. diese anzuhalten, sollte ein Datenbankvorgang länger dauern.
+
+<br/><br/>
 
 ### Implementierung der Fehlerbehandlung
 
