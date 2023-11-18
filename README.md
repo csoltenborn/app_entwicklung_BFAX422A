@@ -105,12 +105,45 @@ Dabei ist zu beachten, dass das Bild immer einen Mindestabstand (Padding) von 50
 Neben der Positionierung des Bildes wurden auch Eigenschaften wie der *android:scaleType* oder auch *android:alpha* festgelegt.
 Dabei repräsentiert die Eigenschaft *android:alpha* das Transparenzverhalten des Hintergrundbildes. Es beschreibt, wie die Farbwerte
 des grafischen Elementes mit dem der eigentlichen Hintergrundfarbe multipliziert werden. Wird dieser wert, wie in meinem Fall, kleiner als 1
-gewählt, so graut das Bild aus. Dadurch erreiche ich, dass sich das Bild dezent in den Hintergrund einfügt.
-<sub>(Das Bild ist ein Screenshot von "http://labs.rampinteractive.co.uk/android_dp_px_calculator/", 
-   welcher am 18.11.2023 um 13:20 Uhr mit dem Eingabeparameter *50dp* entstand.)</sub>
+gewählt, so graut das Bild aus. Dadurch erreiche ich, dass sich das Bild dezent in den Hintergrund einfügt.<br/><br/>
+
+> [!NOTE]
+> Das Bild ist ein Screenshot von "http://labs.rampinteractive.co.uk/android_dp_px_calculator/", welcher am 18.11.2023 um 13:20 Uhr mit dem Eingabeparameter *50dp* entstand.
+
+<br/>
 
 #### 2. Drei neue Schaltflächen
 
+Wie aus meinem Erweiterungsplan hervorgeht, wurden drei neue Schaltflächen hinzugefügt: "Delete","New" und "Pause".
+Die vorhandene Schaltfläche "Ask" wurde übernommen. Nachdem also alle drei Schaltflächen als einfache "Button"-Elemente mit Text 
+der GUI hinzugefügt worden waren, entschloss ich mich (wie auch in meinem Plan überlegt) Icons für diese zu verwenden. 
+Also recherchierte ich mir vier verschiedene Icons heraus, die unter "https://iconduck.com/licenses/cc0" mit der *"Creative Commons Zero"*-Lizenz 
+markiert worden waren, also zur freien kommerziellen Verwendung im Web freigegeben sind. Folgende vier Icons habe ich gewählt, um meine
+Schaltflächen einfach zugänglich zu machen:
+
+|   Schaltfläche         | "*Delete*"  | "*New*"  | "*Pause*"   | "*Ask*"   |
+|------------------------|-------------|----------|-------------|-----------|
+| Symbol zur Darstellung der Schaltfläche |<img src="https://github.com/PapeMarc/app_entwicklung_BFAX422A/assets/147148804/82a71fce-5fad-47b3-89cb-4910f3758513" width="100">|<img src="https://github.com/PapeMarc/app_entwicklung_BFAX422A/assets/147148804/cdfcc2f6-f564-48f4-b6b4-220b1ab72e4e" width="100">|<img src="https://github.com/PapeMarc/app_entwicklung_BFAX422A/assets/147148804/bfaabd2f-b7ca-4622-b35c-3e41fea62598" width="75">|<img src="https://github.com/PapeMarc/app_entwicklung_BFAX422A/assets/147148804/69da96da-ba78-47d3-b66e-418f085e79d1" width="100">|
+
+   
+
+  
+
+<br/><br/>
+
+<br/><br/><br/>
+Symbol zur Darstellung der Schaltfläche :
+<br/><br/>
+
+<br/><br/><br/>
+Symbol zur Darstellung der Schaltfläche :
+<br/><br/>
+
+<br/><br/><br/>
+Symbol zur Darstellung der Schaltfläche :
+<br/><br/>
+
+<br/><br/><br/>
 
 
 Es wurde ein Hintergrundbild hinzugefügt, es wurden neue Schaltflächen eingebaut und diese dann mit Icons(Symbolen) versehen,
