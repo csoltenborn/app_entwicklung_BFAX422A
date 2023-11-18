@@ -355,10 +355,24 @@ Um jedes Problem im Rahmen meiner Entwicklung der Erweiterung der APP zu beleuch
 Als ich recht am Anfang meiner Entwicklung stand, beschloss ich kurz nach der Implementierung der "Delete"-Schaltfläche eine kurze Recherche zum Tehma Dropdown in Android anzustellen. Als ich dann merkte, dass ich den Umfang von Dropdownlisten für Android Applikationen deutlich unterschätzt hatte, zog ich das Thema vor. Es dauerte nicht lange und ich beschloss recht schnell eine Liste mithilfe eines *TextInputLayout*'s umzusetzen, in welcher sich eine *AutoCompleteTextView* befindet. Ich hatte den großteil dieser Art der dropdownliste bereits ausprogrammiert, wo mir auffiel, dass ich einen bestimmten Style benötige, um diese Art der Implementation umsetzen zu können. Daher begann ich, diesen bestimmten Stiel zu importieren und zu verwenden. Nach einigen Stunden Arbeit, in welcher ich keinen produktiven Fortschritt erzielte, verwarf ich das Konzept (zum Glück). Ich stieg um auf die Implementierung eines Spinners, was sich dann in absehbarer Zeit deutlich einfacher implementieren ließ.
 
 > [!NOTE]
-> #### Take Home Message
+> #### *Take Home Message*
 > Hat man in einem bestimmten Bereich der Programmierung nicht viel Erfahrung und etwas funktioniert nicht nach dem n-ten Versuch, siehe dich nach einer Alternative um, bevor weitere wertvolle Zeit verloren geht.
 
-###
-###
+### Das Problem mit der Anbindung der Datenbank
+
+Kaum hatte ich die offizielle Dokumentation der *Room*-Datenbankschnittstelle von Android gelesen, machte ich mich auf die Suche nach einem erklärvideo, um einen ersten Eindruck von dem umfang zu bekommen. Nachdem ich gut vorbereitet entschlossen hatte, die Datenbank zu entwickeln, scheiterte ich bereits an dem Hinzufügen der dafür notwendigen Abhängigkeiten in der *.gradle*-Datei. Als ich dann endlich eine Abgespeckte Version von *Room* importiert bekommen habe, machte ich mich an die Ausprogrammierung meiner eigenen Datenbank inklusive Schnittstelle. Ich war erst recht glücklich, als ich das erste mal die gesamte Datenbank im Kontext meiner Applikation ausprogrammiert hatte und beschloss, diese jetzt zu testen. Dann war ich gnaz schnell nicht mehr glücklich, denn es stellte sich heraus, Android erlaubt nur über Umwege das Ausführen von Datenbankoperationen im selben Prozess, in dem auch die grafische Benutzeroberfläche ausgeführt wird. Anschließend beschloss ich dann, nach kurzer Recherche wie andere den Fehler versuchten zu lösen, doch einen Multi-Prozess Ansatz zu verfolgen. 
+
+> [!NOTE]
+> #### *Take Home Message*
+> Egal wie sehr man denkt man ist vorbereitet, irgendwas funktioniert nicht so wie geplant. => Nicht zu viel Zeit in die Vorrecherche stecken, lieber sobald man das Prinzip verstanden hat, ausprobieren.
+
+
+### Ich drehe mein Gerät und ... Datenbank kaputt!
+
+
+> [!NOTE]
+> #### *Take Home Message*
+> 
+
 
 ## Fazit des Projekts
