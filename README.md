@@ -115,12 +115,12 @@ gewählt, so graut das Bild aus. Dadurch erreiche ich, dass sich das Bild dezent
 #### 2. Drei neue Schaltflächen
 
 Wie aus meinem Erweiterungsplan hervorgeht, wurden drei neue Schaltflächen hinzugefügt: "Delete","New" und "Pause".
-Die vorhandene Schaltfläche "Ask" wurde übernommen. Nachdem also alle drei Schaltflächen als einfache "Button"-Elemente mit Text 
-der GUI hinzugefügt worden waren, entschloss ich mich (wie auch in meinem Plan überlegt) Icons für diese zu verwenden. Daher war es vorerst
-zwingend notwendig, die "Button"-Elemente zu "ImageButton"-Elementen abzuändern.
+Die vorhandene Schaltfläche "Ask" wurde übernommen. Nachdem also alle drei neuen Schaltflächen als einfache "Button"-Elemente mit Text 
+der GUI angefügt worden waren, entschloss ich mich (wie auch in meinem Orientierungsplan überlegt) Icons für diese zu verwenden. 
+Daher war es vorerst zwingend notwendig, die "Button"-Elemente zu "ImageButton"-Elementen abzuändern.
 Anschließend recherchierte ich viele verschiedene Icons heraus, wobei ich meine Recherche auf Icons mit der *"Creative Commons Zero"*-Lizenz 
-beschränkte, da diese zur freien kommerziellen Verwendung im Web freigegeben sind. Folgende vier Icons habe ich gewählt abschließend gewählt, um meine
-Schaltflächen einfach zugänglich zu machen:
+beschränkte, da diese zur freien kommerziellen Verwendung im Web freigegeben sind. Folgende vier Icons habe ich abschließend gewählt, um meine
+Schaltflächen einfach zugänglich zu machen:<br/>
 
 |   Schaltfläche         | "*Delete*"  | "*New*"  | "*Pause*"   | "*Ask*"   |
 |------------------------|-------------|----------|-------------|-----------|
@@ -128,19 +128,25 @@ Schaltflächen einfach zugänglich zu machen:
 <br/>
 
 > [!NOTE]
-> Die Icons stammen alle von der Website "https://iconduck.com/licenses/cc0" und wurden ausdrücklich mit der *Creative Commons Zero*-Freigabe markiert.
+> Die Icons entstammen alle der Website "https://iconduck.com/licenses/cc0" und wurden ausdrücklich mit der *Creative Commons Zero*-Freigabe markiert.
 
 <br/>
-Nachdem ich die ausgewählten Symbole auf meinen Schaltflächen hinterlegt und diese dann positioniert hatte, entschloss ich, dass dessen markierung noch nicht ausreichen ist, um sie auch als Schaltfläche zu erkennen.
+Nachdem ich die ausgewählten Symbole auf meinen Schaltflächen hinterlegt und diese dann positioniert hatte, entschloss ich, dass dessen markierung noch nicht ausreichen ist, um sie auch als solche zu erkennen.
 Daher beschloss ich, die Schaltflächen mit einer grauen Kreisfläche zu hinterlegen, was sie zusätzlich vom restlichen Layout der Applikation abhebt.
 Um dies zu erreichen, war es notwendig, die Eigenschaft "*android:background*" mit einer neuen grauen Kreisfläche zu hinterlegen. Diese graue Kreisfläche habe ich dann in dem Ordner "*drawable*" unter "*res*" der App
 als .xml Datei hinzugefügt und ausprogrammiert.<br/><br/>
 
 > [!NOTE]
-> Es gibt mehrere Möglichkeiten um in Android mit XML zu erreichen, dass XML dass ein grauer Kreis darstellt wird. Ich habe eine "*<shape>*" verwendet, dessen HEX Farbwert ich auf "#d1d1d1" festgelegt und dessen Radius iach auf 40dp gesetzt habe.<br/><br/>
+> Es gibt mehrere Möglichkeiten um in Android mit XML zu erreichen, dass XML dass ein grauer Kreis darstellt wird. Ich habe eine "*<shape>*" verwendet, dessen HEX Farbwert ich auf "#d1d1d1" festgelegt und dessen Radius ich auf 40dp gesetzt habe.<br/><br/>
 > <img src="https://github.com/PapeMarc/app_entwicklung_BFAX422A/assets/147148804/2903f40a-4818-4091-a83a-791f42a04863">
 
+Nachdem ich nun also die entsprechenden Symbole und einen grauen runden Hintergrund für meine Schaltflächen definiert hatte, fing ich an, die bestehenden Elemente entsprechend abzuändern.
+Dabei habe ich die vier Elemente mit folgenden Abhängigkeiten bezüglich der Positionierung definiert:
+1. Jedes Element hält zur oberen Präsentationsfläche denselben Abstand, wie zum unteren Bildschirmrand (Dadurch sind alle Elemente vertikal zentriert.
+2. Alle Elemente verweisen seitlich auf ihr nächstliegendes Element. Liegt ein Element außen, so verweist horizontal es auf dem Bildschirrand.
+
 <br/><br/>
+
 Es wurde ein Hintergrundbild hinzugefügt, es wurden neue Schaltflächen eingebaut und diese dann mit Icons(Symbolen) versehen,
 es wurde eine Dropdownliste implementiert zwecks der Darstellung der verschiedenen Chats und es wurde eine 
 Fehlerbox hinzugefügt um den Benutzer im Außnahmefall nicht direkt mit einem Absturz der Applikation zu konfrontieren.
