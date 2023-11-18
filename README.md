@@ -83,9 +83,9 @@ Kommen wir nun zur Umsetzung meiner Erweiterungen.
 
 ### Umfeld
 Zu aller erst habe ich damit begonnen, diesen Zweig / "Branch" mit dem Titel "appExtension" in meinem Repository "app_entwicklung_BFAX422A" entsprechend der Vorgabe zu erzeugen.
-Anschließend habe ich Android Studio auch auf meinem Heim-PC eingerichtet und mit meinem mobilen Laptop verbunden.
-Zudem habe ich mein Smartphone in den Entwicklermodus versetzt, um mit diesem meinen entwicklungsfortschritt live testen zu können, sowie einen Eindruck
-zu bekommen, was der APP fehlt / ob meine Erweiterungen so realisierbar sind, wie gewünscht.
+Anschließend habe ich Android Studio auch auf meinem Heim-PC eingerichtet und mit meinem Laptop verbunden.
+Weiterhin habe ich mein Smartphone in den Entwicklermodus versetzt, um mit diesem meinen entwicklungsfortschritt live testen zu können. 
+Das war gerade auch hilfreich, um einen Eindruck zu bekommen, was der APP fehlt, bzw. ob meine Erweiterungen den Nutzen erzielen, der gewünscht ist.
 
 ### Überarbeitung der grafischen Benutzeroberfläche
 Die grafische Benutzeroberfläche meiner Android-Applikation wurde grundlegend Überarbeitet. 
