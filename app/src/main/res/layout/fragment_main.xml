@@ -16,8 +16,6 @@
         <ImageView
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="64dp"
-            android:layout_marginEnd="64dp"
             android:adjustViewBounds="true"
             android:alpha="0.1"
             android:backgroundTintMode="multiply"
@@ -26,7 +24,8 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"></ImageView>
+            app:layout_constraintTop_toTopOf="parent"
+            android:padding="50dp"></ImageView>
 
         <TextView
             android:id="@+id/textView"
