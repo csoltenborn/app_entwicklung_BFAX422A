@@ -65,17 +65,17 @@ Im Idealfall soll der Abstand zum Bildschirmrand für alle Elemente identisch se
 Bevor ich also angefangen habe meine Erweiterungen in die Vorgabe zu integrieren, habe ich folgenden Ablaufplan festgehalten, um meine Implementierung zeiteffizient umzusetzen:
 
 Implementierung ...
-1. ...der Schaltfläche "Delete".
-2. ...der Fehlerbox und dazugehöriger Fehlerbehandlung.
-3. ...der scrollability der TextView.
-4. ...der Datenbank Room zum persistieren von Daten sowie dessen Schnittstelle.
-5. ...der eventuellen Anpassungen bestehender Klassen.
-6. ...des Dropdown-Menüs inklusive Anbindung an die Datenbank.
-7. ...der Schaltflächen "New" und "Pause" sowie dessen Anbindung an die Logik.
-8. ...der Abhängigkeiten zwecks der Positionierung der GUI-Elemente (Constraints).
-9. ..., bzw. das Testen des Zusammenspiels der Erweiterungen sowie Behandeln evtl. auftretender Fehler.
-10. ...eines Hintergrundbildes.
-11. ...von verschiedenen Icons zur Aufarbeitung der GUI.
+1. ...der Schaltfläche "**Delete**".
+2. ...der **Fehlerbox** und dazugehöriger **Fehlerbehandlung**.
+3. ...der **scrollability** der TextView.
+4. ...der **Datenbank** Room zum persistieren von Daten sowie dessen **Schnittstelle**.
+5. ...der eventuellen **Anpassungen** bestehender Klassen.
+6. ...der **Dropdown Liste** inklusive Anbindung an die Datenbank.
+7. ...der Schaltflächen "**New**" und "**Pause**" sowie dessen Anbindung an die Logik.
+8. ...der **Abhängigkeiten** zwecks der Positionierung der **GUI-Elemente** (Constraints).
+9. ..., bzw. das **Testen** des Zusammenspiels der Erweiterungen sowie **Behandeln** evtl. auftretender **Fehler**.
+10. ...eines **Hintergrundbildes**.
+11. ...von verschiedenen **Icons** zur Aufarbeitung der GUI.
 
 Auch wenn diese Liste noch oft geändert werden sollte, hatte ich vorerst einen Rahmen, an dem ich mich orientieren kann. Welche Faktoren diesen Plan wie umgestellt haben, wird im nächsten Abschnitt behandelt.
 
