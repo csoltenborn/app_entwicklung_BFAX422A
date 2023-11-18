@@ -141,9 +141,21 @@ als .xml Datei hinzugefügt und ausprogrammiert.<br/><br/>
 > <img src="https://github.com/PapeMarc/app_entwicklung_BFAX422A/assets/147148804/2903f40a-4818-4091-a83a-791f42a04863">
 
 Nachdem ich nun also die entsprechenden Symbole und einen grauen runden Hintergrund für meine Schaltflächen definiert hatte, fing ich an, die bestehenden Elemente entsprechend abzuändern.
-Dabei habe ich die vier Elemente mit folgenden Abhängigkeiten bezüglich der Positionierung definiert:
+Dabei habe ich die vier Elemente mit folgenden Abhängigkeiten bezüglich der Positionierung definiert:<br/>
 1. Jedes Element hält zur oberen Präsentationsfläche denselben Abstand, wie zum unteren Bildschirmrand (Dadurch sind alle Elemente vertikal zentriert.
-2. Alle Elemente verweisen seitlich auf ihr nächstliegendes Element. Liegt ein Element außen, so verweist horizontal es auf dem Bildschirrand.
+2. Alle Elemente verweisen seitlich auf ihr nächstliegendes Element. Liegt ein Element außen, so verweist es horizontal auf den Bildschirrand.
+3. Außen liegende Elemente halten horizontal einen Abstand von 32dp ein.
+4. Innen liegende Elemente halten horizontal zu anderen innen liegenden Elementen einen Abstand von 32dp ein und zu außen liegenden Elementen einen Abstand von 0dp.<br/>
+Dadurch ergeben sich folgende Abhängigkeiten:<br/><br/>
+
+<img src="https://github.com/PapeMarc/app_entwicklung_BFAX422A/assets/147148804/19fa34c9-6ec6-46f6-8766-81352c6346bc">
+<br/><br/><br/>
+Nach abschließender grafischer Implementierung der Schaltflächen ergibt sich folgende grafische Benutzeroberfläche:
+<br/><br/>
+<img src="https://github.com/PapeMarc/app_entwicklung_BFAX422A/assets/147148804/ae7363a5-9fd1-44ea-ad31-7fa7874d101a">
+<br/><br/>
+
+
 
 <br/><br/>
 
