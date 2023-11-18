@@ -88,10 +88,21 @@ Weiterhin habe ich mein Smartphone in den Entwicklermodus versetzt, um mit diese
 Das war gerade auch hilfreich, um einen Eindruck zu bekommen, was der APP fehlt, bzw. ob meine Erweiterungen den Nutzen erzielen, der gewünscht ist.
 
 ### Überarbeitung der grafischen Benutzeroberfläche
-Die grafische Benutzeroberfläche meiner Android-Applikation wurde grundlegend Überarbeitet. 
-Es wurde ein Hintergrundbild hinzugefügt, es wurden neue Schaltflächen eingebaut sowie mit Icons versehen,
+Die grafische Benutzeroberfläche meiner Android-Applikation wurde grundlegend Überarbeitet, obwohl ich mich mit der Positionierung der neuen Elemente
+an der bereits bestehenden App aus den Vorlesungen orientiert habe und bestehende grafische Elemente übernommen habe.
+Folgend nun die Änderungen und Ergänzungen, die stattgefunden haben: 
+
+#### 1. Ein neues Hintergrundbild
+
+Um den Bildschirm nicht nur mit Nachrichten und Schaltflächen zu füllen, sondern auch etwas Dynamik in die App zu bringen, habe ich mich entschlossen ein Hintergrundbild einzubauen. Nach gründlicher Überlegung habe ich mich dazu entschlossen, nicht ein eigenes Bild einzubauen (beispielsweise einen Roboter o. ä.), sondern passender Weise das bereits vorhandene Logo der App wiederzuverwenden. So wird nicht nur minimal speicher gespart, sondern navigiert der Benutzer auch thematisch durch zusammengehörige Elemente. Das verbessert den Gesamteindruck der App.
+Das Hintergrundbild wird vertikal sowie horizontal mittig auf dem Endgerät platziert, abhängig von der zur Verfügung gestellten Bildschirmgröße. Dabei ist zu beachten, dass das Bild immer einen Mindestabstand (Padding) von 50dp beibehält (Um diese Größe besser einschätzen zu können siehe bild rechts). <img src="https://github.com/PapeMarc/app_entwicklung_BFAX422A/assets/147148804/190c41c1-3842-496d-9627-ff64449e58ae" align="right">
+
+
+Es wurde ein Hintergrundbild hinzugefügt, es wurden neue Schaltflächen eingebaut und diese dann mit Icons(Symbolen) versehen,
 es wurde eine Dropdownliste implementiert zwecks der Darstellung der verschiedenen Chats und es wurde eine 
 Fehlerbox hinzugefügt um den Benutzer im Außnahmefall nicht direkt mit einem Absturz der Applikation zu konfrontieren.
+
+
 
 ### Implementierung der Datenbank
 ### Implementierung der Fehlerbehandlung
