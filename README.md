@@ -77,7 +77,7 @@ Implementierung ...
 10. ...eines **Hintergrundbildes**.
 11. ...von verschiedenen **Icons** zur Aufarbeitung der GUI.
 
-Auch wenn diese Liste noch oft geändert werden sollte, hatte ich vorerst einen Rahmen, an dem ich mich orientieren kann. Welche Faktoren diesen Plan wie umgestellt haben, wird im nächsten Abschnitt behandelt.
+Auch wenn ich diese Liste oft ändern musste, habe ich mir einen Rahmen geschaffen, an dem ich mich orientieren konnte. Welche Faktoren diesen Rahmen wie umgestaltet haben, wird im nächsten Abschnitt behandelt (*Probleme während der Entwicklung*).
 
 Kommen wir nun zur Umsetzung meiner Erweiterungen.
 
