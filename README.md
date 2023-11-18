@@ -238,6 +238,8 @@ Da es wie in den Lösungsansätzen zur Problemlösung des Ist-Zustandes definier
 > <br/><br/>
 > <img src="https://github.com/PapeMarc/app_entwicklung_BFAX422A/assets/147148804/84745243-2aac-411e-bacc-877434a90453">
 
+#### Übersicht
+
 Um die in dem "*MainFragment*" gespeicherte Liste von Chat-Instanzen persistieren zu können, ist es notwendig eine Entität Chat anzulegen. Diese Entität **Chat** repräsentiert dann eine relationale Datenbanktabelle aus der SQLite-Datenbank von Android. Um nun auf diese Tabelle zugreifen zu können, also Datensätze einfügen und auslesen zu können, benötigt man ein Datenzugriffsobjekt (engl.="*Data Access Object*, kurz "*DAO*"), über welches dann die entsprechenden SQL-Befehle auf der Datenbank ausgeführt werden können. Da dessen Rückgabe aber nicht direkt dem Format entspricht, mit dem ich in der Applikation arbeiten möchte, habe ich mich dazu entschlossen auch noch ein Transferobjekt (engl.="*Data Transfer Object*", kurz "*DTO*") zu konstruieren, welches dann die Daten über das Datenzugriffsobjekt aus der Datenbank abfragt und dessen Rückgabe in direkt verwendbare Datenstrukturen umformt. Allerdigns geschieht dies nicht direkt über das Datenzugriffsobjekt, sondern über eine zusätzliche Klasse Datenbank, welche das Datenzugriffsobjekt hält. Es lässt sich also folgender Ablauf festhalten:
 
 <br/><br/>
@@ -261,8 +263,16 @@ Um nun diese verschiedenen Elemente zu implementieren, habe ich einen neuen Ordn
 ![grafik](https://github.com/PapeMarc/app_entwicklung_BFAX422A/assets/147148804/61e1cafb-3642-461c-ac43-1fff1fc061eb)
 <br/><br/><br/>
 
+Details zum Datentransferobjekt, welches aktiv als Schnittstelle zwischen der Applikation und der Datenbank verwendet wird, folgt im nächsten Abschnitt.
 
+#### Das Transferobjekt
 
+Das Datentransferobjekt (engl. "Data Transfer Object", kurz "DTO") wurde als Klasse in dem Ordner "*roomDB*" ausprogrammiert. Diese implementiert das Singleton-Pattern und hält als statische Instanz ein Objekt vom Typ *AppDatabase*. Über dieses Objekt läuft der gesamte Datenbankzugriff. 
+Die Klasse implementiert folgende öffentlichen Methoden zum Zugriff auf die Datenbank:
+<br/><br/>
+|Methode|void getAllChats(OnChatsLoadedListener listener)|Object saveAllChats(List<Chat> chatsToSave)|
+|---|---|---|
+|Funktion|Fragt aus der Datenbank alle Datensätze der Tabelle Chat ab und konvertiert gespeicherte Daten (beispielsweise JSON-Strings) in direkt verwendbare Objekte. Diese Objekte werden dann dem Konstruktor übergebenem Listener übergeben. Bei einem Fehler wird eine entsprechende Methode des Listeners aufgerufen.|Der Methode saveAllChats wird eine generische Liste vom Typ Chat übergeben, welche dann zu einer Datensatzliste innerhalb der Methode umgebaut wird. Diese umgebaute Liste wird dann der Datenbank übergeben und dessen Einträge in der Tabelle Chat hinterlegt.|
 
 ### Implementierung der Fehlerbehandlung
 
