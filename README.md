@@ -311,8 +311,25 @@ flowchart LR
    backgroundExecutorService -- ruft Listener auf --> ChatDTO
 ```
 
-Dadurch wird das Ergebnis des Nebenprozesses dem Hauptprozess mitgeteilt. Da wir allerdings nicht wissen, ob diese Antwort eine valide Antwort ist oder einem Fehler entspricht, müssen wir uns direkt in diesem Nebenprozess um die Fehlerbehandlung kümmern, um dann je nach Fehler die entsprechende Methode im Listener aufzurufen. Damit koppeln wir den Nebenprozess direkt an den Hauptprozess, ohne auf eine Fehlerbehandlung zu verzeichten.
-Um den Fehler also in dem Nebenprozess abzufangen, verwenden wir wie in anderen Programmen auch, *Try-Catch*.
+Dadurch wird das Ergebnis des Nebenprozesses dem Hauptprozess mitgeteilt. Da wir allerdings nicht wissen, ob diese Antwort eine gültige Antwort ist, oder einem Fehler entspricht, müssen wir uns direkt in diesem Nebenprozess um die Fehlerbehandlung kümmern, um dann je nach Rückgabe der Datenbank die entsprechende Methode im Listener aufzurufen. Um den Fehler also in dem Nebenprozess abzufangen, verwenden wir wie in anderen Programmen auch, *Try-Catch*. 
+Haben wir den Fehler abgefangen, so müssen wir uns darum kümmern, dass der Fehler richtig in den Hauptprozess gelangt. Zu diesem Zweck implementiert der Listener die Methode "*onError()*". Diese rufen wir dann wie folgt auf:
+<br/>
+
+<img src="https://github.com/PapeMarc/app_entwicklung_BFAX422A/assets/147148804/8142fd8a-9fe0-41b9-b39c-acbe9a6b0b4f">
+
+<br/>
+Haben wir nun den Fehler vom Nebenprozess in den Hauptprozess umgeleitet, so müssen wir ihn verständlicher Weise auch im Hauptprozess abfangen. Dazu identifizieren wir zuerst die Stelle, an der das Transferobjekt angewiesen wird, eine Datenbankoperation auszuführen, da an dieser Stelle ja ein Fehler auftreten kann. In meinem Fall wäre das innerhalb der Methode *OnViewCreated()* im *MainFragment*. Es wird also immer wenn die grafische Benutzeroberfläche neu erstellt wird (die "*View*"), das Transferobjekt gebeten, alle gespeicherten Chats aus der Datenbank über die Methode "*getAllChats()*" abzurufen. 
+Der Aufruf befindet sich in meinem Programmcode in Zeile 175 im *MainFragment*:
+<br/>
+<img src="https://github.com/PapeMarc/app_entwicklung_BFAX422A/assets/147148804/288e8f68-41a2-4b3a-8b7d-3ef666afbac1">
+<br/>
+Damit haben wir die potentielle Fehlerquelle in Zeile 175 im *MainFragment* klar festlegen können.
+Um den Fehler nun richtig abzufangen, kapseln wir unseren Aufruf in einem *Try-Catch* Block, und programmieren, damit die Fehlernachricht auch in der Fehlerbox erscheint, den *catch*-Block wie folgt aus:
+<br/>
+<img src="https://github.com/PapeMarc/app_entwicklung_BFAX422A/assets/147148804/59a61530-6055-4884-87cd-b48b0b946b6a">
+<br/>
+Die Methode "*setErrorMessage()*" kümmert sich dann darum, die entsprechende mitgelieferte Fehlermeldung aus dem vorigen Programmablauf in die Fehlerbox zu schreiben.
+<br/>
 
 ## Probleme während der Entwicklung
 
