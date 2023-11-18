@@ -368,10 +368,11 @@ Kaum hatte ich die offizielle Dokumentation der *Room*-Datenbankschnittstelle vo
 
 ### Ich drehe mein Gerät und ... Datenbank kaputt!
 
+Gegen Ende meiner Entwicklung entschloss ich aufgrund neuster Erfahrungen mit der Implementierung der Datenbank eine Testphase zu machen, um letzte potentielle Fehler auszuschließen. Meine Applikation samt der Erweiterungen funktionierte fehlerfrei, und dann entschloss ich mich, mein Gerät zu drehen. Doch dann passierte etwas komisches: Immer wenn ich mein Gerät drehe, duplizieren sich alle Chat-Einträge in meinem Spinner. Ich war misstrauisch und warf einen Blick mithilfe eines Tools, auf das mich Herr Dr. Soltenborn aufmerksam machte, in die Datgenbank. Es stellte sich heraus, dass der Speichervorgang nicht nur ausgeführt wird, wenn die App sich schließt, sondern auch wenn sich die Konfiguration der Applikation ändert (also wenn sich das gerät dreht). Diese Konfigurationsänderung hatte nämlich, wie ich später erfuhr, zurfolge, dass meine aktuelle *Activity* immer neu gestartet wird. Das heißt, dass auch meine grafische Oberfläche jedes mal neu erstellt und geladen wird. Schließt man anschließend die App, so werden alle Chats gespeichert, die sich in dem Spinner befinden. Das heißt auch jene, die fälschlicher Weise doppelt in dem Spinner eingetragen sind, und das fand meine Datenbank gar nicht toll.
 
 > [!NOTE]
 > #### *Take Home Message*
-> 
+> Hat man vor ein Programm zu schreiben, welches in ein bestehendes System eingefügt, oder an einen bestehenden Programmkreislauf angeschlossen werden soll, so befasse dich erst mit dem Lebenszyklus von Programmen in diesem System.
 
 
 ## Fazit des Projekts
