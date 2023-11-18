@@ -161,9 +161,44 @@ Als nächstes habe ich die neue Fehlerbox mithilfe eines neuen *TextView*-Elemen
 1. Die Abänderung der Schriftfarbe auf Rot (In Hex.: *"#d11507"*) mithilfe des *android:textColor*-Attributs.
 2. Das Element hält horizontal einen Abstand von 32dp ein.
 3. Das Element hält vertikal nach oben hin einen Abstand von 24dp ein. (Nach unten hin ist keine Abhängigkeit definiert!)
-Dabei wurde die neue Fehlerbox wie geplant unterhalb der Präsentationsfläche und oberhalb der Schaltflächen platziert.
+Dabei wurde die neue Fehlerbox wie geplant unterhalb der Präsentationsfläche und oberhalb der Schaltflächen platziert.<br/>
+<br/>
+Folgend nun ein Bild der GUI mit der neuen Fehlerbox:<br/><br/>
+<img src="https://github.com/PapeMarc/app_entwicklung_BFAX422A/assets/147148804/d30cd650-fafb-49a6-9394-6511f8e94aeb" align="center">
+<br/><br/>
+
+#### 4. Eine neue Dropdownliste
+
+Zu guter Letzt wurde der grafischen Benutzeroberfläche meiner Android-Applikation eine Dropdownliste hinzugefügt. Da es zahlreiche Wege gibt, in Android mittels XML eine solche Liste zu implementieren, habe ich vorausschauend eine recherche durchgefüht. Nach ausfühlichen Überlegungen und einigen Problemen (die auch in dem Abschnitt *Probleme während der Entwicklung* näher beleuchtet werden) habe ich mich dazu entschlossen, ein sogenanntes "*spinner*"-Element zu verwenden. Ein solcher Spinner besteht immer aus drei wesentlichen Elementen:<br/><br/>
+1. Einer Definition, wie das aktuell ausgewählte Element angezeigt wird und wie über dessen Interaktion die Liste geöffnet wird,
+2. einer Definition wie ein solches Element der Liste aussieht, damit die Liste erstellt werden kann,
+3. sowie aus einem "*ArrayAdapter*", welcher entsprechende Elemente aus dem Code als *Item*-Quelle hinterlegt, damit die Liste befüllt werden kann.
+<br/><br/>
+Folgend nun Bilder zu allen drei Elementen, um den Spinner funktionstüchtig zu implementieren:
+<br/><br/>
+
+> [!Important]
+> Die definition des Spinners selbst in XML:<br/><br/>
+> <img src="https://github.com/PapeMarc/app_entwicklung_BFAX422A/assets/147148804/7f2d751f-a35c-4416-a2aa-50c2ec044825">
 
 <br/><br/>
+
+> [!Important]
+> Die definition eines Elements der Liste (*List-Item*):<br/><br/>
+> <img src="https://github.com/PapeMarc/app_entwicklung_BFAX422A/assets/147148804/e32e13d6-71f2-45c4-bc56-05cb74774853">
+
+<br/><br/>
+
+> [!Important]
+> Die definition des "*ArrayAdapter*"'s in der Applikationslogik:<br/><br/>
+> <img src="https://github.com/PapeMarc/app_entwicklung_BFAX422A/assets/147148804/ccd4dd18-ae43-4986-a354-a0875cb9aafb"><br/><br/>
+> Wie man in diesem Bild sehen kann, werden hier alle Elemente zusammengeführt. Hier wird für ein Element "*Spinner*" in der Logik der App ein neuer Adapter erzeugt und hinterlegt, der folgende 3 Parameter erhält:
+> 1. den Kontext der aktuellen Aktivität,
+> 2. das Layout für ein einzelnes Element der Liste, welches ich zuvor definiert habe und
+> 3. eine generische Liste vom Typ Chat, welche die Datenmenge und somit die direkt referenzierte Elementliste für den Spinner darstellt.
+
+<br/><br/>
+
 
 Es wurde ein Hintergrundbild hinzugefügt, es wurden neue Schaltflächen eingebaut und diese dann mit Icons(Symbolen) versehen,
 es wurde eine Dropdownliste implementiert zwecks der Darstellung der verschiedenen Chats und es wurde eine 
