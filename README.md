@@ -101,7 +101,7 @@ Um der "*TextView*" diese Funktionalität zu verleihen, muss in der Programmlogi
 <img src="https://github.com/PapeMarc/app_entwicklung_BFAX422A/assets/147148804/cfbcc6b2-97a5-4982-b49c-0d63ecb296b7" align="center">
 <br/><br/>
 Das Ergebnis präsentiert sich wie folgt neben dem Text:<br/><br/>
-<img src="https://github.com/PapeMarc/app_entwicklung_BFAX422A/assets/147148804/5bcef4ed-a0e5-45b1-8252-d2e57e9fef20">
+<img src="https://github.com/PapeMarc/app_entwicklung_BFAX422A/assets/147148804/e09b6b75-28d8-4116-8d98-d4fc5068fc55">
 <br/><br/>
 Wie man sehen kann, wird automatisch eine Fläche zur Bewegung des Textes rechts von ihm hinzugefügt, welche sich automatisch bei Interaktion mit diesem öffnet.
 <br/><br/>
