@@ -43,7 +43,7 @@ Nachdem zuvor 7 Probleme klar identifiziert und definiert werden konnten, sind f
 
 3. Die Implementierung einer Schaltfläche "Delete", um die bisherige Konversation zu löschen und automatische eine neue leere zu erstellen.
 
-4. Das Ergänzen der App um ein Dropdown-Menü, auf welcher verschiedene Chats präsentiert werden. Angezeigt wird die aktuelle Auswahl auf der Präsentationsfläche.
+4. Das Ergänzen der App um eine Dropdown-Liste, auf welcher verschiedene Chats präsentiert werden. Angezeigt wird die aktuelle Auswahl auf der Präsentationsfläche.
    - Die verschiedenen Konversationen sollen klar mithilfe des Datums sowie der Uhrzeit identifiziert werden können. 
 <img align="right" src="https://github.com/PapeMarc/app_entwicklung_BFAX422A/assets/147148804/69ddb012-eda8-4f0f-8ecd-1e9e616cd6f6" padding="5">
 
