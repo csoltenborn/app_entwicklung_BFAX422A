@@ -296,7 +296,7 @@ Das Transferobjekt startet, wie in der entsprechenden Tabelle der Dokumentation 
 Betrachten wir nun exemplarisch die öffentliche Methode '''getAllChats()'''. Diese Methode bekommt ein Objekt *listener* übergeben, welches die eine Instanz eines Typs sein muss, das die Schnittstelle *OnChatsLoadedListener* implementiert. 
 <br/>
 
-> [!INFO]
+> [!NOTE]
 > Diese Schnittstelle (engl. "*Interface*") implementiert zwei wesentliche Funktionen: *onChatsLoaded()* sowie *onError()*.  Beide Funktionen müssen bei implementierung des Interfaces mit Logik hinterlegt werden.
 
 <br/>
@@ -310,6 +310,9 @@ flowchart LR
    Datenbank -- antwortet --> backgroundExecutorService
    backgroundExecutorService -- ruft Listener auf --> ChatDTO
 ```
+
+Dadurch wird das Ergebnis des Nebenprozesses dem Hauptprozess mitgeteilt. Da wir allerdings nicht wissen, ob diese Antwort eine valide Antwort ist oder einem Fehler entspricht, müssen wir uns direkt in diesem Nebenprozess um die Fehlerbehandlung kümmern, um dann je nach Fehler die entsprechende Methode im Listener aufzurufen. Damit koppeln wir den Nebenprozess direkt an den Hauptprozess, ohne auf eine Fehlerbehandlung zu verzeichten.
+Um den Fehler also in dem Nebenprozess abzufangen, verwenden wir wie in anderen Programmen auch, *Try-Catch*.
 
 ## Probleme während der Entwicklung
 
