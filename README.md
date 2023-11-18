@@ -278,7 +278,6 @@ Die Klasse implementiert folgende öffentlichen Methoden zum Zugriff auf die Dat
 
 > [!WARNING]
 > Die Methoden des DTO's verwenden einen ***backgroundExecuterService***, also einen Thread neben dem Hauptthread, welcher im Hintergrund die Datenbankoperationen ausführt, um nicht die Funktionalität der grafischen Benutzeroberfläche zu unterbrechen, bzw. diese anzuhalten, sollte ein Datenbankvorgang länger dauern.
-
 <br/><br/>
 
 ### Implementierung der Fehlerbehandlung
@@ -320,9 +319,9 @@ Haben wir den Fehler abgefangen, so müssen wir uns darum kümmern, dass der Feh
 <br/>
 Haben wir nun den Fehler vom Nebenprozess in den Hauptprozess umgeleitet, so müssen wir ihn verständlicher Weise auch im Hauptprozess abfangen. Dazu identifizieren wir zuerst die Stelle, an der das Transferobjekt angewiesen wird, eine Datenbankoperation auszuführen, da an dieser Stelle ja ein Fehler auftreten kann. In meinem Fall wäre das innerhalb der Methode *OnViewCreated()* im *MainFragment*. Es wird also immer wenn die grafische Benutzeroberfläche neu erstellt wird (die "*View*"), das Transferobjekt gebeten, alle gespeicherten Chats aus der Datenbank über die Methode "*getAllChats()*" abzurufen. 
 Der Aufruf befindet sich in meinem Programmcode in Zeile 175 im *MainFragment*:
-<br/>
+<br/><br/>
 <img src="https://github.com/PapeMarc/app_entwicklung_BFAX422A/assets/147148804/288e8f68-41a2-4b3a-8b7d-3ef666afbac1">
-<br/>
+<br/><br/>
 Damit haben wir die potentielle Fehlerquelle in Zeile 175 im *MainFragment* klar festlegen können.
 Um den Fehler nun richtig abzufangen, kapseln wir unseren Aufruf in einem *Try-Catch* Block, und programmieren, damit die Fehlernachricht auch in der Fehlerbox erscheint, den *catch*-Block wie folgt aus:
 <br/><br/>
