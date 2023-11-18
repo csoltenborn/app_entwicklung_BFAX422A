@@ -241,11 +241,11 @@ Da es wie in den Lösungsansätzen zur Problemlösung des Ist-Zustandes definier
 Um die in dem "*MainFragment*" gespeicherte Liste von Chat-Instanzen persistieren zu können, ist es notwendig eine Entität Chat anzulegen. Diese Entität **Chat** repräsentiert dann eine relationale Datenbanktabelle aus der SQLite-Datenbank von Android. Um nun auf diese Tabelle zugreifen zu können, also Datensätze einfügen und auslesen zu können, benötigt man ein Datenzugriffsobjekt (engl.="*Data Access Object*, kurz "*DAO*"), über welches dann die entsprechenden SQL-Befehle auf der Datenbank ausgeführt werden können. Da dessen Rückgabe aber nicht direkt dem Format entspricht, mit dem ich in der Applikation arbeiten möchte, habe ich mich dazu entschlossen auch noch ein Transferobjekt (engl.="*Data Transfer Object*", kurz "*DTO*") zu konstruieren, welches dann die Daten über das Datenzugriffsobjekt aus der Datenbank abfragt und dessen Rückgabe in direkt verwendbare Datenstrukturen umformt. Allerdigns geschieht dies nicht direkt über das Datenzugriffsobjekt, sondern über eine zusätzliche Klasse Datenbank, welche das Datenzugriffsobjekt hält. Es lässt sich also folgender Ablauf festhalten:
 
 ```mermaid
-flowchart RL;
-    DTO <--> Database
-    Database <--> DAO
-    DAO <--> SQLite
-    SQLite <--> Chat
+flowchart LR
+    SQLite -. contains .- Chat
+    DAO -- SELECT * FROM Chat --> SQLite
+    Database -- getAllChats --> DAO
+    DTO -- getAllChats --> Database
 ```
 
 
