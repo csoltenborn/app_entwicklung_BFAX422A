@@ -35,7 +35,7 @@ Folgende Probleme mit der vorgegebenen App konnten ermittelt werden:
 7. Die App ist begrenzt ästhetisch.
 
 ### Soll-Zustand
-Nachdem zuvor 7 Probleme klar identifiziert und definiert werden konnten, sind folgende Lösungsansätze für die Punkte 1-7 als meine Erweiterung der App vorgesehen:
+Nachdem zuvor 7 Probleme klar identifiziert und definiert werden konnten, sind folgende Lösungsansätze für die Punkte 1-7 im Rahmen meiner Erweiterung der App vorgesehen:
 
 1. Die Implementierung einer "Pause/Stop"-Schaltfläche, um das Vorlesen der Antwort abzubrechen.
 
