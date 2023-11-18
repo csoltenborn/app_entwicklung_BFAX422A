@@ -350,5 +350,15 @@ Auch wenn der Ablaufplan, welcher im ersten Abschnitt dargestellt wurde bereits 
 
 Um jedes Problem im Rahmen meiner Entwicklung der Erweiterung der APP zu beleuchten, ist der Rahmen dieser Dokumentation nicht ausreichend. Daher begrenze ich folgende Dokumentation meiner Probleme auf die essentiellsten.
 
+### Das Dilemma mit der Dropdownliste
+
+Als ich recht am Anfang meiner Entwicklung stand, beschloss ich kurz nach der Implementierung der "Delete"-Schaltfläche eine kurze Recherche zum Tehma Dropdown in Android anzustellen. Als ich dann merkte, dass ich den Umfang von Dropdownlisten für Android Applikationen deutlich unterschätzt hatte, zog ich das Thema vor. Es dauerte nicht lange und ich beschloss recht schnell eine Liste mithilfe eines *TextInputLayout*'s umzusetzen, in welcher sich eine *AutoCompleteTextView* befindet. Ich hatte den großteil dieser Art der dropdownliste bereits ausprogrammiert, wo mir auffiel, dass ich einen bestimmten Style benötige, um diese Art der Implementation umsetzen zu können. Daher begann ich, diesen bestimmten Stiel zu importieren und zu verwenden. Nach einigen Stunden Arbeit, in welcher ich keinen produktiven Fortschritt erzielte, verwarf ich das Konzept (zum Glück). Ich stieg um auf die Implementierung eines Spinners, was sich dann in absehbarer Zeit deutlich einfacher implementieren ließ.
+
+> [!NOTE]
+> #### Take Home Message
+> Hat man in einem bestimmten Bereich der Programmierung nicht viel Erfahrung und etwas funktioniert nicht nach dem n-ten Versuch, siehe dich nach einer Alternative um, bevor weitere wertvolle Zeit verloren geht.
+
+###
+###
 
 ## Fazit des Projekts
