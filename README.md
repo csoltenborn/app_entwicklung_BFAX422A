@@ -49,14 +49,15 @@ Nachdem zuvor 7 Probleme klar identifiziert und definiert werden konnten, sind f
 
 5. Das Anbinden der Room-Datenbank von Android zwecks der Serialisierung und Persistierung der Konversationen(Chats) im Rahmen der App.
 
-6. Die Implementierung von Try Catch zum Abfangen von Fehlern, sowie das Hinzufügen einer neuen kleinen Präsentationsfläche unter der bisherigen, zur Visualisierung der bisher aufgetretenen Fehler.
+6. Die Implementierung einer grundlegenden Fehlerbehandlung (Try Catch) zwecks des Abfangens von Programmfehlern, sowie das Hinzufügen einer neuen, kleineren Präsentationsfläche unter der bisherigen, mit dem Ziel abgefangene Fehler visualisieren zu können.
 
 7. Um die App ästhetischer zu gestalten, soll ein Hintergrundbild hinter die Präsentationsfläche gelegt, entsprechende Icons im Rahmen der geplanten und bestehenden Schaltflächen eingebaut, Abstände und Mindestgrößen zur Darstellung im Hochformat (Vertikal) implementiert, sowie die Schriftfarbe der geplanten Fehlerbox auf Rot festgelegt werden.
 
 Im Bild rechts sind nun die Stellen rot hervorgehoben, an denen die neuen GUI-Elemente platziert werden sollen. 
-Während ganz oben das neue Dropdown Menü implementiert wird, soll direkt darunter die Präsentationsfläche die verschiedenen Nachrichten darstellen. 
-Unter dieser wird dann die neue Fehlerbox eingebunden, welche auftretende Programmfehler anzeigt. 
+Während ganz oben die neue Dropdown Liste implementiert wird, soll direkt darunter die bereits vorhandene Präsentationsfläche angesiedelt werden. 
+Unter dieser wird dann die neue Fehlerbox eingebunden, welche auftretende Programmfehler anzeigen kann. 
 Am unteren Bildschirmrand sind dann die vier Schaltflächen: "Delete","Add","Pause" und "Ask".
+Im Idealfall soll der Abstand zum Bildschirmrand für alle Elemente identisch sein.
 
 
 ## Umsetzung
