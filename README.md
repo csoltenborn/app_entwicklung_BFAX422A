@@ -175,19 +175,19 @@ Zu guter Letzt wurde der grafischen Benutzeroberfläche meiner Android-Applikati
 3. sowie aus einem "*ArrayAdapter*", welcher entsprechende Elemente aus dem Code als *Item*-Quelle hinterlegt, damit die Liste befüllt werden kann.
 <br/><br/>
 Folgend nun Bilder zu allen drei Elementen, um den Spinner funktionstüchtig zu implementieren:
-<br/><br/>
+<br/>
 
 > [!Important]
 > Die definition des Spinners selbst in XML:<br/><br/>
 > <img src="https://github.com/PapeMarc/app_entwicklung_BFAX422A/assets/147148804/7f2d751f-a35c-4416-a2aa-50c2ec044825">
 
-<br/><br/>
+<br/>
 
 > [!Important]
 > Die definition eines Elements der Liste (*List-Item*):<br/><br/>
 > <img src="https://github.com/PapeMarc/app_entwicklung_BFAX422A/assets/147148804/e32e13d6-71f2-45c4-bc56-05cb74774853">
 
-<br/><br/>
+<br/>
 
 > [!Important]
 > Die definition des "*ArrayAdapter*"'s in der Applikationslogik:<br/><br/>
@@ -197,8 +197,15 @@ Folgend nun Bilder zu allen drei Elementen, um den Spinner funktionstüchtig zu 
 > 2. das Layout für ein einzelnes Element der Liste, welches ich zuvor definiert habe und
 > 3. eine generische Liste vom Typ Chat, welche die Datenmenge und somit die direkt Referenz auf die Elemente in der Logik für den Spinner darstellt.
 
-<br/><br/>
+<br/>
 
+Nachdem nun also der Spinner richtig eingebunden der grafischen Oberfläche hinzugefügt wurde, so wurden folgende Abhängigkeiten zur positionierung festgelegt:
+1. Der Spinner positioniert sich horizontal mittig und expandiert bis zu einem seitlichen Abstand von 32dp zum Bildschirmrand.
+2. Der Spinner positioniert sich vertikal relational zur Bildschirmhöhe an den oberen 3% dieser.
+
+Mit dem Spinner ergibt sich also folgendes abschließendes Bild der Applikation:<br/><br/>
+<img src="https://github.com/PapeMarc/app_entwicklung_BFAX422A/assets/147148804/92c20247-9fa3-42ae-bb07-cc0a332cdefc" >
+<br/><br/>
 
 Es wurde ein Hintergrundbild hinzugefügt, es wurden neue Schaltflächen eingebaut und diese dann mit Icons(Symbolen) versehen,
 es wurde eine Dropdownliste implementiert zwecks der Darstellung der verschiedenen Chats und es wurde eine 
