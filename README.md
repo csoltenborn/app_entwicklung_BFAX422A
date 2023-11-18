@@ -94,7 +94,12 @@ Folgend nun die Änderungen und Ergänzungen, die stattgefunden haben:
 
 #### 1. Überarbeitung der gegebenen Präsentationsfläche (*TextView*)
 
+Wie bereits in der Problemanalyse festgehalten wurde, ist es dem Benutzer nicht möglich, ältere Nachrichten nachzuschlagen. Um ihm das jetzt zu ermöglichen, ist es notwendig der bereits vorhandenen Präsentationsfläche, welche über XML mithilfe einer "*TextView*" eingebunden wurde, die Fähigkeit hinzuzufügen, den Text der nicht auf die Fläche passt, trotzdem verfügbar zu machen. Das soll nun über die sogenannte "*scrollability*" realisiert werden. Diese Eigenschaft ermöglicht es, über eine kleine Leiste am Rand der Fläche, den Text in den Grenzen dieser Fläche hinauf und herab zu schieben. Dadurch kann Text dargestellt werden, der zuvor nicht darstellbar war.
 
+Um der "*TextView*" diese Funktionalität zu verleihen, muss in der Programmlogik auf dem Objekt der "*TextView*" die sogenannte Eigenschaft "*MovementMethod*" mit einer Instanz vom Typ ScrollingMovementMethod befüllt werden. Das sieht im Code dann etwa so aus:
+<br/><br/>
+<img src="https://github.com/PapeMarc/app_entwicklung_BFAX422A/assets/147148804/cfbcc6b2-97a5-4982-b49c-0d63ecb296b7" align="center">
+<br/><br/>
 
 #### 2. Ein neues Hintergrundbild
 
