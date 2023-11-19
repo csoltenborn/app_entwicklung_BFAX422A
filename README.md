@@ -12,7 +12,7 @@ Die vorgegebene App ermöglicht es bereits, über die Spracheingabe von Android 
 diese dann umzuwandeln, korrekt der API von ChatGPT (OpenAI) zu übermitteln, sowie dessen Antwort entgegenzunehmen, darzustellen und vorzulesen.
 Die Spracheingabe und die anschließende Kommunikation wird mithilfe der Schaltfläche "Fragen"/"Ask" initiiert.
 Weiterhin wurden bereits App-Einstellungen implementiert (oben rechts), über dessen Aufruf der Benutzer seinen API-Schlüssel hinterlegen kann. 
-Dies muss er auch tun, da die App sonst keine Verbindung mit der Schnittstelle von GPT herstellen kann.
+Dies ist auch zwingend notwendig, da die App sonst keine Verbindung mit der Schnittstelle von GPT herstellen kann.
 
 ### Identifizierte Probleme des Ist-Zustands
 Folgende Probleme mit der vorgegebenen App konnten ermittelt werden:
@@ -25,7 +25,7 @@ Folgende Probleme mit der vorgegebenen App konnten ermittelt werden:
 3. Es gibt keine Möglichkeit zum löschen seiner bisherigen Nachrichten um den Kontext der Konversation zu ändern.
    - Der Benutzer kann immer nur eine Konversation mit ChatGPT führen.
 
-4. Der Benutzer kann keine neuen Chats erstellen oder solche Abrufen.
+4. Der Benutzer kann keine neuen Chats erstellen oder solche abrufen.
 
 5. Der Nachrichtenverlauf der Konversation wird nicht persitiert / die geführte Unterhaltung wird nicht gespeichert und kann daher auch nicht zu einem
    späteren Zeitpunkt eingesehen werden. Startet der Benutzer die App also neu, verliert er alle seine Nachrichten.
@@ -118,7 +118,7 @@ Dabei ist zu beachten, dass das Bild immer einen Mindestabstand (Padding) von 50
 <img src="https://github.com/PapeMarc/app_entwicklung_BFAX422A/assets/147148804/190c41c1-3842-496d-9627-ff64449e58ae" align="right">
 Neben der Positionierung des Bildes wurden auch Eigenschaften wie der *android:scaleType* oder auch *android:alpha* festgelegt.
 Dabei repräsentiert die Eigenschaft *android:alpha* das Transparenzverhalten des Hintergrundbildes. Es beschreibt, wie die Farbwerte
-des grafischen Elementes mit dem der eigentlichen Hintergrundfarbe multipliziert werden. Wird dieser wert, wie in meinem Fall, kleiner als 1
+des grafischen Elementes mit dem der eigentlichen Hintergrundfarbe multipliziert werden. Wird dieser Wert, wie in meinem Fall, kleiner als 1
 gewählt, so graut das Bild aus. Dadurch erreiche ich, dass sich das Bild dezent in den Hintergrund einfügt.<br/><br/>
 
 > [!NOTE]
@@ -145,19 +145,19 @@ Schaltflächen einfach zugänglich zu machen:<br/>
 > Die Icons entstammen alle der Website "https://iconduck.com/licenses/cc0" und wurden ausdrücklich mit der *Creative Commons Zero*-Freigabe markiert.
 
 <br/>
-Nachdem ich die ausgewählten Symbole auf meinen Schaltflächen hinterlegt und diese dann positioniert hatte, entschloss ich, dass dessen markierung noch nicht ausreichen ist, um sie auch als solche zu erkennen.
+Nachdem ich die ausgewählten Symbole auf meinen Schaltflächen hinterlegt und diese dann positioniert hatte, entschloss ich, dass dessen Markierung noch nicht ausreichen ist, um sie auch als solche zu erkennen.
 Daher beschloss ich, die Schaltflächen mit einer grauen Kreisfläche zu hinterlegen, was sie zusätzlich vom restlichen Layout der Applikation abhebt.
 Um dies zu erreichen, war es notwendig, die Eigenschaft "*android:background*" mit einer neuen grauen Kreisfläche zu hinterlegen. Diese graue Kreisfläche habe ich dann in dem Ordner "*drawable*" unter "*res*" der App
 als .xml Datei hinzugefügt und ausprogrammiert.<br/><br/>
 
 > [!NOTE]
-> Es gibt mehrere Möglichkeiten um in Android mit XML zu erreichen, dass XML dass ein grauer Kreis darstellt wird. Ich habe eine "*<shape>*" verwendet, dessen HEX Farbwert ich auf "#d1d1d1" festgelegt und dessen Radius ich auf 40dp gesetzt habe.<br/><br/>
+> Es gibt mehrere Möglichkeiten um in Android mit XML zu erreichen, dass ein grauer Kreis darstellt wird. Ich habe eine "*<shape>*" verwendet, dessen HEX Farbwert ich auf "#d1d1d1" festgelegt und dessen Radius ich auf 40dp gesetzt habe.<br/><br/>
 > <img src="https://github.com/PapeMarc/app_entwicklung_BFAX422A/assets/147148804/2903f40a-4818-4091-a83a-791f42a04863">
 
 Nachdem ich nun also die entsprechenden Symbole und einen grauen runden Hintergrund für meine Schaltflächen definiert hatte, fing ich an, die bestehenden Elemente entsprechend abzuändern.
 Dabei habe ich die vier Elemente mit folgenden Abhängigkeiten bezüglich der Positionierung definiert:<br/>
 1. Jedes Element hält zur oberen Präsentationsfläche denselben Abstand, wie zum unteren Bildschirmrand (Dadurch sind alle Elemente vertikal zentriert.
-2. Alle Elemente verweisen seitlich auf ihr nächstliegendes Element. Liegt ein Element außen, so verweist es horizontal auf den Bildschirrand.
+2. Alle Elemente verweisen seitlich auf ihr nächstliegendes Element. Liegt ein Element außen, so verweist es horizontal auf den Bildschirmrand.
 3. Außen liegende Elemente halten horizontal einen Abstand von 32dp ein.
 4. Innen liegende Elemente halten horizontal zu anderen innen liegenden Elementen einen Abstand von 32dp ein und zu außen liegenden Elementen einen Abstand von 0dp.<br/>
 Dadurch ergeben sich folgende Abhängigkeiten:<br/><br/>
@@ -209,11 +209,11 @@ Folgend nun Bilder zu allen drei Elementen, um den Spinner funktionstüchtig zu 
 > Wie man in diesem Bild sehen kann, werden hier alle Elemente zusammengeführt. Hier wird für ein Element "*Spinner*" in der Logik der App ein neuer Adapter erzeugt und hinterlegt, der folgende 3 Parameter erhält:
 > 1. den Kontext der aktuellen Aktivität,
 > 2. das Layout für ein einzelnes Element der Liste, welches ich zuvor definiert habe und
-> 3. eine generische Liste vom Typ Chat, welche die Datenmenge und somit die direkt Referenz auf die Elemente in der Logik für den Spinner darstellt.
+> 3. eine generische Liste vom Typ Chat, welche die Datenmenge und somit die direkte Referenz auf die Elemente in der Logik für den Spinner darstellt.
 
 <br/>
 
-Nachdem nun also der Spinner richtig eingebunden der grafischen Oberfläche hinzugefügt wurde, so wurden folgende Abhängigkeiten zur positionierung festgelegt:
+Nachdem der Spinner richtig in die grafische Oberfläche eingebunden ist, wurden folgende Abhängigkeiten zur Positionierung festgelegt:
 1. Der Spinner positioniert sich horizontal mittig und expandiert bis zu einem seitlichen Abstand von 32dp zum Bildschirmrand.
 2. Der Spinner positioniert sich vertikal relational zur Bildschirmhöhe an den oberen 3% dieser.
 
@@ -347,11 +347,11 @@ Auch wenn der Ablaufplan, welcher im ersten Abschnitt dargestellt wurde bereits 
 11. Schaltfläche "Pause",
 12. Testen aller Neuerungen und finale Säuberung.
 
-Um jedes Problem im Rahmen meiner Entwicklung der Erweiterung der APP zu beleuchten, ist der Rahmen dieser Dokumentation nicht ausreichend. Daher begrenze ich folgende Dokumentation meiner Probleme auf die essentiellsten.
+Um jedes Problem im Rahmen meiner Entwicklung der Erweiterung der APP zu beleuchten, ist der Rahmen dieser Dokumentation nicht ausreichend. Daher begrenze ich folgende Dokumentation auf die essentiellsten Probleme.
 
 ### Das Dilemma mit der Dropdownliste
 
-Als ich recht am Anfang meiner Entwicklung stand, beschloss ich kurz nach der Implementierung der "Delete"-Schaltfläche eine kurze Recherche zum Tehma Dropdown in Android anzustellen. Als ich dann merkte, dass ich den Umfang von Dropdownlisten für Android Applikationen deutlich unterschätzt hatte, zog ich das Thema vor. Es dauerte nicht lange und ich beschloss recht schnell eine Liste mithilfe eines *TextInputLayout*'s umzusetzen, in welcher sich eine *AutoCompleteTextView* befindet. Ich hatte den großteil dieser Art der dropdownliste bereits ausprogrammiert, wo mir auffiel, dass ich einen bestimmten Style benötige, um diese Art der Implementation umsetzen zu können. Daher begann ich, diesen bestimmten Stiel zu importieren und zu verwenden. Nach einigen Stunden Arbeit, in welcher ich keinen produktiven Fortschritt erzielte, verwarf ich das Konzept (zum Glück). Ich stieg um auf die Implementierung eines Spinners, was sich dann in absehbarer Zeit deutlich einfacher implementieren ließ.
+Als ich recht am Anfang meiner Entwicklung stand, beschloss ich kurz nach der Implementierung der "Delete"-Schaltfläche eine kurze Recherche zum Tehma Dropdown in Android anzustellen. Als ich dann merkte, dass ich den Umfang von Dropdownlisten für Android Applikationen deutlich unterschätzt hatte, zog ich das Thema vor. Es dauerte nicht lange und ich beschloss recht schnell eine Liste mithilfe eines *TextInputLayout*'s umzusetzen, in welcher sich eine *AutoCompleteTextView* befindet. Ich hatte den Großteil dieser Art der Dropdownliste bereits ausprogrammiert, bis mir auffiel, dass ich einen bestimmten Stiel benötige, um diese Art der Implementation umsetzen zu können. Daher begann ich, diesen bestimmten Stiel zu importieren und zu verwenden. Nach einigen Stunden Arbeit, in welcher ich keinen produktiven Fortschritt erzielte, verwarf ich das Konzept (zum Glück). Ich stieg um auf die Implementierung eines Spinners, was sich dann in absehbarer Zeit deutlich einfacher implementieren ließ.
 
 > [!NOTE]
 > #### *Take Home Message*
@@ -359,7 +359,7 @@ Als ich recht am Anfang meiner Entwicklung stand, beschloss ich kurz nach der Im
 
 ### Das Problem mit der Anbindung der Datenbank
 
-Kaum hatte ich die offizielle Dokumentation der *Room*-Datenbankschnittstelle von Android gelesen, machte ich mich auf die Suche nach einem erklärvideo, um einen ersten Eindruck von dem umfang zu bekommen. Nachdem ich gut vorbereitet entschlossen hatte, die Datenbank zu entwickeln, scheiterte ich bereits an dem Hinzufügen der dafür notwendigen Abhängigkeiten in der *.gradle*-Datei. Als ich dann endlich eine Abgespeckte Version von *Room* importiert bekommen habe, machte ich mich an die Ausprogrammierung meiner eigenen Datenbank inklusive Schnittstelle. Ich war erst recht glücklich, als ich das erste mal die gesamte Datenbank im Kontext meiner Applikation ausprogrammiert hatte und beschloss, diese jetzt zu testen. Dann war ich gnaz schnell nicht mehr glücklich, denn es stellte sich heraus, Android erlaubt nur über Umwege das Ausführen von Datenbankoperationen im selben Prozess, in dem auch die grafische Benutzeroberfläche ausgeführt wird. Anschließend beschloss ich dann, nach kurzer Recherche wie andere den Fehler versuchten zu lösen, doch einen Multi-Prozess Ansatz zu verfolgen. 
+Kaum hatte ich die offizielle Dokumentation der *Room*-Datenbankschnittstelle von Android gelesen, machte ich mich auf die Suche nach einem Erklärvideo, um einen ersten Eindruck des Umfanges zu bekommen. Nachdem ich gut vorbereitet entschlossen hatte, die Datenbank zu entwickeln, scheiterte ich bereits an dem Hinzufügen der dafür notwendigen Abhängigkeiten in der *.gradle*-Datei. Als ich dann endlich eine abgespeckte Version von *Room* importiert bekommen habe, machte ich mich an die Ausprogrammierung meiner eigenen Datenbank inklusive Schnittstelle. Ich war erst recht glücklich, als ich das erste mal die gesamte Datenbank im Kontext meiner Applikation ausprogrammiert hatte und beschloss, diese jetzt zu testen. Dann war ich gnaz schnell nicht mehr glücklich, denn es stellte sich heraus, Android erlaubt nur über Umwege das Ausführen von Datenbankoperationen im selben Prozess, in dem auch die grafische Benutzeroberfläche ausgeführt wird. Daher beschloss ich dann, nach kurzer Recherche, wie andere Entwickler versuchten den Fehler zu lösen, doch einen Multi-Prozess Ansatz zu verfolgen. 
 
 > [!NOTE]
 > #### *Take Home Message*
@@ -368,7 +368,7 @@ Kaum hatte ich die offizielle Dokumentation der *Room*-Datenbankschnittstelle vo
 
 ### Ich drehe mein Gerät und, ... Datenbank kaputt!
 
-Gegen Ende meiner Entwicklung entschloss ich aufgrund neuster Erfahrungen mit der Implementierung der Datenbank eine Testphase zu machen, um letzte potentielle Fehler auszuschließen. Meine Applikation samt der Erweiterungen funktionierte fehlerfrei, und dann entschloss ich mich, mein Gerät zu drehen. Doch dann passierte etwas komisches: Immer wenn ich mein Gerät drehe, duplizieren sich alle Chat-Einträge in meinem Spinner. Ich war misstrauisch und warf einen Blick mithilfe eines Tools, auf das mich Herr Dr. Soltenborn aufmerksam machte, in die Datgenbank. Es stellte sich heraus, dass der Speichervorgang nicht nur ausgeführt wird, wenn die App sich schließt, sondern auch wenn sich die Konfiguration der Applikation ändert (also wenn sich das gerät dreht). Diese Konfigurationsänderung hatte nämlich, wie ich später erfuhr, zurfolge, dass meine aktuelle *Activity* immer neu gestartet wird. Das heißt, dass auch meine grafische Oberfläche jedes mal neu erstellt und geladen wird. Schließt man anschließend die App, so werden alle Chats gespeichert, die sich in dem Spinner befinden. Das heißt auch jene, die fälschlicher Weise doppelt in dem Spinner eingetragen sind, und das fand meine Datenbank gar nicht toll.
+Gegen Ende meiner Entwicklung entschloss ich aufgrund neuster Erfahrungen mit der Implementierung der Datenbank eine Testphase zu machen, um letzte potentielle Fehler auszuschließen. Meine Applikation samt der Erweiterungen funktionierte fehlerfrei. Aber dann entschloss ich mich, mein Gerät zu drehen. Doch dann passierte etwas komisches: Immer wenn ich mein Gerät drehe, duplizieren sich alle Chat-Einträge in meinem Spinner. Ich war misstrauisch und warf einen Blick mithilfe eines Tools, auf das mich Herr Dr. Soltenborn aufmerksam machte, in die Datgenbank. Es stellte sich heraus, dass der Speichervorgang nicht nur ausgeführt wird, wenn die App sich schließt, sondern auch wenn sich die Konfiguration der Applikation ändert (also wenn sich das Gerät dreht). Diese Konfigurationsänderung hatte nämlich, wie ich später erfuhr, zurfolge, dass meine aktuelle *Activity* immer neu gestartet wird. Das heißt, dass auch meine grafische Oberfläche jedes mal neu erstellt und geladen wird. Schließt man anschließend die App, so werden alle Chats gespeichert, die sich in dem Spinner befinden. Das heißt auch jene, die fälschlicher Weise doppelt in dem Spinner eingetragen sind. Das fand meine Datenbank gar nicht toll.
 
 > [!NOTE]
 > #### *Take Home Message*
