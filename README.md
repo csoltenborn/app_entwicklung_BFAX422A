@@ -39,6 +39,9 @@ Zeitlich gesehen habe ich grob so lange gebraucht wie erwartet, nur war die Auft
 
 # Einige Screenshots mit verschiedenen System-Nachrichten
 
+## Übersicht Einstellungen
+<img width="325" alt="Screenshot 2023-11-21 at 22 55 27" src="https://github.com/Pandem0n1um/App_Entwicklung/assets/147406701/85fb933f-8ad9-489a-8f60-f0590fbc2963">
+
 ## Einstellung Funny - Bitte antworte möglichst lustig und offensichtlich falsch.
 <img width="338" alt="Screenshot 2023-11-21 at 22 45 28" src="https://github.com/Pandem0n1um/App_Entwicklung/assets/147406701/48183635-06b3-483f-b1e2-ff66d29153d6">
 
