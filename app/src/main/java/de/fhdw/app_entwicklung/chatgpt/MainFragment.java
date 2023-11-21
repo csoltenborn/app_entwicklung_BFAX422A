@@ -85,7 +85,7 @@ public class MainFragment extends Fragment {
         if (chat.getMessages().size() > 1) {
             getTextView().append(CHAT_SEPARATOR);
         }
-        appendColoredText(getTextView(), toString(userMessage), Color.parseColor(userMessage.color));
+        appendColoredText(getTextView(), toString(userMessage), userMessage.color);
 
         MainActivity.backgroundExecutorService.execute(() -> {
             String apiToken = prefs.getApiToken();
@@ -95,7 +95,7 @@ public class MainFragment extends Fragment {
             Message answerMessage = new Message(Author.Assistant, answer, prefs.getGptName(), "#FF0000");
             chat.addMessage(answerMessage);
             getTextView().append(CHAT_SEPARATOR);
-            appendColoredText(getTextView(), toString(answerMessage), Color.parseColor(answerMessage.color));
+            appendColoredText(getTextView(), toString(answerMessage), answerMessage.color);
             textToSpeech.speak(answer);
         });
     }
@@ -125,10 +125,10 @@ public class MainFragment extends Fragment {
         getTextView().setText("");
         List<Message> messages = chat.getMessages();
         if (!messages.isEmpty()) {
-            appendColoredText(getTextView(), toString(messages.get(0)), Color.parseColor(messages.get(0).color));
+            appendColoredText(getTextView(), toString(messages.get(0)), messages.get(0).color);
             for (int i = 1; i < messages.size(); i++) {
                 getTextView().append(CHAT_SEPARATOR);
-                appendColoredText(getTextView(), toString(messages.get(i)), Color.parseColor(messages.get(i).color));
+                appendColoredText(getTextView(), toString(messages.get(i)), messages.get(i).color);
             }
         }
     }
@@ -157,13 +157,14 @@ public class MainFragment extends Fragment {
         return getView().findViewById(R.id.request);
     }
 
-    public static void appendColoredText(TextView tv, String text, int color) {
+    public static void appendColoredText(TextView tv, String text, String color) {
+        int colorInt = Color.parseColor(color);
         int start = tv.getText().length();
         tv.append(text);
         int end = tv.getText().length();
 
         Spannable spannableText = (Spannable) tv.getText();
-        spannableText.setSpan(new ForegroundColorSpan(color), start, end, 0);
+        spannableText.setSpan(new ForegroundColorSpan(colorInt), start, end, 0);
     }
 
 }
