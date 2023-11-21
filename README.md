@@ -13,14 +13,14 @@ Als letztes habe ich noch das App Icon geändert, Hintergrund war dabei allerdin
 ## Anforderungen
 Ich möchte eine spezifische Nachricht durch langes Klicken auf diese auswählen. Das soll zum Öffnen eines Dialogs namens *Optionen* führen. Als Optionen stehen *Teilen* und *Info* zur Verfügung. *Teilen* öffnet den Standarddialog von Android, um Inhalte in einer anderen App zu teilen, *Info* zeigt in einem Dialog den Wochentag, das Datum und die Uhrzeit, zu der die Nachricht gesendet wurde, an.
 
-Wird der Chatverlauf länger als die Anzeigegröße des Bildschirms, sollte für die bessere Nutzererfahrung immer automatisch zur letzten Nachricht gescrollt werden.
+Wird der Chatverlauf länger als die Anzeigegröße des Bildschirms, soll für die bessere Nutzererfahrung immer automatisch zur letzten Nachricht gescrollt werden.
 
 Unten in der App gibt es nun ein Textfeld, in das eine Nachricht eingegeben werden kann. Daneben befindet sich ein Button, um die eingegebene Nachricht abzusenden und ein weiterer Button, mit dem Anfragen weiterhin auch über die Spracheingabe realisiert werden können.
 
 ## Umsetzung
 
 ### UI des Chatverlaufs
-Um eine beliebige Nachrichtenanzahl darstellen zu können und dafür zu sorgen, dass bei vielen Nachrichten auch gescrollt werden kann, habe ich mich dazu entschieden den Chatverlauf mit einer *RecyclerView* darzustellen. Dabei ist jede Nachricht ein Element der *RecyclerView*.
+Um eine beliebige Nachrichtenanzahl darstellen zu können und dafür zu sorgen, dass bei vielen Nachrichten auch gescrollt werden kann, habe ich mich dazu entschieden, den Chatverlauf mit einer *RecyclerView* darzustellen. Dabei ist jede Nachricht ein Element der *RecyclerView*.
 
 In [*fragment_main.xml*](https://github.com/tanjavetter04/app_entwicklung_BFAX422A/blob/app_extension/app/src/main/res/layout/fragment_main.xml) habe ich dafür die *TextView* durch eine *RecyclerView* ersetzt.
 
@@ -35,7 +35,7 @@ Außerdem habe ich das Farbschema basierend auf [Googles Material Design 3](http
 ### RecyclerView
 Um die *RecyclerView* füllen zu können, wird ein [*Adapter*](https://github.com/tanjavetter04/app_entwicklung_BFAX422A/blob/app_extension/app/src/main/java/de/fhdw/app_entwicklung/chatgpt/model/ChatAdapter.java) benötigt. Diesem muss man eine Liste der anzuzeigenden Elemente übergeben. In diesem Fall ist dies die Liste der Chatnachrichten. Innerhalb des Adapters gibt es noch einen *ViewHolder*. Da der Adapter (im Hintergrund) über die Liste der Nachrichten iteriert, wird für jede Nachricht ein Objekt der Klasse ViewHolder erstellt. Um die tatsächliche Nachricht in der Benutzeroberfläche sichtbar zu machen, wird diese mithilfe der Funktion *bind* der ViewHolder Klasse als Text der *TextView* gesetzt. Dabei wird noch überprüft, von welchem Autor die Nachricht kommt und der Hintergrund entsprechend gefärbt. Stammt die Nachricht vom *User*, erhält der Hintergrund die Primärfarbe, in den beiden anderen Fällen (*Assistant* oder *System*) die Sekundärfarbe.
 
-Um die Optionen (*Teilen* und *Info*) aufzurufen, wird ein *OnLongClickListener* für jede Nachricht im Konstruktor des *ViewHolders* gesetzt. Wenn eine Nachricht lange gedrückt wird, öffnet sich ein Alert Dialog mit den entsprechenden beiden Optionen als Elemente. Je nachdem welche der beiden Optionen angeklickt wird, wird eine weitere Funktion aufgerufen, zum Teilen *shareMessage* und zum Anzeigen der Info (also Datum und Uhrzeit) *showInfoDialog*.
+Um die Optionen (*Teilen* und *Info*) aufzurufen, wird ein *OnLongClickListener* für jede Nachricht im Konstruktor des *ViewHolders* gesetzt. Wenn eine Nachricht lange gedrückt wird, öffnet sich ein *AlertDialog* mit den entsprechenden beiden Optionen als Elemente. Je nachdem welche der beiden Optionen angeklickt wird, wird eine weitere Funktion aufgerufen, zum Teilen *shareMessage* und zum Anzeigen der Info (also Datum und Uhrzeit) *showInfoDialog*.
 
 In *shareMessage* wird ein *Intent* der Kategorie *ACTION_SEND* mit dem textuellen Inhalt der Nachricht als Extra gestartet, was den standardmäßigen Teilen-Dialog von Android öffnet.
 
