@@ -34,7 +34,13 @@ public class MainFragment extends Fragment {
     private final ActivityResultLauncher<LaunchSpeechRecognition.SpeechRecognitionArgs> getTextFromSpeech = registerForActivityResult(
             new LaunchSpeechRecognition(),
             query -> {
-                Message userMessage = new Message(Author.User, "Was ist ein Baum?");
+                if(chat == null)
+                {
+                    Message systemMessage = new Message(Author.System, prefs.getCurrentSysMessage());
+                    chat = new Chat();
+                    chat.addMessage(systemMessage);
+                }
+                Message userMessage = new Message(Author.User, query);
                 chat.addMessage(userMessage);
                 if (chat.getMessages().size() > 1) {
                     getTextView().append(CHAT_SEPARATOR);
@@ -69,17 +75,11 @@ public class MainFragment extends Fragment {
 
         prefs = new PrefsFacade(requireContext());
         textToSpeech = new TextToSpeechTool(requireContext(), Locale.GERMAN);
-        chat = new Chat();
-        if (savedInstanceState != null) {
+        if (savedInstanceState != null)
+        {
             chat = savedInstanceState.getParcelable(EXTRA_DATA_CHAT);
         }
-        else
-        {
-            Message systemMessage = new Message(Author.System, prefs.getCurrentSysMessage());
-            chat.addMessage(systemMessage);
-        }
-
-        getAskButton().setOnClickListener(v ->
+        else getAskButton().setOnClickListener(v ->
                 getTextFromSpeech.launch(new LaunchSpeechRecognition.SpeechRecognitionArgs(Locale.GERMAN)));
         updateTextView();
     }
@@ -107,12 +107,15 @@ public class MainFragment extends Fragment {
 
     private void updateTextView() {
         getTextView().setText("");
-        List<Message> messages = chat.getMessages();
-        if (!messages.isEmpty()) {
-            if(messages.get(0).author != Author.System) getTextView().append(toString(messages.get(0)));
-            for (int i = 1; i < messages.size(); i++) {
-                getTextView().append(CHAT_SEPARATOR);
-                getTextView().append(toString(messages.get(i)));
+        if(chat != null) {
+            List<Message> messages = chat.getMessages();
+            if (!messages.isEmpty()) {
+                if (messages.get(0).author != Author.System)
+                    getTextView().append(toString(messages.get(0)));
+                for (int i = 1; i < messages.size(); i++) {
+                    getTextView().append(CHAT_SEPARATOR);
+                    getTextView().append(toString(messages.get(i)));
+                }
             }
         }
     }

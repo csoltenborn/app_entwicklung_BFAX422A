@@ -1,8 +1,8 @@
 <resources>
     <string-array name="entry_values">
-        <item>Bitte antworte möglichst lustig und offensichtlich falsch</item>
-        <item>Bitte antworte so knapp und präzise wie möglich, sodass ich die Antwort schnell und einfach verstehen kann.</item>
-        <item>Dummy value</item>
+        <item>Bitte antworte möglichst lustig und offensichtlich falsch.</item>
+        <item>Bitte antworte so knapp und präzise wie möglich, dass ich die Antwort schnell und einfach verstehen kann.</item>
+        <item>Custom Value</item>
     </string-array>
     <string-array name="entries">
         <item>Funny</item>
