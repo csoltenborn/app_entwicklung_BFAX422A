@@ -17,4 +17,15 @@ public class PrefsFacade {
         return PreferenceManager.getDefaultSharedPreferences(context).getString("api_token", "");
     }
 
+    public String getCurrentSysMessage()
+    {
+        boolean settingsExist = PreferenceManager.getDefaultSharedPreferences(context).contains("sys_message_dropdown");
+        if (!settingsExist)
+        {
+            throw new RuntimeException();
+        }
+        return PreferenceManager.getDefaultSharedPreferences(context).getString("sys_message_dropdown", "Bitte antworte auf jede Frage mit 42.");
+
+    }
+
 }
