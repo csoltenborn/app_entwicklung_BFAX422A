@@ -34,7 +34,7 @@ public class MainFragment extends Fragment {
     private final ActivityResultLauncher<LaunchSpeechRecognition.SpeechRecognitionArgs> getTextFromSpeech = registerForActivityResult(
             new LaunchSpeechRecognition(),
             query -> {
-                Message userMessage = new Message(Author.User, query);
+                Message userMessage = new Message(Author.User, "Was ist ein Baum?");
                 chat.addMessage(userMessage);
                 if (chat.getMessages().size() > 1) {
                     getTextView().append(CHAT_SEPARATOR);
@@ -73,6 +73,11 @@ public class MainFragment extends Fragment {
         if (savedInstanceState != null) {
             chat = savedInstanceState.getParcelable(EXTRA_DATA_CHAT);
         }
+        else
+        {
+            Message systemMessage = new Message(Author.System, prefs.getCurrentSysMessage());
+            chat.addMessage(systemMessage);
+        }
 
         getAskButton().setOnClickListener(v ->
                 getTextFromSpeech.launch(new LaunchSpeechRecognition.SpeechRecognitionArgs(Locale.GERMAN)));
@@ -104,7 +109,7 @@ public class MainFragment extends Fragment {
         getTextView().setText("");
         List<Message> messages = chat.getMessages();
         if (!messages.isEmpty()) {
-            getTextView().append(toString(messages.get(0)));
+            if(messages.get(0).author != Author.System) getTextView().append(toString(messages.get(0)));
             for (int i = 1; i < messages.size(); i++) {
                 getTextView().append(CHAT_SEPARATOR);
                 getTextView().append(toString(messages.get(i)));
@@ -125,5 +130,4 @@ public class MainFragment extends Fragment {
         //noinspection ConstantConditions
         return getView().findViewById(R.id.button_ask);
     }
-
 }
