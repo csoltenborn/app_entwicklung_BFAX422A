@@ -11,30 +11,138 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        tools:context=".MainActivity" >
+        tools:context=".MainActivity">
 
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:fillViewport="true"
-            android:scrollbars="vertical"
-            app:layout_constraintBottom_toTopOf="@+id/button_ask"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0" />
-
-        <Button
-            android:id="@+id/button_ask"
-            android:layout_width="wrap_content"
+        <ImageView
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="@string/ask"
+            android:adjustViewBounds="true"
+            android:alpha="0.1"
+            android:backgroundTintMode="multiply"
+            android:scaleType="fitEnd"
+            android:src="@drawable/openai_logomark"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView" />
+            app:layout_constraintTop_toTopOf="parent"
+            android:padding="50dp"></ImageView>
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="475dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="32dp"
+            android:fillViewport="true"
+            android:gravity="bottom"
+            android:scrollbars="vertical"
+            android:textColor="@color/black"
+            android:textSize="20dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/spinner"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <TextView
+            android:id="@+id/errorTextView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="32dp"
+            android:textColor="#d11507"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView"></TextView>
+
+        <ImageButton
+            android:id="@+id/button_new"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_margin="5dp"
+            android:layout_marginEnd="32dp"
+            android:background="@drawable/roundcorner"
+            android:contentDescription="Button New"
+            android:padding="16dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/plus_1024x1024"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintDimensionRatio="H,1:1"
+            app:layout_constraintEnd_toStartOf="@+id/button_stop"
+            app:layout_constraintStart_toEndOf="@+id/button_delete"
+            app:layout_constraintTop_toBottomOf="@+id/errorTextView"
+            app:layout_constraintVertical_bias="0.4"/>
+
+        <ImageButton
+            android:id="@+id/button_delete"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"
+            android:background="@drawable/roundcorner"
+            android:contentDescription="Button Delete"
+            android:padding="20dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/trash_869x1024"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintDimensionRatio="H,1:1"
+            app:layout_constraintEnd_toStartOf="@+id/button_new"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/errorTextView"
+            app:layout_constraintVertical_bias="0.4"/>
+
+        <ImageButton
+            android:id="@+id/button_stop"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="32dp"
+            android:background="@drawable/roundcorner"
+            android:contentDescription="Button Stop"
+            android:padding="20dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/pause_876x1024"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintDimensionRatio="H,1:1"
+            app:layout_constraintEnd_toStartOf="@+id/button_ask"
+            app:layout_constraintStart_toEndOf="@+id/button_new"
+            app:layout_constraintTop_toBottomOf="@+id/errorTextView"
+            app:layout_constraintVertical_bias="0.4"/>
+
+        <ImageButton
+            android:id="@+id/button_ask"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"
+            android:background="@drawable/roundcorner"
+            android:contentDescription="Button Ask"
+            android:padding="17dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/question_1024x1024"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintDimensionRatio="H,1:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/button_stop"
+            app:layout_constraintTop_toBottomOf="@+id/errorTextView"
+            app:layout_constraintVertical_bias="0.4"/>
+
+        <Spinner
+            android:id="@+id/spinner"
+            style="@style/Widget.AppCompat.Spinner.DropDown"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"
+            android:paddingTop="15dp"
+            android:paddingBottom="15dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.03000012"></Spinner>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>
