@@ -37,8 +37,6 @@
             android:exported="false">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
-                <action android:name="android.appwidget.action.VOICE_RESULT"/>
-                <action android:name="android.appwidget.action.ACTION_AUDIO_FINISHED"/>
             </intent-filter>
             <meta-data
                 android:name="android.appwidget.provider"

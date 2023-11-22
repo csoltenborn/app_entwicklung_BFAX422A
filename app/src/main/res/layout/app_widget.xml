@@ -15,7 +15,8 @@
         android:drawableStart="@drawable/openai_logomark_white_small"
         android:padding="10dp"
         android:text="Frag ChatGpt"
-        android:textColor="@color/white" />
+        android:textColor="@color/white"
+        />
 
     <Button
         android:id="@+id/widget_stop_button"

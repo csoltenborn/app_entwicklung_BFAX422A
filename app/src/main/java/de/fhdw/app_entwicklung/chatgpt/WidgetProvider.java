@@ -32,12 +32,6 @@ public class WidgetProvider extends AppWidgetProvider {
     private static TextToSpeechTool tts;
 
     private final ExecutorService backgroundExecutorService = Executors.newFixedThreadPool(2);
-//
-//    @Override
-//    public void onEnabled(Context context) {
-//        super.onEnabled(context);
-//        tts = new TextToSpeechTool(context, Locale.GERMAN);
-//    }
 
     @Override
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
@@ -103,7 +97,6 @@ public class WidgetProvider extends AppWidgetProvider {
                     toggleButtonVisibility(context, true);
                     tts.speak(answer);
                 });
-
             }
         }
 
