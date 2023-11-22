@@ -1,5 +1,5 @@
 # Einleitung
-Meine Erweiterung ermöglicht einer Anfrage mitzugeben, wie ChatGPT auf die Anfrage antworten soll. Diese Nachricht nenne ich im Folgenden, wie in der [Dokumentation der API](https://platform.openai.com/docs/api-reference/chat/create) System-Nachricht. Sie ermöglicht dem Nutzer Antworten zu erhalten, die besser auf seine Situation zugeschnitten sind. Technisch gesehen wird in dem bereits implementierten Chat-Objekt zu Beginn ein jeden Dialogs eine System-Nachricht mitgegeben, die der App-Nutzer beliebig einstellen kann.
+Meine Erweiterung ermöglicht einer Anfrage mitzugeben, wie ChatGPT auf die Anfrage antworten soll. Diese Nachricht nenne ich im Folgenden, wie in der [Dokumentation der API](https://platform.openai.com/docs/api-reference/chat/create), System-Nachricht. Sie ermöglicht dem Nutzer Antworten zu erhalten, die besser auf seine Situation zugeschnitten sind. Technisch gesehen wird in dem bereits implementierten Chat-Objekt zu Beginn ein jeden Dialogs eine System-Nachricht mitgegeben, die der App-Nutzer beliebig einstellen kann.
 
 # Verbesserungen
 - Wenn man nur auf eine schnelle Antwort aus ist, muss man nicht die manchmal doch sehr langen Antworten durchlesen, sondern bekommt direkt eine knappe Antwort.
