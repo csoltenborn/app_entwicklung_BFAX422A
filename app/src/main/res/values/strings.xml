@@ -2,4 +2,7 @@
     <string name="app_name" translatable="false">ChatGpt</string>
     <string name="ask">Ask</string>
     <string name="settings">Settings</string>
+    <string name="sub">Send</string>
+    <string name="textEigabeText">Text input here:</string>
+    <string name="editText">" "</string>
 </resources>

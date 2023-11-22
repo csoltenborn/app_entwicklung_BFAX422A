@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.activity.result.ActivityResultLauncher;
@@ -76,6 +77,29 @@ public class MainFragment extends Fragment {
 
         getAskButton().setOnClickListener(v ->
                 getTextFromSpeech.launch(new LaunchSpeechRecognition.SpeechRecognitionArgs(Locale.GERMAN)));
+
+        getSubmitButton().setOnClickListener(v ->{
+            EditText text = (EditText) getTextText();
+
+            Message userMessage = new Message(Author.User, text.getText().toString());
+            chat.addMessage(userMessage);
+            if (chat.getMessages().size() > 1) {
+                getTextView().append(CHAT_SEPARATOR);
+            }
+            getTextView().append(toString(userMessage));
+
+            MainActivity.backgroundExecutorService.execute(() -> {
+                String apiToken = prefs.getApiToken();
+                ChatGpt chatGpt = new ChatGpt(apiToken);
+                String answer = chatGpt.getChatCompletion(chat);
+
+                Message answerMessage = new Message(Author.Assistant, answer);
+                chat.addMessage(answerMessage);
+                getTextView().append(CHAT_SEPARATOR);
+                getTextView().append(toString(answerMessage));
+            });
+        });
+
         updateTextView();
     }
 
@@ -126,4 +150,11 @@ public class MainFragment extends Fragment {
         return getView().findViewById(R.id.button_ask);
     }
 
+    private Button getSubmitButton() {
+        return getView().findViewById(R.id.button_sub);
+    }
+
+    private EditText getTextText(){
+        return getView().findViewById(R.id.editTextText);
+    }
 }
