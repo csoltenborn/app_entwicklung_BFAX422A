@@ -31,8 +31,8 @@ public class MainFragment extends Fragment {
     private TextToSpeechTool textToSpeech;
     private Chat chat;
 
-    private final ActivityResultLauncher<LaunchSpeechRecognition.SpeechRecognitionArgs> getTextFromSpeech = registerForActivityResult(
-            new LaunchSpeechRecognition(),
+    private final ActivityResultLauncher<LaunchSpeechRecognition.SpeechRecognitionArgs>
+            getTextFromSpeech = registerForActivityResult(new LaunchSpeechRecognition(),
             query -> {
                 if(chat == null)
                 {

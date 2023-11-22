@@ -10,7 +10,7 @@
     </PreferenceCategory>
     <DropDownPreference
         app:allowDividerAbove="true"
-        app:defaultValue="Test"
+        app:defaultValue="Custom"
         app:enabled="true"
         app:entries="@array/entries"
         app:entryValues="@array/entry_values"
@@ -18,7 +18,7 @@
         app:title="System Message"
         app:useSimpleSummaryProvider="true" />
     <EditTextPreference
-        android:defaultValue="Not set yet"
+        android:defaultValue="Bitte antworte auf jede Frage mit 42."
         android:key="custom_sys_message"
         android:selectAllOnFocus="true"
         android:singleLine="true"
