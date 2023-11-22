@@ -1,5 +1,6 @@
 package de.fhdw.app_entwicklung.chatgpt;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -77,6 +78,9 @@ public class MainFragment extends Fragment {
         getAskButton().setOnClickListener(v ->
                 getTextFromSpeech.launch(new LaunchSpeechRecognition.SpeechRecognitionArgs(Locale.GERMAN)));
         updateTextView();
+
+        Intent i = new Intent(this.getContext(), QuizActivity.class);
+        getQuizButton().setOnClickListener(v -> startActivity(i));
     }
 
     @Override
@@ -124,6 +128,10 @@ public class MainFragment extends Fragment {
     private Button getAskButton() {
         //noinspection ConstantConditions
         return getView().findViewById(R.id.button_ask);
+    }
+    private Button getQuizButton()
+    {
+        return getView().findViewById(R.id.toQuiz);
     }
 
 }
