@@ -1,7 +1,8 @@
 # Erweiterung der ChatGPT App
    Name: Finn Ehrlich   
-   Studiengruppe: BFAX422A
-   Dozent: Christian Soltenborn
+   Studiengruppe: BFAX422A 
+   
+   Dozent: Christian Soltenborn   
    Modul: PAE
 
 ## Einleitung
