@@ -1,5 +1,5 @@
 # Einleitung
-Meine Erweiterung ermöglicht einer Anfrage mitzugeben, wie ChatGPT auf die Anfrage antworten soll. Diese Nachricht nenne ich im Folgenden, wie in der [Dokumentation der API](https://platform.openai.com/docs/api-reference/chat/create) System-Nachricht. Sie ermöglicht dem Nutzer Antworten zu erhalten, die besser auf seine Situation zugeschnitten sind. Technisch gesehen wird in dem bereits implementierten Chat-Objekt zu Beginn ein jeden Dialogs eine System-Nachricht mitgegeben, die der App-Nutzer beliebig einstellen kann.
+Meine Erweiterung ermöglicht einer Anfrage mitzugeben, wie ChatGPT auf die Anfrage antworten soll. Diese Nachricht nenne ich im Folgenden, wie in der [Dokumentation der API](https://platform.openai.com/docs/api-reference/chat/create), System-Nachricht. Sie ermöglicht dem Nutzer Antworten zu erhalten, die besser auf seine Situation zugeschnitten sind. Technisch gesehen wird in dem bereits implementierten Chat-Objekt zu Beginn ein jeden Dialogs eine System-Nachricht mitgegeben, die der App-Nutzer beliebig einstellen kann.
 
 # Verbesserungen
 - Wenn man nur auf eine schnelle Antwort aus ist, muss man nicht die manchmal doch sehr langen Antworten durchlesen, sondern bekommt direkt eine knappe Antwort.
@@ -17,10 +17,10 @@ Wenn kein abgespeicherter Chat gefunden wird, dann wird erst wenn eine Anfrage a
 
 # Änderungen in verscheidenen Artefakten
 - root_preferences.xml  
-Hier musste ich einige Eintellungen hinzufügen, die das Auswählen verschiedener System-Nachrichten vereinfachen. Ich hätte auch eine einmal eingegebene Einstellung (Ähnlich wie das Chat-Objekt auch schon) immer wieder abspeichern und aufrufen können, allerdings erschienen mir hier die Einstellungen als zentrale Stelle für Veränderungen als passender.
+Hier musste ich einige Einstellungen hinzufügen, die das Auswählen verschiedener System-Nachrichten vereinfachen. Ich hätte auch eine einmal eingegebene Einstellung (Ähnlich wie das Chat-Objekt auch schon) immer wieder abspeichern und aufrufen können, allerdings erschienen mir hier die Einstellungen als zentrale Stelle für Veränderungen als passender.
 Konkret hinzugefügt habe ich ein Dropdown-Menü, über das man die verschiedenen Modi der System-Nachricht auswählen kann. Damit auch eine flexible bzw. Nutzerdefinierte Eingabe möglich ist, habe ich zudem noch eine Texteingabe hinzugefügt, die nur beim Auswählen von "Custom" im Dropdown-Menü in das Chat-Objekt eingefügt wird.
 - arrays.xml  
-Hier habe ich die Werte für das Dropdown-Element in den Einstellungen abgespeichert, da diese nicht wie bei der Texteingabe direkt in root_preferences.xml gespeichert werden können. "entry_values" sind die Werte, die der PreferenceManager an die App weitergibt, "entries" sind die Werte, die der Nutzer auswählen kann.
+Hier habe ich die Werte für das Dropdown-Element in den Einstellungen abgespeichert, da diese nicht wie bei der Texteingabe direkt in der Einstellung gespeichert werden können. "entry_values" sind die Werte, die der PreferenceManager an die App weitergibt, "entries" sind die Werte, die der Nutzer auswählen kann.
 
 # Probleme
 - Teilweise bin ich beim suchen nach einer Lösung für ein bestimmtes Problem sehr tief in Sachen abgetaucht, die ich eigentlich nicht benötigt hätte.
@@ -31,7 +31,7 @@ Hier habe ich die Werte für das Dropdown-Element in den Einstellungen abgespeic
 - Etwas flexibel im Bezug auf die eigenen Anforderungen sein: wenn sie sich nicht genauso umsetzen lässt, frühzeitig nach Alternativen suchen, als ewig die Lösung für ein viel schwereres Problem zu suchen.
 
 # Nicht implementierte Features
-Wenn man in dem Dropdown-Menü "Custom" auswählt sollte die Eingabe einer eigenen Eingabe erscheinen und bei Auswahl eines anderen Wertes wieder verschwinden. Das habe ich nicht umsetzen können, da dieses Ausblende-System (so wie ich das verstanden habe) so aufgebaut ist, dass eine Ja / Nein Einstellung wie CheckBoxPreference oder SwitchPreference eine Gruppe an Einstellungen ein- oder ausblenden kann. Da bei mir die Ein- / Ausblendeeinstellung aber ein Dropdown-Men ist, ging das nicht. Ich bin dann auch auf die Möglichkeit gestossen, im Code die Werte und Sichtbarkeiten der verschiedenen Einstellugen ändern zu können, das war dann aber zu komplex und nicht mehr in dem Zeitrahmen möglich.
+Wenn man in dem Dropdown-Menü "Custom" auswählt sollte die Eingabe einer eigenen Eingabe erscheinen und bei Auswahl eines anderen Wertes wieder verschwinden. Das habe ich nicht umsetzen können, da dieses Ausblende-System (so wie ich das verstanden habe) so aufgebaut ist, dass eine Ja / Nein Einstellung wie CheckBoxPreference oder SwitchPreference eine Gruppe an Einstellungen ein- oder ausblenden kann. Da bei mir die Ein- / Ausblendeeinstellung aber ein Dropdown-Menü ist, ging das nicht. Ich bin dann auch auf die Möglichkeit gestossen, im Code die Werte und Sichtbarkeiten der verschiedenen Einstellugen ändern zu können, das war dann aber zu komplex und nicht mehr in dem Zeitrahmen möglich.
 
 # Fazit
 Alles ist in etwa so, wie ich es mir am Anfang vorgestellt hatte. Zu Beginn wollte ich nur irgendwie die System-Nachricht ändern und, wenn dan noch Zeit ist das in den Einstellungen einstellbar machen. Als mir dann aufgefallen ist, wie viel leichter es ist, in ein bestehendes System Kleinigkeiten einzubauen anstelle so wie im Unterricht immer neue Sachen zu implementieren, hatte ich erst eine genaue Vorstellung, wie genau alles am Ende sein sollte. Das ist auch nun bis auf die Kleinigkeit mit dem Ein- und Ausblenden der einen Einstellung umgesetzt.  
