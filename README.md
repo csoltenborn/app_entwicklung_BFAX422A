@@ -1,4 +1,8 @@
 # Erweiterung der ChatGPT App
+   Name: Finn Ehrlich   
+   Studiengruppe: BFAX422A
+   Dozent: Christian Soltenborn
+   Modul: PAE
 
 ## Einleitung
    Meine Erweiterung für die ChatGPT-App ist ein Quiz in einer separaten Activity. Jedoch ist dies kein normales Quiz mit vorgefertigten Fragen,
