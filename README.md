@@ -17,7 +17,7 @@ Wenn kein abgespeicherter Chat gefunden wird, dann wird erst wenn eine Anfrage a
 
 # Änderungen in verscheidenen Artefakten
 - root_preferences.xml  
-Hier musste ich einige Eintellungen hinzufügen, die das Auswählen verschiedener System-Nachrichten vereinfachen. Ich hätte auch eine einmal eingegebene Einstellung (Ähnlich wie das Chat-Objekt auch schon) immer wieder abspeichern und aufrufen können, allerdings erschienen mir hier die Einstellungen als zentrale Stelle für Veränderungen als passender.
+Hier musste ich einige Einstellungen hinzufügen, die das Auswählen verschiedener System-Nachrichten vereinfachen. Ich hätte auch eine einmal eingegebene Einstellung (Ähnlich wie das Chat-Objekt auch schon) immer wieder abspeichern und aufrufen können, allerdings erschienen mir hier die Einstellungen als zentrale Stelle für Veränderungen als passender.
 Konkret hinzugefügt habe ich ein Dropdown-Menü, über das man die verschiedenen Modi der System-Nachricht auswählen kann. Damit auch eine flexible bzw. Nutzerdefinierte Eingabe möglich ist, habe ich zudem noch eine Texteingabe hinzugefügt, die nur beim Auswählen von "Custom" im Dropdown-Menü in das Chat-Objekt eingefügt wird.
 - arrays.xml  
 Hier habe ich die Werte für das Dropdown-Element in den Einstellungen abgespeichert, da diese nicht wie bei der Texteingabe direkt in root_preferences.xml gespeichert werden können. "entry_values" sind die Werte, die der PreferenceManager an die App weitergibt, "entries" sind die Werte, die der Nutzer auswählen kann.
