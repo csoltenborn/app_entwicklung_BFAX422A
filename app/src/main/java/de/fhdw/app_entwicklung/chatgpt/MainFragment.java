@@ -80,7 +80,7 @@ public class MainFragment extends Fragment {
     }
 
     private void askChatGPT(String query) {
-        Message userMessage = new Message(Author.User, query, prefs.getUsername(), "#0000FF");
+        Message userMessage = new Message(Author.User, query, prefs.getUsername(), "#8a50b0");
         chat.addMessage(userMessage);
         if (chat.getMessages().size() > 1) {
             getTextView().append(CHAT_SEPARATOR);
@@ -92,7 +92,7 @@ public class MainFragment extends Fragment {
             ChatGpt chatGpt = new ChatGpt(apiToken);
             String answer = chatGpt.getChatCompletion(chat);
 
-            Message answerMessage = new Message(Author.Assistant, answer, prefs.getGptName(), "#FF0000");
+            Message answerMessage = new Message(Author.Assistant, answer, prefs.getGptName(), "#69a1fa");
             chat.addMessage(answerMessage);
             getTextView().append(CHAT_SEPARATOR);
             appendColoredText(getTextView(), toString(answerMessage), answerMessage.color);
