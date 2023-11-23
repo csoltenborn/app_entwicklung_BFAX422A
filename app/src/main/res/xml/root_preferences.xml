@@ -23,7 +23,7 @@
             android:layout_height="wrap_content"
             android:defaultValue="false"
             android:title="@string/darkmode"
-            android:summary="@string/darkmodeInfo"/>
+            android:summary="@string/darkmodeInfo" />
     </PreferenceCategory>
 
 </PreferenceScreen>
