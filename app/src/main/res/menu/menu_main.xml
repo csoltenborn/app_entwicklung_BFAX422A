@@ -3,6 +3,7 @@
 
     <item
         android:id="@+id/menu_item_settings"
-        android:icon="@android:drawable/ic_menu_preferences"
-        android:title="@string/settings" />
+        android:icon="@drawable/baseline_settings_24"
+        android:title="@string/settings"
+        android:background="@android:color/transparent"/>
 </menu>

@@ -1,6 +1,8 @@
-<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <PreferenceCategory app:title="API">
+    <PreferenceCategory app:title="API"
+        android:background="@android:color/transparent">
 
         <EditTextPreference
             app:key="api_token"
@@ -8,6 +10,20 @@
             app:defaultValue="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"
             app:useSimpleSummaryProvider="true" />
 
+    </PreferenceCategory>
+    <PreferenceCategory
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:title="@string/display"
+        android:background="@android:color/transparent">
+
+        <SwitchPreferenceCompat
+            android:key="themechange"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:defaultValue="false"
+            android:title="@string/darkmode"
+            android:summary="@string/darkmodeInfo"/>
     </PreferenceCategory>
 
 </PreferenceScreen>

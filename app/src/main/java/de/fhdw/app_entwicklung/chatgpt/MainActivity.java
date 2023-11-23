@@ -1,8 +1,12 @@
 package de.fhdw.app_entwicklung.chatgpt;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.preference.PreferenceManager;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -17,11 +21,21 @@ public class MainActivity extends AppCompatActivity {
     public static final ExecutorService backgroundExecutorService = Executors.newFixedThreadPool(4);
     public static final Handler uiThreadHandler = new Handler(Looper.getMainLooper());
 
+    SharedPreferences sharedPreferences;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+
+        ThemeHelper.checkAndApplyTheme(sharedPreferences,this);
+
         super.onCreate(savedInstanceState);
+        getWindow().getDecorView().setBackgroundResource(android.R.color.transparent);
         setContentView(R.layout.activity_main);
     }
+
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);

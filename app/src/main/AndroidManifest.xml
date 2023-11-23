@@ -12,7 +12,7 @@
         android:label="@string/app_name"
         android:roundIcon="@drawable/openai_logomark"
         android:supportsRtl="true"
-        android:theme="@style/Theme.ChatGpt"
+        android:theme="@style/LightTheme"
         tools:targetApi="31">
         <activity
             android:name=".PrefsActivity"
