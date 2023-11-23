@@ -110,7 +110,7 @@ Ein Schalter `(SwitchPreferenceCompat)` wurde in den App-Einstellungen `(XML:  r
 ## Resultat
 
 |Darkmode| ![img_5.png](ressources%2Fimg_5.png) | ![img_6.png](ressources%2Fimg_6.png) |
-|--|--|--|--|
+|--|--|--|
 | Lightmode | ![img_3.png](ressources%2Fimg_3.png) | ![img_4.png](ressources%2Fimg_4.png) |
 
 
