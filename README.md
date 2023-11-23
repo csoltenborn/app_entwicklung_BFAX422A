@@ -27,8 +27,14 @@ Abb. 2
 Umsetzung der Erweiterung:
 
 Die Umsetzung erfolgte, indem Zunächst die Komponenten Textfeld und Knopf implementiert werden (mit entsprechenden IDs) in der XML-Datei „main-Fragment“ müssen (siehe Abb. 1-2). 
+
+
 Daraufhin müssen wir Zugang zum Button als auch Textfeld, bzw. dem Inhalt des Textfeldes in unseren Quellcode bekommen. Dies ermöglichen wir, indem wir zwei Getter-Methoden implementieren und dabei aus der View die IDs der jeweiligen Komponenten verwenden (siehe Abb.3-4). 
+
+
 Bevor wir sagen können, wie der Button handeln soll, müssen wir zunächst eine Methode schreiben die einen String als Parameter hat (nämlich der Inhalt des Textfelds) und diesen ChatGPT schickt, bzw. dessen Antwort auch auf der TextView darstellt. Solch ein Codeabschnitt haben wir glücklicherweise schon in der Vorlesung geschrieben. Deshalb fehlte nur noch diesen Abschnitt in eine Methode auszulagern (siehe Abb. 5) und wieder zu Verwenden.
+
+
 Zum Schluss fehlt nur noch das Verhalten des Buttons zu konfigurieren. Dieser soll nämlich beim Betätigen, den Text des Textfeldes an ChatGPT schicken bzw. den String in die zuvor erwähnte Methode packen und diese ausführen (siehe Abb. 6).
 
 
