@@ -147,7 +147,7 @@ public class MainFragment extends Fragment {
     }
     //##############################################################################################
     private String getStringFromTextfield(){
-        EditText Textfield= getView().findViewById(R.id.Textfield);
+        EditText Textfield = getView().findViewById(R.id.Textfield);
         return Textfield.getText().toString();
     }
     //##############################################################################################
