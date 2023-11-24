@@ -13,28 +13,64 @@
         android:orientation="vertical"
         tools:context=".MainActivity" >
 
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="0dp"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
             android:layout_height="0dp"
-            android:fillViewport="true"
+            android:layout_width="match_parent"
             android:scrollbars="vertical"
-            app:layout_constraintBottom_toTopOf="@+id/button_ask"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginBottom="8dp"
+            app:layoutManager="LinearLayoutManager"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/question_layout" />
 
-        <Button
-            android:id="@+id/button_ask"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/question_layout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:boxStrokeColor="@color/primary"
+            android:layout_marginBottom="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/button_send">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/question"
+                android:minHeight="48dp"
+                android:maxHeight="104dp"
+                android:hint="@string/type_your_message"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textMultiLine"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/button_send"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/ask"
+            android:contentDescription="@string/record_message"
+            android:src="@drawable/ic_send"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
+            app:backgroundTint="@color/primaryConatiner"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView" />
+            app:layout_constraintEnd_toStartOf="@id/button_mic" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/button_mic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/record_message"
+            android:src="@drawable/ic_mic"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
+            app:backgroundTint="@color/primaryConatiner"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>
