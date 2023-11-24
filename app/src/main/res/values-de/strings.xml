@@ -1,5 +1,8 @@
-<?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="app_name" translatable="false">ChatGpt</string>
     <string name="ask">Fragen</string>
     <string name="settings">Einstellungen</string>
+    <string name="display">Bildschirm</string>
+    <string name="darkmode">Dunkelmodus</string>
+    <string name="darkmodeInfo">Wechsel hier zwischen dunklem Modus und hellem Modus</string>
 </resources>

@@ -1,9 +1,16 @@
 <resources>
-    <!-- Base application theme. -->
-    <style name="Base.Theme.ChatGpt" parent="Theme.AppCompat.Light.DarkActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+    <style name="LightTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="android:windowBackground">@color/colorBackgroundLight</item>
+        <item name="colorPrimary">#A1B5D8</item>
+        <item name="colorSecondary">#E4F0D0</item>
+        <item name="colorTertiary">#C2D8B9</item>
     </style>
 
-    <style name="Theme.ChatGpt" parent="Base.Theme.ChatGpt" />
+    <style name="DarkTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="android:windowBackground">@color/colorBackgroundDark</item>
+        <item name="colorPrimary">#8AB0AB</item>
+        <item name="colorSecondary">#C0CAAD</item>
+        <item name="colorTertiary">#3E505B</item>
+    </style>
+
 </resources>

@@ -17,4 +17,12 @@ public class PrefsFacade {
         return PreferenceManager.getDefaultSharedPreferences(context).getString("api_token", "");
     }
 
+    public boolean isDarkModeEnabled() {
+        return PreferenceManager.getDefaultSharedPreferences(context).getBoolean("themechange", false);
+    }
+
+    public void setDarkModeEnabled(boolean isEnabled) {
+        PreferenceManager.getDefaultSharedPreferences(context).edit().putBoolean("themechange", isEnabled).apply();
+    }
+
 }
