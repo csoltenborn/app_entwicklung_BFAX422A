@@ -9,19 +9,23 @@ public class Message implements Parcelable {
     public final Date date;
     public final Author author;
     public final String message;
+    public final String name;
+    public final String color;
 
-    public Message(Author author, String message) {
-        this(new Date(), author, message);
+    public Message(Author author, String message, String name, String color) {
+        this(new Date(), author, message, name, color);
     }
 
-    public Message(Date date, Author author, String message) {
+    public Message(Date date, Author author, String message, String name, String color) {
         this.date = date;
         this.author = author;
         this.message = message;
+        this.name = name;
+        this.color = color;
     }
 
     protected Message(Parcel in) {
-        this(new Date(in.readLong()), Author.valueOf(in.readString()), in.readString());
+        this(new Date(in.readLong()), Author.valueOf(in.readString()), in.readString(), in.readString(), in.readString());
     }
 
     @Override
@@ -29,6 +33,8 @@ public class Message implements Parcelable {
         dest.writeLong(date.getTime());
         dest.writeString(author.name());
         dest.writeString(message);
+        dest.writeString(name);
+        dest.writeString(color);
     }
 
     @Override

@@ -1,13 +1,31 @@
-<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <PreferenceCategory app:title="API">
+    <PreferenceCategory app:title="@string/api">
 
         <EditTextPreference
-            app:key="api_token"
-            app:title="API Token"
             app:defaultValue="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"
+            app:key="api_token"
+            app:title="@string/api_token"
             app:useSimpleSummaryProvider="true" />
 
+    </PreferenceCategory>
+    <PreferenceCategory android:title="@string/personalization">
+
+        <EditTextPreference
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:defaultValue="User"
+            app:key="username"
+            app:title="@string/username"
+            app:useSimpleSummaryProvider="true" />
+        <EditTextPreference
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:defaultValue="ChatGPT"
+            app:key="gpt_name"
+            app:title="@string/gpt_name"
+            app:useSimpleSummaryProvider="true" />
     </PreferenceCategory>
 
 </PreferenceScreen>

@@ -17,4 +17,12 @@ public class PrefsFacade {
         return PreferenceManager.getDefaultSharedPreferences(context).getString("api_token", "");
     }
 
+    public String getUsername(){
+        return PreferenceManager.getDefaultSharedPreferences(context).getString("username", "");
+    }
+
+    public String getGptName(){
+        return PreferenceManager.getDefaultSharedPreferences(context).getString("gpt_name", "");
+    }
+
 }

@@ -24,6 +24,8 @@ public class PrefsActivity extends AppCompatActivity {
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
+        assert actionBar != null;
+        actionBar.setTitle(R.string.settings);
     }
 
     @Override

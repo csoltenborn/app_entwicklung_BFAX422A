@@ -1,10 +1,15 @@
 package de.fhdw.app_entwicklung.chatgpt;
 
+import android.graphics.Color;
 import android.os.Bundle;
+import android.text.Spannable;
+import android.text.method.ScrollingMovementMethod;
+import android.text.style.ForegroundColorSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.activity.result.ActivityResultLauncher;
@@ -34,24 +39,9 @@ public class MainFragment extends Fragment {
     private final ActivityResultLauncher<LaunchSpeechRecognition.SpeechRecognitionArgs> getTextFromSpeech = registerForActivityResult(
             new LaunchSpeechRecognition(),
             query -> {
-                Message userMessage = new Message(Author.User, query);
-                chat.addMessage(userMessage);
-                if (chat.getMessages().size() > 1) {
-                    getTextView().append(CHAT_SEPARATOR);
+                if (query != null) {
+                    askChatGPT(query);
                 }
-                getTextView().append(toString(userMessage));
-
-                MainActivity.backgroundExecutorService.execute(() -> {
-                    String apiToken = prefs.getApiToken();
-                    ChatGpt chatGpt = new ChatGpt(apiToken);
-                    String answer = chatGpt.getChatCompletion(chat);
-
-                    Message answerMessage = new Message(Author.Assistant, answer);
-                    chat.addMessage(answerMessage);
-                    getTextView().append(CHAT_SEPARATOR);
-                    getTextView().append(toString(answerMessage));
-                    textToSpeech.speak(answer);
-                });
             });
 
     public MainFragment() {
@@ -76,7 +66,38 @@ public class MainFragment extends Fragment {
 
         getAskButton().setOnClickListener(v ->
                 getTextFromSpeech.launch(new LaunchSpeechRecognition.SpeechRecognitionArgs(Locale.GERMAN)));
+        getAskTextButton().setOnClickListener(v -> askTextButton());
         updateTextView();
+        getTextView().setMovementMethod(new ScrollingMovementMethod());
+    }
+
+    private void askTextButton() {
+        String query = getRequest().getText().toString();
+        if (!query.isEmpty()) {
+            getRequest().setText("");
+            askChatGPT(query);
+        }
+    }
+
+    private void askChatGPT(String query) {
+        Message userMessage = new Message(Author.User, query, prefs.getUsername(), "#8a50b0");
+        chat.addMessage(userMessage);
+        if (chat.getMessages().size() > 1) {
+            getTextView().append(CHAT_SEPARATOR);
+        }
+        appendColoredText(getTextView(), toString(userMessage), userMessage.color);
+
+        MainActivity.backgroundExecutorService.execute(() -> {
+            String apiToken = prefs.getApiToken();
+            ChatGpt chatGpt = new ChatGpt(apiToken);
+            String answer = chatGpt.getChatCompletion(chat);
+
+            Message answerMessage = new Message(Author.Assistant, answer, prefs.getGptName(), "#69a1fa");
+            chat.addMessage(answerMessage);
+            getTextView().append(CHAT_SEPARATOR);
+            appendColoredText(getTextView(), toString(answerMessage), answerMessage.color);
+            textToSpeech.speak(answer);
+        });
     }
 
     @Override
@@ -104,16 +125,16 @@ public class MainFragment extends Fragment {
         getTextView().setText("");
         List<Message> messages = chat.getMessages();
         if (!messages.isEmpty()) {
-            getTextView().append(toString(messages.get(0)));
+            appendColoredText(getTextView(), toString(messages.get(0)), messages.get(0).color);
             for (int i = 1; i < messages.size(); i++) {
                 getTextView().append(CHAT_SEPARATOR);
-                getTextView().append(toString(messages.get(i)));
+                appendColoredText(getTextView(), toString(messages.get(i)), messages.get(i).color);
             }
         }
     }
 
-    private CharSequence toString(Message message) {
-        return message.message;
+    private String toString(Message message) {
+        return message.name + ": " + message.message;
     }
 
     private TextView getTextView() {
@@ -124,6 +145,26 @@ public class MainFragment extends Fragment {
     private Button getAskButton() {
         //noinspection ConstantConditions
         return getView().findViewById(R.id.button_ask);
+    }
+
+    private Button getAskTextButton() {
+        //noinspection ConstantConditions
+        return getView().findViewById(R.id.button_ask_text);
+    }
+
+    private EditText getRequest() {
+        //noinspection ConstantConditions
+        return getView().findViewById(R.id.request);
+    }
+
+    public static void appendColoredText(TextView tv, String text, String color) {
+        int colorInt = Color.parseColor(color);
+        int start = tv.getText().length();
+        tv.append(text);
+        int end = tv.getText().length();
+
+        Spannable spannableText = (Spannable) tv.getText();
+        spannableText.setSpan(new ForegroundColorSpan(colorInt), start, end, 0);
     }
 
 }
